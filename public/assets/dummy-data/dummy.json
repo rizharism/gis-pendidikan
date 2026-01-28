@@ -1,0 +1,932 @@
+{
+    "data": [
+        {
+            "id": 51,
+            "nama": "AKN PUTRA SANG FAJAR",
+            "alamat": "Kel. Bendogerit, Kec. Sananwetan",
+            "image": "KAMPUS_AKN_PUTRA_SANG_FAJAR_BLITAR.jpg",
+            "lat": "-8.0967963",
+            "long": "112.178648"
+        },
+        {
+            "id": 52,
+            "nama": "UNIVERSITAS TERBUKA POKJAR BLITAR RAYA",
+            "alamat": "Jl. Sumba, Karangtengah, Kec. Sananwetan",
+            "image": "KAMPUS_KANTOR_UNIVERSITAS_TERBUKA.jpg",
+            "lat": "-8.1000583",
+            "long": "112.1809125"
+        },
+        {
+            "id": 53,
+            "nama": "UNIVERSITAS NEGERI MALANG KAMPUS 3",
+            "alamat": "Jl. Ir. Soekarno No.1, Kepanjen Lor, Kec. Kepanjenkidul",
+            "image": "KAMPUS_PGSD_FIP_UM.jpg",
+            "lat": "-8.0947762",
+            "long": "112.1717023"
+        },
+        {
+            "id": 54,
+            "nama": "POLITEKNIK KESEHATAN MALANG KAMPUS 3",
+            "alamat": "Jl. DR. Sutomo No.56, Bendogerit, Kec. Sananwetan",
+            "image": "KAMPUS_POLKESMA.jpg",
+            "lat": "-8.096644295",
+            "long": "112.1791434"
+        },
+        {
+            "id": 55,
+            "nama": "STIEKEN BLITAR",
+            "alamat": "Jl. Mastrip, Kepanjen Kidul, Kec. Kepanjenkidul",
+            "image": "KAMPUS_STIEKEN_BLITAR.jpg",
+            "lat": "-8.1011782",
+            "long": "112.1647473"
+        },
+        {
+            "id": 56,
+            "nama": "STIKES PATRIA HUSADA",
+            "alamat": "Jl. S. Supriadi No.168, Gedog, Kec. Sananwetan",
+            "image": "KAMPUS_STIKES_PATRIA_HUSADA.jpg",
+            "lat": "-8.0866736",
+            "long": "112.1928944"
+        },
+        {
+            "id": 57,
+            "nama": "STKIP PGRI",
+            "alamat": "Jl. Kalimantan No.111, Karangtengah, Kec. Sananwetan",
+            "image": "KAMPUS_STKIP_PGRI.jpg",
+            "lat": "-8.1078499",
+            "long": "112.1802897"
+        },
+        {
+            "id": 58,
+            "nama": "UNIVERSITAS ISLAM BALITAR",
+            "alamat": "Jl. Majapahit No.2- 4, Sananwetan, Kec. Sananwetan",
+            "image": "KAMPUS_UNIVERSITAS_ISLAM_BALITAR.jpg",
+            "lat": "-8.0985584",
+            "long": "112.1839676"
+        },
+        {
+            "id": 59,
+            "nama": "UNIVERSITAS NAHDLATUL ULAMA (UNU) BLITAR",
+            "alamat": "Jl. Masjid No.22, Kauman, Kec. Kepanjenkidul",
+            "image": "KAMPUS_UNU.jpg",
+            "lat": "-8.0950105",
+            "long": "112.1649498"
+        },
+        {
+            "id": 165,
+            "nama": "LITTLE ANGEL SCHOOL",
+            "alamat": "Jl. Ir. Soekarno, Sentul, Kec. Kepanjenkidul",
+            "image": "LITTLE_ANGEL_SCHOOL.jpg",
+            "lat": "-8.076836075",
+            "long": "112.1840778"
+        },
+        {
+            "id": 166,
+            "nama": "MADRASAH ALIYAH NEGERI KOTA BLITAR",
+            "alamat": "Jl. Jati No.167, Sukorejo, Kec. Sukorejo",
+            "image": "MAN_KOTA.jpg",
+            "lat": "-8.107785991",
+            "long": "112.1507775"
+        },
+        {
+            "id": 167,
+            "nama": "MADRASAH ALIYAH MA'ARIF NU",
+            "alamat": "Jl. Ciliwung No.56, Bendo, Kec. Kepanjenkidul",
+            "image": "MAN_MAARIF_NU.jpg",
+            "lat": "-8.088774826",
+            "long": "112.1681165"
+        },
+        {
+            "id": 189,
+            "nama": "MI NEGERI KOTA BLITAR",
+            "alamat": "Jl. Kolonel Sugiono Desa Ngegong No.36, Gedog, Kec. Sananwetan",
+            "image": "MIN_KOTA_BLITAR.jpg",
+            "lat": "-8.087595459",
+            "long": "112.1906645"
+        },
+        {
+            "id": 190,
+            "nama": "MI PERWANIDA",
+            "alamat": "Jl. Sultan Agung, Sananwetan, Kec. Sananwetan",
+            "image": "MI_PERWANIDA.jpg",
+            "lat": "-8.0989291",
+            "long": "112.1781114"
+        },
+        {
+            "id": 191,
+            "nama": "MI HIDAYATULLAH",
+            "alamat": "Jl. Kalimantan No.40, Sananwetan, Kec. Sananwetan",
+            "image": "MI_PLUS_HIDAYATULLAH.jpg",
+            "lat": "-8.1060842",
+            "long": "112.1802585"
+        },
+        {
+            "id": 193,
+            "nama": "MTSN 1 KOTA BLITAR",
+            "alamat": "Jl. Cemara Jl. Jati Gg. 10 No.83, Karangsari, Kec. Sukorejo",
+            "image": "MTSN_1.jpg",
+            "lat": "-8.109541292",
+            "long": "112.1580679"
+        },
+        {
+            "id": 194,
+            "nama": "MTSN 2 KOTA BLITAR",
+            "alamat": "Jl. Ciliwung No.140, Bendo, Kec. Kepanjenkidul",
+            "image": "MTSN_2.jpg",
+            "lat": "-8.0835188",
+            "long": "112.1700175"
+        },
+        {
+            "id": 195,
+            "nama": "MTS HIDAYATULLAH",
+            "alamat": "Kel. Sananwetan, Kec. Sananwetan",
+            "image": "MTS_HIDAYATULLAH.jpg",
+            "lat": "-8.1069038",
+            "long": "112.1759125"
+        },
+        {
+            "id": 196,
+            "nama": "MTSS MA'ARIF NU",
+            "alamat": "Jl. Ciliwung No.56, Bendo, Kec. Kepanjenkidul",
+            "image": "MTS_MAARIF_NU.jpg",
+            "lat": "-8.088594526",
+            "long": "112.1682999"
+        },
+        {
+            "id": 223,
+            "nama": "SD ISLAM KARDINA MASSA",
+            "alamat": "Jl. Kalimantan No.58, Karangtengah, Kec. Sananwetan",
+            "image": "SDI_KARDINA_MASSA.jpg",
+            "lat": "-8.1079704",
+            "long": "112.1802622"
+        },
+        {
+            "id": 224,
+            "nama": "SD ISLAM KOTA BLITAR",
+            "alamat": "Jl. Semeru No.55, Kauman, Kec. Kepanjenkidul",
+            "image": "SDI_KOTA_BLITAR.jpg",
+            "lat": "-8.0972182",
+            "long": "112.1640634"
+        },
+        {
+            "id": 225,
+            "nama": "SD ISLAM MA'ARIF KOTA BLITAR",
+            "alamat": "Kel. Plosokerep, Kec. Sananwetan",
+            "image": "SDI_MAARIF.jpg",
+            "lat": "-8.1068242",
+            "long": "112.1656894"
+        },
+        {
+            "id": 226,
+            "nama": "SDI TANJUNGSARI",
+            "alamat": "Jl. Asahan No.55, Tanjungsari, Kec. Sukorejo",
+            "image": "SDI_TANJUNGSARI.jpg",
+            "lat": "-8.0902539",
+            "long": "112.1533218"
+        },
+        {
+            "id": 227,
+            "nama": "SD KATOLIK SANTA MARIA",
+            "alamat": "Jl. S. Supriadi No.21, Bendogerit, Kec. Sananwetan",
+            "image": "SDK_SANTA_MARIA.jpg",
+            "lat": "-8.0936406",
+            "long": "112.1765598"
+        },
+        {
+            "id": 228,
+            "nama": "SD KATOLIK YOS SUDARSO",
+            "alamat": "Jl. Cempaka No.8, Sukorejo, Kec. Sukorejo",
+            "image": "SDK_YOS_SUDARSO.jpg",
+            "lat": "-8.1026543",
+            "long": "112.1586396"
+        },
+        {
+            "id": 229,
+            "nama": "SDN BENDOGERIT 1",
+            "alamat": "Jl. Hasanudin Blitar No.1, Bendogerit, Kec. Sananwetan",
+            "image": "SDN_BENDOGERIT_1.jpg",
+            "lat": "-8.0921038",
+            "long": "112.1775167"
+        },
+        {
+            "id": 230,
+            "nama": "SDN BENDOGERIT 2",
+            "alamat": "Jl. Pamenang No.49, Bendogerit, Kec. Sananwetan",
+            "image": "SDN_BENDOGERIT_2.jpg",
+            "lat": "-8.0889467",
+            "long": "112.1818367"
+        },
+        {
+            "id": 231,
+            "nama": "SDN BENDO 1",
+            "alamat": "Jl. Ciliwung No.142, Bendo, Kec. Kepanjenkidul",
+            "image": "SDN_BENDO_1.jpg",
+            "lat": "-8.0832469",
+            "long": "112.1703112"
+        },
+        {
+            "id": 232,
+            "nama": "SDN BENDO 2",
+            "alamat": "Jl. Cimedang No.10, Bendo, Kec. Kepanjenkidul",
+            "image": "SDN_BENDO_2.jpg",
+            "lat": "-8.08171",
+            "long": "112.1656298"
+        },
+        {
+            "id": 233,
+            "nama": "SDN BLITAR",
+            "alamat": "Jl. Joko Kandung No.88, Blitar, Kec. Sukorejo",
+            "image": "SDN_BLITAR.jpg",
+            "lat": "-8.1021431",
+            "long": "112.1440511"
+        },
+        {
+            "id": 234,
+            "nama": "SDN GEDOG 1",
+            "alamat": "Jl. S. Supriadi No.157, Gedog, Kec. Sananwetan",
+            "image": "SDN_GEDOG_1.jpg",
+            "lat": "-8.0888666",
+            "long": "112.187116"
+        },
+        {
+            "id": 235,
+            "nama": "SDN GEDOG 2",
+            "alamat": "Jl. Irogati No.11, Gedog, Kec. Sananwetan",
+            "image": "SDN_GEDOG_2.jpg",
+            "lat": "-8.0777573",
+            "long": "112.1897651"
+        },
+        {
+            "id": 236,
+            "nama": "SDN GEDOG 3",
+            "alamat": "Jl. Letda Markawi No.32, Gedog, Kec. Sananwetan",
+            "image": "SDN_GEDOG_3.jpg",
+            "lat": "-8.09069",
+            "long": "112.19392"
+        },
+        {
+            "id": 237,
+            "nama": "SDN KARANGSARI 1",
+            "alamat": "Jl. Cemara No.183, Karangsari, Kec. Sukorejo",
+            "image": "SDN_KARANGSARI_1.jpg",
+            "lat": "-8.1104476",
+            "long": "112.156811"
+        },
+        {
+            "id": 238,
+            "nama": "SDN KARANGSARI 2",
+            "alamat": "Jl. Randu Agung No.9, Karangsari, Kec. Sukorejo",
+            "image": "SDN_KARANGSARI_2.jpg",
+            "lat": "-8.1094053",
+            "long": "112.1562642"
+        },
+        {
+            "id": 239,
+            "nama": "SDN KARANGSARI 3",
+            "alamat": "Jl. Mangga No.63, Karangsari, Kec. Sukorejo",
+            "image": "SDN_KARANGSARI_3.jpg",
+            "lat": "-8.107748928",
+            "long": "112.1596442"
+        },
+        {
+            "id": 240,
+            "nama": "SDN KARANGTENGAH 1",
+            "alamat": "Jl. Bali No.36, Karangtengah, Kec. Sananwetan",
+            "image": "SDN_KARANGTENGAH_1.jpg",
+            "lat": "-8.1108601",
+            "long": "112.1689406"
+        },
+        {
+            "id": 241,
+            "nama": "SDN KARANGTENGAH 2",
+            "alamat": "Jl. Selayar No.9, Karangtengah, Kec. Sananwetan",
+            "image": "SDN_KARANGTENGAH_2.jpg",
+            "lat": "-8.112232",
+            "long": "112.1766255"
+        },
+        {
+            "id": 242,
+            "nama": "SDN KARANGTENGAH 3",
+            "alamat": "Jl. Sumatra No.14, Karangtengah, Kec. Sananwetan",
+            "image": "SDN_KARANGTENGAH_3.jpg",
+            "lat": "-8.1105523",
+            "long": "112.1729788"
+        },
+        {
+            "id": 243,
+            "nama": "SDN KARANGTENGAH 4",
+            "alamat": "Jl. Maluku No.14, Karangtengah, Kec. Sananwetan",
+            "image": "SDN_KARANGTENGAH_4.jpg",
+            "lat": "-8.1148727",
+            "long": "112.1772873"
+        },
+        {
+            "id": 244,
+            "nama": "SDN KAUMAN 1",
+            "alamat": "Jl. Barito Selatan No.32, Kauman, Kec. Kepanjenkidul",
+            "image": "SDN_KAUMAN_1.jpg",
+            "lat": "-8.0954682",
+            "long": "112.1588567"
+        },
+        {
+            "id": 245,
+            "nama": "SDN KAUMAN 2",
+            "alamat": "Jl. Kalibrantas No.55, Kauman, Kec. Kepanjenkidul",
+            "image": "SDN_KAUMAN_2.jpg",
+            "lat": "-8.091292",
+            "long": "112.164383"
+        },
+        {
+            "id": 246,
+            "nama": "SDN KEPANJENKIDUL 2",
+            "alamat": "Jl. Veteran No.90, Kepanjen Kidul, Kec. Kepanjenkidul",
+            "image": "SDN_KEPANJENKIDUL_2.jpg",
+            "lat": "-8.105310816",
+            "long": "112.1673981"
+        },
+        {
+            "id": 247,
+            "nama": "SDN KEPANJENLOR 1",
+            "alamat": "Jl. Masjid No.2, Kepanjen Lor, Kec. Kepanjenkidul",
+            "image": "SDN_KEPANJENLOR_1.jpg",
+            "lat": "-8.0966237",
+            "long": "112.1646786"
+        },
+        {
+            "id": 248,
+            "nama": "SDN KEPANJENLOR 2",
+            "alamat": "Kel. Kepanjen Lor, Kec. Kepanjenkidul",
+            "image": "SDN_KEPANJENLOR_2.jpg",
+            "lat": "-8.0973035",
+            "long": "112.1668437"
+        },
+        {
+            "id": 249,
+            "nama": "SDN KEPANJENLOR 3",
+            "alamat": "Jl. Masjid Utara No.22, Kauman, Kec. Kepanjenkidul",
+            "image": "SDN_KEPANJENLOR_3.jpg",
+            "lat": "-8.0933627",
+            "long": "112.1651784"
+        },
+        {
+            "id": 250,
+            "nama": "SDN KEPANJENKIDUL 1",
+            "alamat": "Kel. Kepanjen Kidul, Kec. Kepanjenkidul",
+            "image": "SDN_KEPANJEN_KIDUL_1.jpg",
+            "lat": "-8.1026277",
+            "long": "112.1649297"
+        },
+        {
+            "id": 251,
+            "nama": "SDN KLAMPOK",
+            "alamat": "Jl. Ternate No.137, Klampok, Kec. Sananwetan",
+            "image": "SDN_KLAMPOK.jpg",
+            "lat": "-8.126736",
+            "long": "112.1640818"
+        },
+        {
+            "id": 252,
+            "nama": "SDN NGADIREJO 1",
+            "alamat": "Jl. Cipemali No.29, Ngadirejo, Kec. Kepanjenkidul",
+            "image": "SDN_NGADIREJO_1.jpg",
+            "lat": "-8.0615539",
+            "long": "112.1748309"
+        },
+        {
+            "id": 253,
+            "nama": "SDN NGADIREJO 2",
+            "alamat": "Kel. Ngadirejo, Kec. Kepanjenkidul",
+            "image": "SDN_NGADIREJO_2.jpg",
+            "lat": "-8.0664505",
+            "long": "112.1819574"
+        },
+        {
+            "id": 254,
+            "nama": "SDN PAKUNDEN 1",
+            "alamat": "Jl. Bogowonto No.48A, Pakunden, Kec. Sukorejo",
+            "image": "SDN_PAKUNDEN_1.jpg",
+            "lat": "-8.0951914",
+            "long": "112.1402598"
+        },
+        {
+            "id": 255,
+            "nama": "SDN PAKUNDEN 2",
+            "alamat": "Jl. Tanjung No.107, Pakunden, Kec. Sukorejo",
+            "image": "SDN_PAKUNDEN_2.jpg",
+            "lat": "-8.1005724",
+            "long": "112.1484626"
+        },
+        {
+            "id": 256,
+            "nama": "SDN PLOSOKEREP 1",
+            "alamat": "Jl. Kenari No.9, Plosokerep, Kec. Sananwetan",
+            "image": "SDN_PLOSOKEREP_1.jpg",
+            "lat": "-8.1101669",
+            "long": "112.1663625"
+        },
+        {
+            "id": 257,
+            "nama": "SDN PLOSOKEREP 2",
+            "alamat": "Jl. Kenari No.58, Plosokerep, Kec. Sananwetan",
+            "image": "SDN_PLOSOKEREP_2.jpg",
+            "lat": "-8.115446098",
+            "long": "112.1632237"
+        },
+        {
+            "id": 258,
+            "nama": "SDN REMBANG 1",
+            "alamat": "Jl. Palem No.55, Rembang, Kec. Sananwetan",
+            "image": "SDN_REMBANG_1.jpg",
+            "lat": "-8.1237083",
+            "long": "112.1571875"
+        },
+        {
+            "id": 259,
+            "nama": "SDN REMBANG 2",
+            "alamat": "Jl. Akasia No.17, Rembang, Kec. Sananwetan",
+            "image": "SDN_REMBANG_2.jpg",
+            "lat": "-8.124324791",
+            "long": "112.1505476"
+        },
+        {
+            "id": 260,
+            "nama": "SDN SANANWETAN 1",
+            "alamat": "Jl. Kep. Seribu No.06, Sananwetan, Kec. Sananwetan",
+            "image": "SDN_SANANWETAN_1.jpg",
+            "lat": "-8.1011227",
+            "long": "112.1730082"
+        },
+        {
+            "id": 261,
+            "nama": "SDN SANANWETAN 2",
+            "alamat": "Jl. Imam Bonjol No.2, Sananwetan, Kec. Sananwetan",
+            "image": "SDN_SANANWETAN_2.jpg",
+            "lat": "-8.1001661",
+            "long": "112.1827319"
+        },
+        {
+            "id": 262,
+            "nama": "SDN SANANWETAN 3",
+            "alamat": "Kel. Sananwetan, Kec. Sananwetan",
+            "image": "SDN_SANANWETAN_3.jpg",
+            "lat": "-8.101502303",
+            "long": "112.1814305"
+        },
+        {
+            "id": 263,
+            "nama": "SDN SENTUL 1",
+            "alamat": "Jl. Trowulan No.2, Sentul, Kec. Kepanjenkidul",
+            "image": "SDN_SENTUL_1.jpg",
+            "lat": "-8.0761309",
+            "long": "112.1877173"
+        },
+        {
+            "id": 264,
+            "nama": "SDN SENTUL 2",
+            "alamat": "Jl. Ir. Soekarno No.23, Sentul, Kec. Kepanjenkidul",
+            "image": "SDN_SENTUL_2.jpg",
+            "lat": "-8.0909467",
+            "long": "112.1729525"
+        },
+        {
+            "id": 265,
+            "nama": "SDN SENTUL 3",
+            "alamat": "Jl. Ir. Soekarno No.239, Sentul, Kec. Kepanjenkidul",
+            "image": "SDN_SENTUL_3.jpg",
+            "lat": "-8.0817222",
+            "long": "112.1784167"
+        },
+        {
+            "id": 266,
+            "nama": "SDN SENTUL 4",
+            "alamat": "Jl. R. Moh. Suryo No.2, Sentul, Kec. Kepanjenkidul",
+            "image": "SDN_SENTUL_4.jpg",
+            "lat": "-8.067133798",
+            "long": "112.1902261"
+        },
+        {
+            "id": 267,
+            "nama": "SDN SUKOREJO 1",
+            "alamat": "Jl. Manggar No.57, Sukorejo, Kec. Sukorejo",
+            "image": "SDN_SUKOREJO_1.jpg",
+            "lat": "-8.1003067",
+            "long": "112.1539617"
+        },
+        {
+            "id": 268,
+            "nama": "SDN SUKOREJO 2",
+            "alamat": "Jl. Kerantil No.50 B, Sukorejo, Kec. Sukorejo",
+            "image": "SDN_SUKOREJO_2.jpg",
+            "lat": "-8.0978784",
+            "long": "112.1563313"
+        },
+        {
+            "id": 269,
+            "nama": "SDN SUKOREJO 3",
+            "alamat": "Jl. Mawar No.40, Sukorejo, Kec. Sukorejo",
+            "image": "SDN_SUKOREJO_3.jpg",
+            "lat": "-8.0999268",
+            "long": "112.1574048"
+        },
+        {
+            "id": 270,
+            "nama": "SDN TANGGUNG 1",
+            "alamat": "Jl. Ciliwung No.296, Tanggung, Kec. Kepanjenkidul",
+            "image": "SDN_TANGGUNG_1.jpg",
+            "lat": "-8.070721",
+            "long": "112.1748775"
+        },
+        {
+            "id": 271,
+            "nama": "SDN TANGGUNG 2",
+            "alamat": "Jl. Cipunegara No.149, Tanggung, Kec. Kepanjenkidul",
+            "image": "SDN_TANGGUNG_2.jpg",
+            "lat": "-8.0662088",
+            "long": "112.1748284"
+        },
+        {
+            "id": 272,
+            "nama": "SDN TANJUNGSARI 1",
+            "alamat": "Jl. Kampar No.25, Tanjungsari, Kec. Sukorejo",
+            "image": "SDN_TANJUNGSARI_1.jpg",
+            "lat": "-8.085921764",
+            "long": "112.1538686"
+        },
+        {
+            "id": 273,
+            "nama": "SDN TANJUNGSARI 2",
+            "alamat": "Jl. Mahakam No.135, Tanjungsari, Kec. Sukorejo",
+            "image": "SDN_TANJUNGSARI_2.jpg",
+            "lat": "-8.0852279",
+            "long": "112.1408977"
+        },
+        {
+            "id": 274,
+            "nama": "SDN TLUMPU",
+            "alamat": "Jl. Cemara No.309, Tlumpu, Kec. Sukorejo",
+            "image": "SDN_TLUMPU.jpg",
+            "lat": "-8.117604596",
+            "long": "112.1545416"
+        },
+        {
+            "id": 275,
+            "nama": "SDN TURI 1",
+            "alamat": "Jl. Beringin No.322, Turi, Kec. Sukorejo",
+            "image": "SDN_TURI_1.jpg",
+            "lat": "-8.10307276",
+            "long": "112.15576"
+        },
+        {
+            "id": 276,
+            "nama": "SDN TURI 2",
+            "alamat": "Kel. Sukorejo, Kec. Sukorejo",
+            "image": "SDN_TURI_2.jpg",
+            "lat": "-8.1080999",
+            "long": "112.1517825"
+        },
+        {
+            "id": 277,
+            "nama": "SD ALAM AL GHIFARI",
+            "alamat": "Jl. Sumba No.38, Karangtengah, Kec. Sananwetan",
+            "image": "SD_ALAM_AL_GHIFARI.jpg",
+            "lat": "-8.113756",
+            "long": "112.169308"
+        },
+        {
+            "id": 278,
+            "nama": "SD LABORATORIUM UM BLITAR",
+            "alamat": "Jl. Ir. Soekarno No.1, Kepanjen Lor, Kec. Kepanjenkidul",
+            "image": "SD_LAB_UM.jpg",
+            "lat": "-8.0943188",
+            "long": "112.1720947"
+        },
+        {
+            "id": 279,
+            "nama": "SD MUHAMMADIYAH BLITAR",
+            "alamat": "Jl. Cokroaminoto No.3, Kepanjen Lor, Kec. Kepanjenkidul",
+            "image": "SD_MUHAMMADIYAH_1.jpg",
+            "lat": "-8.0974164",
+            "long": "112.1698472"
+        },
+        {
+            "id": 281,
+            "nama": "SMAN 1 KOTA BLITAR",
+            "alamat": "Jl. Ahmad Yani No.112, Sananwetan, Kec. Sananwetan",
+            "image": "SMAN_1.jpg",
+            "lat": "-8.1009034",
+            "long": "112.1806146"
+        },
+        {
+            "id": 282,
+            "nama": "SMAN 2 KOTA BLITAR",
+            "alamat": "Jl. Ciliwung No.339, Tanggung, Kec. Kepanjenkidul",
+            "image": "SMAN_2.jpg",
+            "lat": "-8.065606224",
+            "long": "112.1774129"
+        },
+        {
+            "id": 283,
+            "nama": "SMAN 3 KOTA BLITAR",
+            "alamat": "Jl. Bengawan Solo, Pakunden, Kec. Sukorejo",
+            "image": "SMAN_3.jpg",
+            "lat": "-8.0922199",
+            "long": "112.1480858"
+        },
+        {
+            "id": 284,
+            "nama": "SMAN 4 KOTA BLITAR",
+            "alamat": "Jl. Melati No.49, Kepanjen Kidul, Kec. Kepanjenkidul",
+            "image": "SMAN_4.jpg",
+            "lat": "-8.104201283",
+            "long": "112.1639863"
+        },
+        {
+            "id": 285,
+            "nama": "SMA ALAM AL GHIFARI",
+            "alamat": "Kel. Karangtengah, Kec. Sananwetan",
+            "image": "SMA_AL_GHIFARI.jpg",
+            "lat": "-8.112615",
+            "long": "112.1673642"
+        },
+        {
+            "id": 286,
+            "nama": "SMA KATOLIK DIPONEGORO BLITAR",
+            "alamat": "Jl. Diponegoro, Bendogerit, Kec. Sananwetan",
+            "image": "SMA_KATOLIK_DIPONEGORO.jpg",
+            "lat": "-8.09713197",
+            "long": "112.1755233"
+        },
+        {
+            "id": 287,
+            "nama": "SMA MUHAMMDIYAH 1 BLITAR",
+            "alamat": "Jl. Cokroaminoto No.3, Kepanjen Lor, Kec. Kepanjenkidul",
+            "image": "SMA_MUHAMMADIYAH_1.jpg",
+            "lat": "-8.097488",
+            "long": "112.170082"
+        },
+        {
+            "id": 288,
+            "nama": "SMA TAMAN MADYA",
+            "alamat": "Jl. Ahmad Yani No.46, Sananwetan, Kec. Sananwetan",
+            "image": "SMA_TAMAN_SISWA.jpg",
+            "lat": "-8.100088347",
+            "long": "112.175529"
+        },
+        {
+            "id": 289,
+            "nama": "SMA YP KOTAMADYA",
+            "alamat": "Jl. Tanjung No.1, Turi, Kec. Sukorejo",
+            "image": "SMA_YP_KOTAMADYA.jpg",
+            "lat": "-8.1025809",
+            "long": "112.1558555"
+        },
+        {
+            "id": 290,
+            "nama": "SMKN 1 KOTA BLITAR",
+            "alamat": "Jl. Kenari No.30, Plosokerep, Kec. Sananwetan",
+            "image": "SMKN_1.jpg",
+            "lat": "-8.1127122",
+            "long": "112.1641875"
+        },
+        {
+            "id": 291,
+            "nama": "SMKN 2 KOTA BLITAR",
+            "alamat": "Jl. Raya Kediri - Blitar, Pakunden, Kec. Sukorejo",
+            "image": "SMKN_2.jpg",
+            "lat": "-8.1003809",
+            "long": "112.1473352"
+        },
+        {
+            "id": 292,
+            "nama": "SMKN 3 KOTA BLITAR",
+            "alamat": "Kel. Bendogerit, Kec. Sananwetan",
+            "image": "SMKN_3.jpg",
+            "lat": "-8.094577919",
+            "long": "112.1761153"
+        },
+        {
+            "id": 293,
+            "nama": "SMK PGRI 1 KOTA BLITAR",
+            "alamat": "Jl. Kemuning No.44, Plosokerep, Kec. Sananwetan",
+            "image": "SMKS_PGRI_1.jpg",
+            "lat": "-8.1082445",
+            "long": "112.1633356"
+        },
+        {
+            "id": 294,
+            "nama": "SMK PGRI 2 KOTA BLITAR",
+            "alamat": "Jl. Legundi No.6, Sananwetan, Kec. Sananwetan",
+            "image": "SMKS_PGRI_2.jpg",
+            "lat": "-8.1026616",
+            "long": "112.1800145"
+        },
+        {
+            "id": 295,
+            "nama": "SMKS PGRI 3 KOTA BLITAR",
+            "alamat": "Jl. Pamungkur, Pakunden, Kec. Sukorejo",
+            "image": "SMKS_PGRI_3.jpg",
+            "lat": "-8.1009388",
+            "long": "112.1476887"
+        },
+        {
+            "id": 296,
+            "nama": "SMK PGRI 4 KOTA BLITAR",
+            "alamat": "Jl. Kalimantan No.111, Sananwetan, Kec. Sananwetan",
+            "image": "SMKS_PGRI_4.jpg",
+            "lat": "-8.107607447",
+            "long": "112.1799314"
+        },
+        {
+            "id": 297,
+            "nama": "SMK ANGKATAN 45 BLITAR",
+            "alamat": "Jl. Diponegoro No.48, Bendogerit, Kec. Sananwetan",
+            "image": "SMK_ANGKATAN_45.jpg",
+            "lat": "-8.0950149",
+            "long": "112.1757543"
+        },
+        {
+            "id": 298,
+            "nama": "SMK DR.ISMANGIL",
+            "alamat": "Jl. Melati No.15, Kepanjen Kidul, Kec. Kepanjenkidul",
+            "image": "SMK_DR_ISMANGIL.jpg",
+            "lat": "-8.104613862",
+            "long": "112.1669951"
+        },
+        {
+            "id": 299,
+            "nama": "SMK INDONESIA PUTERA",
+            "alamat": "Jl. Seruni No.3, Kepanjen Kidul, Kec. Kepanjenkidul",
+            "image": "SMK_INDONESIA_PUTERA.jpg",
+            "lat": "-8.0998251",
+            "long": "112.1674818"
+        },
+        {
+            "id": 300,
+            "nama": "SMK ISLAM 1 BLITAR",
+            "alamat": "Jl. Musi Barat No.6, Kauman, Kec. Kepanjenkidul",
+            "image": "SMK_ISLAM_1.jpg",
+            "lat": "-8.094031178",
+            "long": "112.1622397"
+        },
+        {
+            "id": 301,
+            "nama": "SMK KATOLIK SANTO YUSUP",
+            "alamat": "Jl. Jenderal Sudirman No.35, Kepanjen Lor, Kec. Kepanjenkidul",
+            "image": "SMK_KATOLIK_SANTO_YUSUP.jpg",
+            "lat": "-8.0986528",
+            "long": "112.1718462"
+        },
+        {
+            "id": 302,
+            "nama": "SMK MUHAMMADIYAH 1 BLITAR",
+            "alamat": "Jl. Cokroaminoto No.03, Kepanjen Lor, Kec. Kepanjenkidul",
+            "image": "SMK_MUHAMMADIYAH_1.jpg",
+            "lat": "-8.0977025",
+            "long": "112.1702009"
+        },
+        {
+            "id": 303,
+            "nama": "SMK TELKOM BRAWIJAYA",
+            "alamat": "Jl.suryar, Gedog, Kec. Sananwetan",
+            "image": "SMK_TELKOM_BRAWIJAYA_KAMPUS_3.jpg",
+            "lat": "-8.102025932",
+            "long": "112.1746879"
+        },
+        {
+            "id": 304,
+            "nama": "SMKS TRIJAYA",
+            "alamat": "Jl. Pamungkur No.37, Blitar, Kec. Sukorejo",
+            "image": "SMK_TRIJAYA.jpg",
+            "lat": "-8.101331",
+            "long": "112.146834"
+        },
+        {
+            "id": 305,
+            "nama": "SMK YP 17 KOTA BLITAR",
+            "alamat": "Jl. Timor No.12, Plosokerep, Kec. Sananwetan",
+            "image": "SMK_YP_17.jpg",
+            "lat": "-8.1065992",
+            "long": "112.1686315"
+        },
+        {
+            "id": 306,
+            "nama": "SMKS YP KOTAMADYA",
+            "alamat": "Jl. Pamungkur No.32-34, Blitar, Kec. Sukorejo",
+            "image": "SMK_YP_KOTAMADYA.jpg",
+            "lat": "-8.101359",
+            "long": "112.147035"
+        },
+        {
+            "id": 307,
+            "nama": "SMP KATOLIK 3 YOS SUDARSO",
+            "alamat": "Kel. Sukorejo, Kec. Sukorejo",
+            "image": "SMPK_YOS_SUDARSO.jpg",
+            "lat": "-8.102582735",
+            "long": "112.1582297"
+        },
+        {
+            "id": 308,
+            "nama": "SMPN 1 KOTA BLITAR",
+            "alamat": "Jl. Ahmad Yani No.8, Kepanjen Kidul, Kec. Kepanjenkidul",
+            "image": "SMPN_1.jpg",
+            "lat": "-8.099730973",
+            "long": "112.1702989"
+        },
+        {
+            "id": 309,
+            "nama": "SMPN 2 KOTA BLITAR",
+            "alamat": "Jl. Melati No.112, Kepanjen Kidul, Kec. Kepanjenkidul",
+            "image": "SMPN_2.jpg",
+            "lat": "-8.1028379",
+            "long": "112.1603646"
+        },
+        {
+            "id": 310,
+            "nama": "SMPN 3 KOTA BLITAR",
+            "alamat": "Jl. Ciliwung, Tanggung, Kec. Kepanjenkidul",
+            "image": "SMPN_3.jpg",
+            "lat": "-8.078692972",
+            "long": "112.171963"
+        },
+        {
+            "id": 311,
+            "nama": "SMPN 4 KOTA BLITAR",
+            "alamat": "Jl. DR. Sutomo No.92, Bendogerit, Kec. Sananwetan",
+            "image": "SMPN_4.jpg",
+            "lat": "-8.0943712",
+            "long": "112.1794583"
+        },
+        {
+            "id": 312,
+            "nama": "SMPN 5 KOTA BLITAR",
+            "alamat": "Jl. S. Supriadi No.32, Bendogerit, Kec. Sananwetan",
+            "image": "SMPN_5.jpg",
+            "lat": "-8.0944747",
+            "long": "112.1774597"
+        },
+        {
+            "id": 313,
+            "nama": "SMPN 6 KOTA BLITAR",
+            "alamat": "Jl. S. Supriadi No.34, Bendogerit, Kec. Sananwetan",
+            "image": "SMPN_6.jpg",
+            "lat": "-8.093927146",
+            "long": "112.1778191"
+        },
+        {
+            "id": 314,
+            "nama": "SMPN 7 KOTA BLITAR",
+            "alamat": "Jl. Raung No.01, Kepanjen Lor, Kec. Kepanjenkidul",
+            "image": "SMPN_7.jpg",
+            "lat": "-8.0916621",
+            "long": "112.16878"
+        },
+        {
+            "id": 315,
+            "nama": "SMPN 8 KOTA BLITAR",
+            "alamat": "Jl. Kenari No.28, Plosokerep, Kec. Sananwetan",
+            "image": "SMPN_8.jpg",
+            "lat": "-8.111039972",
+            "long": "112.164868"
+        },
+        {
+            "id": 316,
+            "nama": "SMPN 9 KOTA BLITAR",
+            "alamat": "Jl. Widas No.29, Pakunden, Kec. Sukorejo",
+            "image": "SMPN_9.jpg",
+            "lat": "-8.092509114",
+            "long": "112.1430309"
+        },
+        {
+            "id": 317,
+            "nama": "SMP ALAM AL GHIFARI",
+            "alamat": "Jl. Sumba, Karangtengah, Kec. Sananwetan",
+            "image": "SMP_AL_GHIFARI.jpg",
+            "lat": "-8.1129459",
+            "long": "112.1678953"
+        },
+        {
+            "id": 318,
+            "nama": "SMP KATOLIK YOHANES GABRIEL",
+            "alamat": "Jl. Diponegoro No.38, Bendogerit, Kec. Sananwetan",
+            "image": "SMP_KATOLIK_YOHANES_GABRIEL.jpg",
+            "lat": "-8.095582",
+            "long": "112.175799"
+        },
+        {
+            "id": 319,
+            "nama": "SMP LABORATORIUM UM BLITAR",
+            "alamat": "Jl. Ir. Soekarno, Kepanjen Lor, Kec. Kepanjenkidul",
+            "image": "SMP_LAB_UM.jpg",
+            "lat": "-8.094418",
+            "long": "112.172222"
+        },
+        {
+            "id": 320,
+            "nama": "SMP MUHAMMADIYAH 1 BLITAR",
+            "alamat": "Jl. Gilisilat No.26, Karangtengah, Kec. Sananwetan",
+            "image": "SMP_MUHAMMADIYAH_1.jpg",
+            "lat": "-8.111641",
+            "long": "112.1689968"
+        }
+    ]
+}
