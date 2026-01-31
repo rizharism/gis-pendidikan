@@ -5,8 +5,12 @@
         <!-- Header -->
         <div class="flex items-center justify-between">
             <div>
-                <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Tambah Fasilitas Pendidikan</h2>
-                <p class="text-slate-500 text-sm font-medium mt-1">Lengkapi formulir di bawah untuk menambahkan data baru.</p>
+                <h2 class="text-2xl font-bold text-slate-900 tracking-tight">
+                    {{ isset($facility) ? 'Edit Fasilitas Pendidikan' : 'Tambah Fasilitas Pendidikan' }}
+                </h2>
+                <p class="text-slate-500 text-sm font-medium mt-1">
+                    {{ isset($facility) ? 'Perbarui informasi data sekolah yang sudah ada.' : 'Lengkapi formulir di bawah untuk menambahkan data baru.' }}
+                </p>
             </div>
             <a href="{{ route('admin.education-facility') }}" class="text-sm font-bold text-slate-500 hover:text-slate-800 transition-colors flex items-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 19l-7-7 7-7m8 14l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -14,8 +18,21 @@
             </a>
         </div>
 
-        <form action="{{ route('admin.education-facility.store') }}" method="POST" enctype="multipart/form-data">
+        @if (session('error'))
+            <div class="p-4 bg-rose-50 border border-rose-100 text-rose-700 rounded-2xl text-sm font-bold flex items-center gap-3 animate-fade-in-down mb-6">
+                <svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <form action="{{ isset($facility) ? route('admin.education-facility.update', $facility->id) : route('admin.education-facility.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @if(isset($facility))
+                @method('PUT')
+            @endif
+
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 <!-- Left Column: Input Fields -->
                 <div class="lg:col-span-7 space-y-6">
@@ -23,46 +40,36 @@
                         <div class="grid grid-cols-1 gap-5">
                             <div>
                                 <label for="name" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Nama Fasilitas</label>
-                                <input type="text" id="name" name="name"
+                                <input type="text" id="name" name="name" value="{{ old('name', $facility->name ?? '') }}"
                                     class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
                                     placeholder="Masukkan nama sekolah..." required>
+                                @error('name') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                             </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <div>
-                                    <label for="klas_type" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Jenis Fasilitas</label>
-                                    <select id="klas_type" name="klas_type"
-                                        class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
-                                        required>
-                                        <option value="">Pilih Jenis</option>
-                                        <option value="formal">Formal</option>
-                                        <option value="non-formal">Non Formal</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="klas" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Jenjang</label>
-                                    <select id="klas" name="klas"
-                                        class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
-                                        required>
-                                        <option value="">Pilih Jenjang</option>
-                                        <option value="universitas">Universitas</option>
-                                        <option value="sma">SMA/SMK</option>
-                                        <option value="smp">SMP</option>
-                                        <option value="sd">SD</option>
-                                        <option value="tk">TK</option>
-                                    </select>
-                                </div>
+                            <div>
+                                <label for="klas" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Jenjang Pendidikan</label>
+                                <select id="klas" name="klas"
+                                    class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
+                                    required>
+                                    <option value="">Pilih Jenjang</option>
+                                    <option value="sd" {{ old('klas', $facility->klas ?? '') == 'sd' ? 'selected' : '' }}>SD</option>
+                                    <option value="smp" {{ old('klas', $facility->klas ?? '') == 'smp' ? 'selected' : '' }}>SMP</option>
+                                    <option value="sma" {{ old('klas', $facility->klas ?? '') == 'sma' ? 'selected' : '' }}>SMA/SMK</option>
+                                    <option value="universitas" {{ old('klas', $facility->klas ?? '') == 'universitas' ? 'selected' : '' }}>Universitas</option>
+                                </select>
+                                @error('klas') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                             </div>
 
                             <div>
                                 <label for="address" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Alamat Lengkap</label>
                                 <textarea id="address" name="address" rows="2"
                                     class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
-                                    placeholder="Jl. Contoh No. 123..." required></textarea>
+                                    placeholder="Jl. Contoh No. 123..." required>{{ old('address', $facility->address ?? '') }}</textarea>
+                                @error('address') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                             </div>
 
                             <div x-data="{ 
-                                imageUrl: null,
+                                imageUrl: '{{ isset($facility) && $facility->image ? Storage::disk('public')->url($facility->image) : '' }}',
                                 fileChosen(event) {
                                     const file = event.target.files[0];
                                     if (file) {
@@ -77,7 +84,7 @@
                                         <div class="absolute inset-0 w-full h-full">
                                             <img :src="imageUrl" class="w-full h-full object-cover">
                                             <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                                <p class="text-white text-xs font-bold">Klik untuk ganti foto</p>
+                                                <p class="text-white text-xs font-bold font-mono">KLIK UNTUK MENGGANTI FOTO</p>
                                             </div>
                                         </div>
                                     </template>
@@ -88,24 +95,27 @@
                                             <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
                                         <div class="flex text-sm text-slate-600 justify-center">
-                                            <label for="image" class="relative cursor-pointer bg-transparent rounded-md font-bold text-indigo-600 hover:text-indigo-500 focus-within:outline-none">
-                                                <span>Upload a file</span>
-                                                <input id="image" name="image" type="file" class="sr-only" accept="image/*" @change="fileChosen">
-                                            </label>
+                                            <span class="relative cursor-pointer bg-transparent rounded-md font-bold text-indigo-600 hover:text-indigo-500">
+                                                <span>Pilih file foto</span>
+                                            </span>
                                         </div>
-                                        <p class="text-xs text-slate-500 italic">PNG, JPG up to 2MB</p>
+                                        <p class="text-[10px] text-slate-500 italic uppercase font-black">PNG, JPG UP TO 2MB</p>
                                     </div>
                                     
-                                    <!-- Hidden Input trigger when preview is shown -->
-                                    <input id="image" x-show="imageUrl" name="image" type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*" @change="fileChosen">
+                                    <!-- Single File Input -->
+                                    <input id="image" name="image" type="file" 
+                                           class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" 
+                                           accept="image/*" @change="fileChosen">
                                 </div>
+                                @error('image') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                             </div>
 
                             <div>
                                 <label for="description" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Deskripsi Singkat</label>
                                 <textarea id="description" name="description" rows="4"
                                     class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
-                                    required placeholder="Tuliskan deskripsi sekolah..."></textarea>
+                                    required placeholder="Tuliskan deskripsi sekolah...">{{ old('description', $facility->description ?? '') }}</textarea>
+                                @error('description') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                             </div>
                         </div>
                     </div>
@@ -119,14 +129,15 @@
                         
                         <div class="mb-6">
                             <label for="latlong" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Koordinat (Latitude, Longitude)</label>
-                            <input type="text" id="latlong" name="latlong"
-                                class="w-full rounded-xl border-slate-100 bg-slate-50 text-slate-500 text-xs font-mono py-2.5 px-4"
+                            <input type="text" id="latlong" name="latlong" value="{{ old('latlong', isset($facility) ? $facility->latitude . ', ' . $facility->longitude : '') }}"
+                                class="w-full rounded-xl border-slate-100 bg-slate-50 text-slate-700 text-xs font-mono py-2.5 px-4"
                                 readonly required placeholder="Klik pada peta untuk mengambil lokasi">
+                            @error('latlong') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                         </div>
 
                         <div class="mt-auto flex gap-3">
                             <button type="submit" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-2xl transition-all shadow-lg shadow-indigo-100">
-                                Simpan Data
+                                {{ isset($facility) ? 'Perbarui Data' : 'Simpan Data' }}
                             </button>
                             <button type="reset" class="px-6 py-3 rounded-2xl border border-slate-200 text-slate-500 font-bold hover:bg-slate-50 transition-all">
                                 Reset
