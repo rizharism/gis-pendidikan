@@ -66,8 +66,12 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center gap-3">
                                         <div class="w-10 h-10 rounded-xl overflow-hidden border border-slate-100 shrink-0 bg-slate-50 flex items-center justify-center">
-                                            <img src="{{ $facility->image ? Storage::disk('public')->url($facility->image) : asset('assets/images/default.png') }}" 
-                                                 class="w-full h-full object-cover">
+                                            @if ($facility->image)
+                                                <img src="{{ Storage::disk('public')->url($facility->image) }}" 
+                                                     class="w-full h-full object-cover">
+                                            @else
+                                                <span class="text-[10px] font-black text-indigo-600 uppercase">{{ $facility->klas == 'universitas' ? 'Uni' : $facility->klas }}</span>
+                                            @endif
                                         </div>
                                         <div class="text-sm font-bold text-slate-800">{{ $facility->name }}</div>
                                     </div>

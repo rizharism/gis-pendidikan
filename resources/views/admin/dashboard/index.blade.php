@@ -101,7 +101,7 @@
                                 @if($item->image)
                                     <img src="{{ Storage::disk('public')->url($item->image) }}" class="w-full h-full object-cover rounded-2xl">
                                 @else
-                                    <span class="text-[10px] font-black text-indigo-600 uppercase">{{ $item->klas }}</span>
+                                    <span class="text-[10px] font-black text-indigo-600 uppercase">{{ $item->klas == 'universitas' ? 'Uni' : $item->klas }}</span>
                                 @endif
                             </div>
                             <div class="flex-1 min-w-0">
