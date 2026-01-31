@@ -59,8 +59,8 @@
     <div class="px-4 mt-auto">
         <div x-show="sidebarOpen" x-transition class="p-4 bg-indigo-600/10 border border-indigo-500/20 rounded-2xl relative overflow-hidden group">
             <div class="absolute -right-4 -bottom-4 w-16 h-16 bg-indigo-500/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
-            <p class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-1 italic">Pro Version</p>
-            <p class="text-xs text-white/80 leading-relaxed font-medium tex">Buka fitur analisis spasial tingkat lanjut.</p>
+            <p class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-1 italic">Development Mode</p>
+            <p class="text-xs text-white/80 leading-relaxed font-medium tex">Aplikasi dalam tahap pengembangan. Fitur-fitur yang tersedia mungkin tidak berfungsi dengan baik.</p>
         </div>
     </div>
 </div>
