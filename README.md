@@ -4,115 +4,99 @@
     </a>
 </p>
 
-<p align="center">
-    <a href="https://github.com/laravel/framework/actions">
-        <img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status">
-    </a>
-    <a href="https://packagist.org/packages/laravel/framework">
-        <img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads">
-    </a>
-    <a href="https://packagist.org/packages/laravel/framework">
-        <img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version">
-    </a>
-    <a href="https://packagist.org/packages/laravel/framework">
-        <img src="https://img.shields.io/packagist/l/laravel/framework" alt="License">
-    </a>
-</p>
+# GIS Pendidikan Kota Blitar 📍🎓
 
-## About GIS Pendidikan Blitar
+GIS Pendidikan Blitar adalah sebuah aplikasi Sistem Informasi Geografis (SIG) berbasis web yang dirancang untuk memetakan, mengelola, dan menampilkan sebaran fasilitas pendidikan di wilayah Kota Blitar. Aplikasi ini dibangun untuk memberikan visualisasi data spasial yang informatif bagi masyarakat dan manajemen data yang efisien bagi administrator.
 
-Projek GIS Pendidikan Blitar adalah sebuah aplikasi web untuk mencatat dan menampilkan data fasilitas pendidikan di Kota Blitar menggunakan kerangka Laravel dan Leaflet sebagai peta interaktif.
+---
 
-## Getting Started
+## 🚀 Fitur Utama
 
-### Prerequisites
+-   **Dashboard Statistik Interaktif**: Ringkasan data (Total Fasilitas, SD, SMP, SMA, Universitas) dilengkapi dengan visualisasi Donut Chart dari **ApexCharts**.
+-   **Manajemen Fasilitas (CRUD)**: Kelola data sekolah lengkap dengan foto, deskripsi, dan lokasi geografis.
+-   **Integrasi Peta Spasial**: Menggunakan **Leaflet.js** untuk pemilihan titik koordinat (latitude & longitude) dengan antarmuka peta yang responsif.
+-   **Auto-Jenjang Seeder**: Sistem impor data pintar yang otomatis mendeteksi jenjang pendidikan dari nama fasilitas.
+-   **Sistem Autentikasi**: Area admin yang aman menggunakan **Laravel Breeze**.
+-   **Penanganan Media**: Upload foto fasilitas dengan optimasi penamaan dan placeholder gambar default jika foto tidak tersedia.
 
-Pastikan Anda telah menginstal:
+---
 
-- PHP
-- Node.js
-- Composer
-- Git
+## 🛠️ Stack Teknologi
 
-### Installation
+-   **Core Framework**: [Laravel 11](https://laravel.com)
+-   **Frontend Interactivity**: [Alpine.js](https://alpinejs.dev)
+-   **UI Styling**: [Tailwind CSS](https://tailwindcss.com)
+-   **Peta & GIS**: [Leaflet.js](https://leafletjs.com)
+-   **Visualisasi Data**: [ApexCharts](https://apexcharts.com)
+-   **Database**: MySQL / MariaDB
 
-1. **Clone Repository**
+---
 
-    ```bash
-    git clone https://github.com/your-repository/gis-pendidikan-blitar.git
-    cd gis-pendidikan-blitar
-    ```
+## 📦 Panduan Instalasi
 
-2. **Install Dependencies**
-   Install dependencies PHP menggunakan Composer:
+Ikuti langkah-langkah berikut untuk menjalankan projek di lingkungan lokal Anda:
 
-    ```bash
-    composer install
-    ```
+### 1. Persiapan Awal
+Pastikan Anda sudah menginstal:
+-   PHP >= 8.2
+-   Composer
+-   Node.js & NPM
+-   MySQL
 
-3. **Install JavaScript Dependencies**
-   Install dependencies JavaScript menggunakan npm:
+### 2. Clone & Install
+```bash
+# Clone repository
+git clone https://github.com/rizHarism/gis-pendidikan.git
+cd gis-pendidikan
 
-    ```bash
-    npm install
-    ```
+# Install dependencies PHP
+composer install
 
-4. **Environment Configuration (optional untuk saat ini)**
-   Buat file `.env` dari template `.env.example` dan sesuaikan konfigurasi database:
+# Install dependencies JS
+npm install
+```
 
-    ```bash
-    cp .env.example .env
-    ```
+### 3. Konfigurasi Environment
+Buat file `.env` dan sesuaikan pengaturan database Anda:
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-    Kemudian, generate aplikasi key Laravel:
+### 4. Database & Storage
+Jalankan migrasi beserta seeder untuk mengisi data awal (termasuk user admin default):
+```bash
+# Migrasi dan Seed Data
+php artisan migrate:fresh --seed
 
-    ```bash
-    php artisan key:generate
-    ```
+# Hubungkan Storage untuk Foto
+php artisan storage:link
+```
 
-5. **Database Migration (optional untuk saat ini)**
-   Jalankan migrasi database untuk membuat tabel yang diperlukan:
+> [!NOTE]
+> User Admin Default: `admin@example.com` | Password: `password`
 
-    ```bash
-    php artisan migrate
-    ```
+### 5. Menjalankan Aplikasi
+Buka dua terminal dan jalankan perintah berikut:
 
-6. **Run Development Server**
-   Anda harus menjalankan dua server: satu untuk backend Laravel dan satu untuk frontend Vite.
+**Terminal 1 (Backend):**
+```bash
+php artisan serve
+```
 
-    **Backend (Laravel)**
+**Terminal 2 (Frontend/Assets):**
+```bash
+npm run dev
+```
 
-    ```bash
-    php artisan serve
-    ```
+Aplikasi dapat diakses di: `http://localhost:8000`
 
-    **Frontend (Vite)**
-    Buka terminal baru dan jalankan perintah berikut:
+---
 
-    ```bash
-    npm run dev
-    ```
+## 🤝 Kontribusi
 
-    Setelah menjalankan kedua perintah di atas, aplikasi akan tersedia di `http://localhost:8000`.
+Projek ini dikembangkan sebagai bagian dari tugas Praktek Kerja Lapangan (PKL) Kelompok 2. Kontribusi sangat dihargai untuk pengembangan fitur analisis spasial tingkat lanjut kedepannya.
 
-## Features (belum tersedia)
+## 📄 Lisensi
 
-- Menambahkan data fasilitas pendidikan.
-- Memperbarui data fasilitas pendidikan.
-- Menampilkan data fasilitas pendidikan pada peta interaktif menggunakan Leaflet.
-- Fitur pencarian fasilitas pendidikan dengan tampilan sugesti otomatis saat mengetik.
-- Menyimpan gambar/foto fasilitas pendidikan.
-- Menyimpan deskripsi detail fasilitas pendidikan.
-- Mengambil koordinat.latitude & longitude saat peta digeser.
-
-## Learning Laravel
-
-Laravel memiliki dokumentasi yang komprehensif dan perpustakaan video tutorial yang rinci. Anda dapat mengunjungi [Dokumentasi Laravel](https://laravel.com/docs) untuk lebih banyak informasi. Jika Anda lebih suka belajar secara visual, [Laracasts](https://laracasts.com) menyediakan ribuan video tutorial tentang berbagai topik termasuk Laravel, PHP, unit testing, dan JavaScript.
-
-## Code of Conduct
-
-Agar masyarakat Laravel tetap ramah dan inklusif, silakan baca dan patuhi [Kode Etik](https://laravel.com/docs/contributions#code-of-conduct).
-
-## License
-
-Projek GIS Pendidikan Blitar tersedia sebagai perangkat lunak open-source dengan lisensi [MIT](https://opensource.org/licenses/MIT).
+Tersedia di bawah lisensi [MIT](https://opensource.org/licenses/MIT).
