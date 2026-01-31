@@ -78,32 +78,101 @@
             </div>
         </div>
 
-        <!-- Placeholder for Visual Data -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-                <h4 class="text-lg font-bold text-slate-800 tracking-tight mb-4">Sebaran Wilayah</h4>
-                <div class="h-64 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200 flex items-center justify-center">
-                    <p class="text-slate-400 font-medium italic">Chart Area Placeholder</p>
-                </div>
-            </div>
-            <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-                <h4 class="text-lg font-bold text-slate-800 tracking-tight mb-4">Aktivitas Terakhir</h4>
-                <div class="space-y-4">
-                    @for($i = 0; $i < 4; $i++)
-                    <div class="flex items-center gap-4 p-3 rounded-2xl hover:bg-slate-50 transition-colors">
-                        <div class="w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center">
-                            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-sm font-bold text-slate-800">Menambahkan SMP Negeri 1</p>
-                            <p class="text-xs text-slate-500">2 jam yang lalu</p>
-                        </div>
+        <!-- Distribution Chart & Recent Activity -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Chart Card -->
+            <div class="lg:col-span-7 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800 tracking-tight">Sebaran Jenjang</h4>
+                        <p class="text-xs text-slate-500 font-medium">Distribusi fasilitas berdasarkan tingkat pendidikan.</p>
                     </div>
-                    @endfor
                 </div>
+                <div id="jenjangChart" class="min-h-[300px]"></div>
+            </div>
+
+            <!-- Activity Card -->
+            <div class="lg:col-span-5 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col">
+                <h4 class="text-lg font-bold text-slate-800 tracking-tight mb-6">Aktivitas Terakhir</h4>
+                <div class="space-y-5 flex-1">
+                    @forelse($recent as $item)
+                        <div class="flex items-center gap-4 group cursor-default">
+                            <div class="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 group-hover:bg-indigo-50 group-hover:border-indigo-100 transition-colors">
+                                @if($item->image)
+                                    <img src="{{ Storage::disk('public')->url($item->image) }}" class="w-full h-full object-cover rounded-2xl">
+                                @else
+                                    <span class="text-[10px] font-black text-indigo-600 uppercase">{{ $item->klas }}</span>
+                                @endif
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-bold text-slate-800 truncate">Menambahkan {{ $item->name }}</p>
+                                <div class="flex items-center gap-2 mt-0.5">
+                                    <span class="inline-block w-1.5 h-1.5 rounded-full {{ $item->klas == 'sd' ? 'bg-rose-400' : ($item->klas == 'smp' ? 'bg-indigo-400' : ($item->klas == 'sma' ? 'bg-amber-400' : 'bg-emerald-400')) }}"></span>
+                                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{{ $item->klas }} • {{ $item->created_at->diffForHumans() }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="h-full flex flex-col items-center justify-center text-center py-10">
+                            <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mb-3">
+                                <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <p class="text-sm text-slate-400 italic">Belum ada aktivitas baru.</p>
+                        </div>
+                    @endforelse
+                </div>
+                <a href="{{ route('admin.education-facility') }}" class="mt-6 block text-center py-3 rounded-2xl bg-slate-50 text-xs font-bold text-slate-500 hover:bg-indigo-50 hover:text-indigo-600 transition-all uppercase tracking-widest">Lihat Semua Data</a>
             </div>
         </div>
     </div>
+
+    <!-- ApexCharts JS -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var options = {
+                series: [{{ $stats['sd'] }}, {{ $stats['smp'] }}, {{ $stats['sma'] }}, {{ $stats['univ'] }}],
+                chart: {
+                    type: 'donut',
+                    height: 320,
+                    fontFamily: 'Inter, sans-serif'
+                },
+                labels: ['SD', 'SMP', 'SMA', 'UNIV'],
+                colors: ['#f43f5e', '#6366f1', '#f59e0b', '#10b981'],
+                legend: {
+                    position: 'bottom',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    markers: { radius: 6 }
+                },
+                plotOptions: {
+                    pie: {
+                        donut: {
+                            size: '75%',
+                            labels: {
+                                show: true,
+                                name: { fontSize: '12px', fontWeight: 600, color: '#64748b' },
+                                value: { fontSize: '24px', fontWeight: 800, color: '#1e293b' },
+                                total: {
+                                    show: true,
+                                    label: 'TOTAL',
+                                    color: '#64748b',
+                                    formatter: function (w) {
+                                        return w.globals.seriesTotals.reduce((a, b) => a + b, 0)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                stroke: { show: false },
+                dataLabels: { enabled: false }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#jenjangChart"), options);
+            chart.render();
+        });
+    </script>
 @endsection

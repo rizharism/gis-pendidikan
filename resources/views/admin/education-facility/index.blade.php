@@ -65,15 +65,10 @@
                             <tr class="hover:bg-slate-50/50 transition-colors group">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center gap-3">
-                                        @if ($facility->image)
-                                            <div class="w-10 h-10 rounded-xl overflow-hidden border border-slate-100 shrink-0">
-                                                <img src="{{ Storage::disk('public')->url($facility->image) }}" class="w-full h-full object-cover">
-                                            </div>
-                                        @else
-                                            <div class="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center font-bold text-[10px] shrink-0 uppercase">
-                                                {{ $facility->klas }}
-                                            </div>
-                                        @endif
+                                        <div class="w-10 h-10 rounded-xl overflow-hidden border border-slate-100 shrink-0 bg-slate-50 flex items-center justify-center">
+                                            <img src="{{ $facility->image ? Storage::disk('public')->url($facility->image) : asset('assets/images/default.png') }}" 
+                                                 class="w-full h-full object-cover">
+                                        </div>
                                         <div class="text-sm font-bold text-slate-800">{{ $facility->name }}</div>
                                     </div>
                                 </td>

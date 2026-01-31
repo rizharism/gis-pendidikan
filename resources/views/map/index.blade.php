@@ -84,7 +84,11 @@
             </datalist>
             <a href="#" class="mx-2">School</a>
             <a href="#" class="mx-2">Information</a>
-            <a href="{{ route('admin.dashboard') }}" class="mx-2">Login</a>
+            @auth
+                <a href="{{ route('admin.dashboard') }}" class="mx-2 font-bold text-indigo-300">Dashboard</a>
+            @else
+                <a href="{{ route('login') }}" class="mx-2">Login</a>
+            @endauth
         </div>
         <div id="map"></div>
     </div>

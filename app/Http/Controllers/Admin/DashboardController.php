@@ -19,6 +19,8 @@ class DashboardController extends Controller
             'univ' => EducationFacility::where('klas', 'universitas')->count(),
         ];
 
-        return view('admin.dashboard.index', compact('stats'));
+        $recent = EducationFacility::latest()->take(5)->get();
+
+        return view('admin.dashboard.index', compact('stats', 'recent'));
     }
 }

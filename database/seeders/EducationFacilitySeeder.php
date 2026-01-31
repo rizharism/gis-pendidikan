@@ -41,7 +41,7 @@ class EducationFacilitySeeder extends Seeder
                 'name' => $name,
                 'klas' => $klas,
                 'address' => $item['alamat'],
-                'image' => 'facilities/' . $item['image'], // Asumsi file gambar sudah ada di storage/app/public/facilities
+                'image' => null, // Set null agar menggunakan default.png yang baru dibuat
                 'description' => $description,
                 'latitude' => $item['lat'],
                 'longitude' => $item['long'],

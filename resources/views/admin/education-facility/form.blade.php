@@ -69,7 +69,7 @@
                             </div>
 
                             <div x-data="{ 
-                                imageUrl: '{{ isset($facility) && $facility->image ? Storage::disk('public')->url($facility->image) : '' }}',
+                                imageUrl: '{{ isset($facility) && $facility->image ? Storage::disk('public')->url($facility->image) : asset('assets/images/default.png') }}',
                                 fileChosen(event) {
                                     const file = event.target.files[0];
                                     if (file) {
