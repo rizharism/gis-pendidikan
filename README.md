@@ -23,7 +23,7 @@ GIS Pendidikan Blitar adalah sebuah aplikasi Sistem Informasi Geografis (SIG) be
 
 ## 🛠️ Stack Teknologi
 
--   **Core Framework**: [Laravel 11](https://laravel.com)
+-   **Core Framework**: [Laravel 12](https://laravel.com)
 -   **Frontend Interactivity**: [Alpine.js](https://alpinejs.dev)
 -   **UI Styling**: [Tailwind CSS](https://tailwindcss.com)
 -   **Peta & GIS**: [Leaflet.js](https://leafletjs.com)
@@ -48,6 +48,7 @@ Pastikan Anda sudah menginstal:
 # Clone repository
 git clone https://github.com/rizHarism/gis-pendidikan.git
 cd gis-pendidikan
+git checkout develop
 
 # Install dependencies PHP
 composer install
