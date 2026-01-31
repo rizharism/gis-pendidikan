@@ -18,7 +18,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     // --- Route Data fasilitas --
     Route::get('/education-facility', [EducationFacilityController::class, 'index'])->name('admin.education-facility');
     Route::get('/education-facility/create', [EducationFacilityController::class, 'create'])->name('admin.education-facility.create');
-    Route::get('/education-facility/store', [EducationFacilityController::class, 'store'])->name('admin.education-facility.store');
+    Route::post('/education-facility', [EducationFacilityController::class, 'store'])->name('admin.education-facility.store');
+    Route::get('/education-facility/{educationFacility}/edit', [EducationFacilityController::class, 'edit'])->name('admin.education-facility.edit');
+    Route::put('/education-facility/{educationFacility}', [EducationFacilityController::class, 'update'])->name('admin.education-facility.update');
+    Route::delete('/education-facility/{educationFacility}', [EducationFacilityController::class, 'destroy'])->name('admin.education-facility.destroy');
 
     // --- Route Profile admin ---
     Route::get('/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
