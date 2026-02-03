@@ -1,7 +1,64 @@
 @extends('admin.layout.layout')
 
 @section('content')
-    <div class="space-y-6">
+    <div class="space-y-6" x-data="{
+        loading: false,
+        searchLoading: false,
+        tableLoading: false,
+        search: '{{ $search ?? '' }}',
+    
+        async loadData(url) {
+            this.tableLoading = true;
+    
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json'
+                    }
+                });
+    
+                const data = await response.json();
+    
+                if (data.success) {
+                    // Update table HTML
+                    this.$refs.tableBody.innerHTML = data.html;
+                    // Update pagination
+                    this.$refs.pagination.innerHTML = data.pagination;
+                    // Update info text
+                    this.$refs.tableInfo.innerHTML = data.info + (data.search ? ` <span class='text-indigo-600 font-bold'>(Hasil pencarian: \'${data.search}\')</span>` : '');
+                    // Update search state
+                    this.search = data.search;
+                }
+            } catch (error) {
+                console.error('AJAX Error:', error);
+            } finally {
+                this.tableLoading = false;
+            }
+        },
+    
+        async performSearch(event) {
+            event.preventDefault();
+            this.searchLoading = true;
+    
+            const form = event.target;
+            const formData = new FormData(form);
+            const searchValue = formData.get('search');
+            const url = form.action +
+                '?search=' + encodeURIComponent(searchValue);
+    
+            await this.loadData(url);
+    
+            this.searchLoading = false;
+        },
+    
+        async resetSearch() {
+            this.search = '';
+            this.searchLoading = true;
+            await this.loadData('{{ route('admin.education-facility') }}');
+            this.searchLoading = false;
+        }
+    }">
         <!-- Header Section -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
@@ -19,24 +76,54 @@
         </div>
 
         @if (session('success'))
-            <div
-                class="p-4 bg-emerald-50 border border-emerald-100 text-emerald-700 rounded-2xl text-sm font-bold flex items-center gap-3 animate-fade-in-down">
-                <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                {{ session('success') }}
+            <div x-data="{ show: true }"
+                 x-init="setTimeout(() => show = false, 5000)"
+                 x-show="show"
+                 x-transition:enter="transition ease-out duration-300"
+                 x-transition:enter-start="opacity-0 -translate-y-2"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-300"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 -translate-y-4"
+                 class="p-4 bg-emerald-50 border border-emerald-100 text-emerald-700 rounded-2xl text-sm font-bold flex items-center justify-between gap-3 animate-fade-in-down">
+                <div class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span>{{ session('success') }}</span>
+                </div>
+                <button @click="show = false" class="text-emerald-600 hover:text-emerald-800 transition-colors p-1 rounded-lg hover:bg-emerald-100 shrink-0">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
         @endif
 
         @if (session('error'))
-            <div
-                class="p-4 bg-rose-50 border border-rose-100 text-rose-700 rounded-2xl text-sm font-bold flex items-center gap-3 animate-fade-in-down">
-                <svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                {{ session('error') }}
+            <div x-data="{ show: true }"
+                 x-init="setTimeout(() => show = false, 5000)"
+                 x-show="show"
+                 x-transition:enter="transition ease-out duration-300"
+                 x-transition:enter-start="opacity-0 -translate-y-2"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-300"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 -translate-y-4"
+                 class="p-4 bg-rose-50 border border-rose-100 text-rose-700 rounded-2xl text-sm font-bold flex items-center justify-between gap-3 animate-fade-in-down">
+                <div class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-rose-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span>{{ session('error') }}</span>
+                </div>
+                <button @click="show = false" class="text-rose-600 hover:text-rose-800 transition-colors p-1 rounded-lg hover:bg-rose-100 shrink-0">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
         @endif
 
@@ -45,7 +132,7 @@
             <!-- Search & Filter Bar -->
             <div class="p-6 border-b border-slate-50">
                 <form method="GET" action="{{ route('admin.education-facility') }}" class="flex gap-2"
-                    x-data="{ loading: false }" @submit.prevent="loading = true; $el.submit()">
+                    @submit="performSearch">
 
                     <div class="relative flex-1">
                         <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
@@ -54,24 +141,24 @@
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
                         </span>
-                        <input type="text" name="search" value="{{ $search ?? '' }}"
-                            placeholder="Cari nama sekolah atau alamat..."
+                        <input type="text" name="search" x-model="search" placeholder="Cari nama sekolah atau alamat..."
                             class="pl-10 w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5">
                     </div>
 
                     {{-- Search Button with Loading Spinner --}}
                     <button type="submit"
                         class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-6 rounded-xl transition-all shadow-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                        :disabled="loading">
+                        :disabled="searchLoading">
 
                         {{-- Default Icon --}}
-                        <svg x-show="!loading" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg x-show="!searchLoading" class="w-5 h-5" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
 
                         {{-- Loading Spinner --}}
-                        <svg x-show="loading" class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <svg x-show="searchLoading" class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                 stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor"
@@ -79,24 +166,31 @@
                             </path>
                         </svg>
 
-                        <span x-text="loading ? 'Mencari...' : 'Cari'"></span>
+                        <span x-text="searchLoading ? 'Mencari...' : 'Cari'"></span>
                     </button>
 
                     {{-- Clear Button (only when searching) --}}
-                    @if ($search)
-                        <a href="{{ route('admin.education-facility') }}"
-                            class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold py-2.5 px-4 rounded-xl transition-all flex items-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                            Reset
-                        </a>
-                    @endif
+                    <button type="button" x-show="search" @click="resetSearch" :disabled="searchLoading"
+                        class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold py-2.5 px-4 rounded-xl transition-all flex items-center gap-2 disabled:opacity-50">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                            </path>
+                        </svg>
+                        Reset
+                    </button>
                 </form>
             </div>
 
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto relative">
+                {{-- Table Loading Overlay --}}
+                <div x-show="tableLoading" x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    class="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 flex items-center justify-center">
+                    <div class="page-loader-spinner"></div>
+                </div>
+
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="bg-slate-50/50">
@@ -114,72 +208,11 @@
                                 Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-50">
-                        @forelse ($facilities as $facility)
-                            <tr class="hover:bg-slate-50/50 transition-colors group">
-                                <td class="px-6 py-0 whitespace-nowrap">
-                                    <div class="flex items-center gap-3">
-                                        <div
-                                            class="w-10 h-10 rounded-xl overflow-hidden border border-slate-100 shrink-0 bg-slate-50 flex items-center justify-center">
-                                            @if ($facility->image)
-                                                <img src="{{ Storage::disk('public')->url($facility->image) }}"
-                                                    class="w-full h-full object-cover">
-                                            @else
-                                                <span
-                                                    class="text-[10px] font-black text-indigo-600 uppercase">{{ $facility->klas == 'universitas' ? 'Uni' : $facility->klas }}</span>
-                                            @endif
-                                        </div>
-                                        <div class="text-sm font-bold text-slate-800">{{ $facility->name }}</div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-slate-500 max-w-xs truncate">{{ $facility->address }}</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 font-medium uppercase">
-                                    {{ $facility->klas }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">
-                                    <div class="flex items-center justify-center gap-2">
-                                        <a href="{{ route('admin.education-facility.edit', $facility->id) }}"
-                                            class="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all"
-                                            title="Edit">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
-                                                </path>
-                                            </svg>
-                                        </a>
-                                        <form action="{{ route('admin.education-facility.destroy', $facility->id) }}"
-                                            method="POST"
-                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                class="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all"
-                                                title="Hapus">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                                                    </path>
-                                                </svg>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="px-6 py-10 text-center text-slate-400 italic text-sm">
-                                    @if ($search)
-                                        Tidak ada hasil untuk pencarian "{{ $search }}"
-                                    @else
-                                        Belum ada data fasilitas pendidikan.
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforelse
+                    <tbody x-ref="tableBody" class="divide-y divide-slate-50">
+                        @include('admin.education-facility._table', [
+                            'facilities' => $facilities,
+                            'search' => $search,
+                        ])
                     </tbody>
                 </table>
             </div>
@@ -187,14 +220,21 @@
             <!-- Pagination -->
             <div class="px-6 py-4 border-t border-slate-50 bg-slate-50/30">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p class="text-xs text-slate-500 font-medium italic">
+                    <p x-ref="tableInfo" class="text-xs text-slate-500 font-medium italic">
                         Menampilkan {{ $facilities->firstItem() ?? 0 }} - {{ $facilities->lastItem() ?? 0 }}
                         dari {{ $facilities->total() }} data
                         @if ($search)
                             <span class="text-indigo-600 font-bold">(Hasil pencarian: "{{ $search }}")</span>
                         @endif
                     </p>
-                    <div class="flex items-center gap-2">
+                    <div x-ref="pagination" class="flex items-center gap-2"
+                        @click.prevent="
+                        const link = $event.target.closest('a');
+                        if (link && link.href) {
+                            $event.preventDefault();
+                            loadData(link.href);
+                        }
+                    ">
                         {{ $facilities->links() }}
                     </div>
                 </div>

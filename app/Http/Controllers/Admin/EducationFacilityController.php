@@ -21,8 +21,21 @@ class EducationFacilityController extends Controller
                         ->orWhere('address', 'like', "%{$search}%");
                 });
             })
-            ->paginate(8)
+            ->paginate(10)
             ->withQueryString();
+
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'html' => view('admin.education-facility._table', [
+                    'facilities' => $facilities,
+                    'search' => $search
+                ])->render(),
+                'pagination' => $facilities->links()->render(),
+                'info' => "Menampilkan {$facilities->firstItem()} - {$facilities->lastItem()} dari {$facilities->total()} data",
+                'search' => $search
+            ]);
+        }
 
         return view('admin.education-facility.index', compact('facilities', 'search'));
     }
