@@ -11,7 +11,162 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.5s ease-out, visibility 0.5s;
+    transition:
+        opacity 0.5s ease-out,
+        visibility 0.5s;
+}
+
+/* Map Container */
+#map-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+/* Dock/Search Bar */
+#dock {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 12px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#dock input[type="text"] {
+    width: 250px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+#dock input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#dock input[type="text"]:focus {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
+}
+
+#dock a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    margin-left: 8px;
+}
+
+#dock a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+/* Search suggestions */
+datalist {
+    background: white;
+    color: #1e293b;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 8px 0;
+    margin-top: 8px;
+    margin-left: -8px;
+}
+
+datalist option {
+    padding: 10px 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+datalist option:hover {
+    background: #f1f5f9;
+}
+
+/* Custom Popup Styles */
+.leaflet-popup-content-wrapper .leaflet-popup-content {
+    margin: 0;
+    padding: 0;
+}
+
+.map-popup {
+    width: 280px;
+    font-family: "Inter", system-ui, sans-serif;
+    overflow: hidden;
+}
+
+.popup-header {
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+}
+
+.popup-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.popup-title {
+    padding: 8px 4px;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e293b;
+    background: white;
+}
+
+.popup-body {
+    padding: 3px;
+    background: white;
+}
+
+.popup-address {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 3px;
+}
+
+.popup-btn {
+    display: block;
+    width: 100%;
+    padding: 8px 2px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin: 8px 0px;
+}
+
+.popup-btn:hover {
+    background: #4338ca;
 }
 
 .page-loader.hidden-loader {

@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Route;
 // route map (peta sebaran)
 Route::get('/', [PetaController::class, 'index'])->name('map.index');
 
+// Map API Routes (public)
+Route::prefix('api/map')->group(function () {
+    Route::get('/facilities', [PetaController::class, 'getFacilities'])->name('api.map.facilities');
+    Route::get('/jenjang/{jenjang}', [PetaController::class, 'getFacilitiesByJenjang'])->name('api.map.jenjang');
+    Route::get('/search', [PetaController::class, 'search'])->name('api.map.search');
+});
+
 // Protected Admin Routes
 Route::middleware('auth')->prefix('admin')->group(function () {
 
