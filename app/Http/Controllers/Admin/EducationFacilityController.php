@@ -10,10 +10,21 @@ use Illuminate\Support\Facades\Storage;
 
 class EducationFacilityController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $facilities = EducationFacility::latest()->get();
-        return view('admin.education-facility.index', compact('facilities'));
+        $search = $request->input('search');
+
+        $facilities = EducationFacility::latest()
+            ->when($search, function ($query, $search) {
+                return $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%")
+                        ->orWhere('address', 'like', "%{$search}%");
+                });
+            })
+            ->paginate(8)
+            ->withQueryString();
+
+        return view('admin.education-facility.index', compact('facilities', 'search'));
     }
 
     public function create()
@@ -46,7 +57,7 @@ class EducationFacilityController extends Controller
                 $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                 $extension = $file->getClientOriginalExtension();
                 $cleanName = preg_replace('/[^A-Za-z0-9\_]/', '', str_replace(' ', '_', $originalName));
-                
+
                 $filename = time() . '_' . $cleanName . '.' . $extension;
                 $data['image'] = $file->storeAs('facilities', $filename, 'public');
             }
@@ -90,13 +101,13 @@ class EducationFacilityController extends Controller
                 if ($educationFacility->image) {
                     Storage::disk('public')->delete($educationFacility->image);
                 }
-                
+
                 // New image with readable name
                 $file = $request->file('image');
                 $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                 $extension = $file->getClientOriginalExtension();
                 $cleanName = preg_replace('/[^A-Za-z0-9\_]/', '', str_replace(' ', '_', $originalName));
-                
+
                 $filename = time() . '_' . $cleanName . '.' . $extension;
                 $data['image'] = $file->storeAs('facilities', $filename, 'public');
             }
