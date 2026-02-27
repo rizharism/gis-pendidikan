@@ -31,6 +31,71 @@
             @endauth
         </div>
 
+        {{-- Custom Layer Control Panel --}}
+        <div id="layer-control-wrapper">
+            <button id="layer-toggle-btn" title="Layer Control">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+                <span>Layer</span>
+            </button>
+
+            <div id="layer-panel">
+                {{-- Basemap Section --}}
+                <div class="layer-section-title">Basemap</div>
+                <div class="layer-options">
+                    <label class="layer-option">
+                        <input type="radio" name="basemap" value="osm" checked>
+                        <span class="layer-option-icon">🗺️</span>
+                        <span>OpenStreetMap</span>
+                    </label>
+                    <label class="layer-option">
+                        <input type="radio" name="basemap" value="imagery">
+                        <span class="layer-option-icon">🛰️</span>
+                        <span>Satellite</span>
+                    </label>
+                    <label class="layer-option">
+                        <input type="radio" name="basemap" value="terrain">
+                        <span class="layer-option-icon">⛰️</span>
+                        <span>Terrain</span>
+                    </label>
+                </div>
+
+                <div class="layer-divider"></div>
+
+                {{-- Data Sekolah Section --}}
+                <div class="layer-section-title">Data Sekolah</div>
+                <div class="layer-options">
+                    <label class="layer-option">
+                        <input type="checkbox" name="jenjang" value="sd">
+                        <span class="layer-option-icon">🏫</span>
+                        <span>SD</span>
+                        <span id="badge-sd" class="layer-badge" style="display:none;"></span>
+                    </label>
+                    <label class="layer-option">
+                        <input type="checkbox" name="jenjang" value="smp">
+                        <span class="layer-option-icon">🏫</span>
+                        <span>SMP</span>
+                        <span id="badge-smp" class="layer-badge" style="display:none;"></span>
+                    </label>
+                    <label class="layer-option">
+                        <input type="checkbox" name="jenjang" value="sma">
+                        <span class="layer-option-icon">🏫</span>
+                        <span>SMA</span>
+                        <span id="badge-sma" class="layer-badge" style="display:none;"></span>
+                    </label>
+                    <label class="layer-option">
+                        <input type="checkbox" name="jenjang" value="universitas">
+                        <span class="layer-option-icon">🎓</span>
+                        <span>Universitas</span>
+                        <span id="badge-universitas" class="layer-badge" style="display:none;"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
         <div id="map"></div>
     </div>
     @vite('resources/js/gis/initial-map.js')
