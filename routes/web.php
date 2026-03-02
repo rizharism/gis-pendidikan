@@ -14,6 +14,7 @@ Route::prefix('api/map')->group(function () {
     Route::get('/facilities', [PetaController::class, 'getFacilities'])->name('api.map.facilities');
     Route::get('/jenjang/{jenjang}', [PetaController::class, 'getFacilitiesByJenjang'])->name('api.map.jenjang');
     Route::get('/search', [PetaController::class, 'search'])->name('api.map.search');
+    Route::get('/detail/{id}', [PetaController::class, 'getDetail'])->name('api.map.detail');
 });
 
 // Protected Admin Routes

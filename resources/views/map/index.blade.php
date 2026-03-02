@@ -98,6 +98,61 @@
 
         <div id="map"></div>
     </div>
+    {{-- Detail Modal Overlay --}}
+    <div id="detail-modal" class="modal-overlay" style="display:none;">
+        <div class="modal-backdrop"></div>
+        <div class="modal-card">
+            {{-- Header with image --}}
+            <div id="modal-header" class="modal-header">
+                <img id="modal-image" class="modal-image" src="" alt="">
+                <div class="modal-header-overlay">
+                    <span id="modal-jenjang-badge" class="modal-jenjang-badge"></span>
+                </div>
+                <button id="modal-close-btn" class="modal-close-btn" title="Tutup">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+
+            {{-- Body --}}
+            <div class="modal-body">
+                <h2 id="modal-name" class="modal-name"></h2>
+
+                <div class="modal-info-rows">
+                    <div class="modal-info-row">
+                        <span class="modal-info-icon">📍</span>
+                        <div>
+                            <div class="modal-info-label">Alamat</div>
+                            <div id="modal-address" class="modal-info-value"></div>
+                        </div>
+                    </div>
+                    <div class="modal-info-row">
+                        <span class="modal-info-icon">📝</span>
+                        <div>
+                            <div class="modal-info-label">Deskripsi</div>
+                            <div id="modal-description" class="modal-info-value"></div>
+                        </div>
+                    </div>
+                    <div class="modal-info-row">
+                        <span class="modal-info-icon">📌</span>
+                        <div>
+                            <div class="modal-info-label">Koordinat</div>
+                            <div id="modal-coords" class="modal-info-value modal-coords-text"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Loading spinner --}}
+            <div id="modal-loading" class="modal-loading" style="display:none;">
+                <div class="modal-spinner"></div>
+                <span>Memuat data...</span>
+            </div>
+        </div>
+    </div>
+
     @vite('resources/js/gis/initial-map.js')
     @vite('resources/js/map/map.js')
 </body>

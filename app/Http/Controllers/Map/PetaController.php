@@ -60,6 +60,23 @@ class PetaController extends Controller
         }
     }
     
+    public function getDetail($id)
+    {
+        try {
+            $facility = EducationFacility::findOrFail($id);
+
+            return response()->json([
+                'success' => true,
+                'data' => $facility,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data tidak ditemukan',
+            ], 404);
+        }
+    }
+
     public function search(Request $request)
     {
         $search = $request->input('search');
