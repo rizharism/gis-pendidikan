@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\EducationFacility;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class EducationFacilityController extends Controller
@@ -57,6 +58,8 @@ class EducationFacilityController extends Controller
         ]);
 
         try {
+            DB::beginTransaction();
+
             $data = $request->all();
 
             // Split latlong into latitude and longitude
@@ -77,8 +80,11 @@ class EducationFacilityController extends Controller
 
             EducationFacility::create($data);
 
+            DB::commit();
+
             return redirect()->route('admin.education-facility')->with('success', 'Data fasilitas berhasil ditambahkan!');
         } catch (\Exception $e) {
+            DB::rollBack();
             return back()->withInput()->with('error', 'Gagal menambahkan data: ' . $e->getMessage());
         }
     }
@@ -102,6 +108,8 @@ class EducationFacilityController extends Controller
         ]);
 
         try {
+            DB::beginTransaction();
+
             $data = $request->all();
 
             // Split latlong into latitude and longitude
@@ -127,8 +135,11 @@ class EducationFacilityController extends Controller
 
             $educationFacility->update($data);
 
+            DB::commit();
+
             return redirect()->route('admin.education-facility')->with('success', 'Data fasilitas berhasil diperbarui!');
         } catch (\Exception $e) {
+            DB::rollBack();
             return back()->withInput()->with('error', 'Gagal memperbarui data: ' . $e->getMessage());
         }
     }
@@ -136,13 +147,18 @@ class EducationFacilityController extends Controller
     public function destroy(EducationFacility $educationFacility)
     {
         try {
+            DB::beginTransaction();
+
             if ($educationFacility->image) {
                 Storage::disk('public')->delete($educationFacility->image);
             }
             $educationFacility->delete();
 
+            DB::commit();
+
             return redirect()->route('admin.education-facility')->with('success', 'Data fasilitas berhasil dihapus!');
         } catch (\Exception $e) {
+            DB::rollBack();
             return back()->with('error', 'Gagal menghapus data: ' . $e->getMessage());
         }
     }

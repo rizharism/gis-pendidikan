@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EducationFacilityController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Map\PetaController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,17 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
     Route::patch('/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
     Route::delete('/profile', [AdminProfileController::class, 'destroy'])->name('admin.profile.destroy');
+
+    // --- Route Users (super-admin only) ---
+    Route::middleware('can:super-admin')->group(function () {
+        Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
+        Route::get('/users/create', [UserController::class, 'create'])->name('admin.users.create');
+        Route::post('/users', [UserController::class, 'store'])->name('admin.users.store');
+        Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+        Route::put('/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
+        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    });
 });
 
 require __DIR__.'/auth.php';
+
