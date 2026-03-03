@@ -40,7 +40,7 @@
                     <div class="md:col-span-2">
                         <label for="name" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Nama Lengkap</label>
                         <input type="text" id="name" name="name" value="{{ old('name', $user->name ?? '') }}"
-                            class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
+                            class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
                             placeholder="Masukkan nama lengkap..." required>
                         @error('name') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
@@ -49,7 +49,7 @@
                     <div class="md:col-span-2">
                         <label for="email" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Alamat Email</label>
                         <input type="email" id="email" name="email" value="{{ old('email', $user->email ?? '') }}"
-                            class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
+                            class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
                             placeholder="contoh@email.com" required>
                         @error('email') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
@@ -63,7 +63,7 @@
                             @endif
                         </label>
                         <input type="password" id="password" name="password"
-                            class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
+                            class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
                             placeholder="Min. 8 karakter" {{ isset($user) ? '' : 'required' }}>
                         @error('password') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
@@ -72,7 +72,7 @@
                     <div>
                         <label for="password_confirmation" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Konfirmasi Password</label>
                         <input type="password" id="password_confirmation" name="password_confirmation"
-                            class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
+                            class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
                             placeholder="Ulangi password" {{ isset($user) ? '' : 'required' }}>
                     </div>
 
@@ -80,7 +80,7 @@
                     <div class="md:col-span-2">
                         <label for="role" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Hak Akses (Role)</label>
                         <select id="role" name="role"
-                            class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
+                            class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
                             required>
                             <option value="">Pilih Role</option>
                             <option value="admin" {{ old('role', $user->role ?? '') === 'admin' ? 'selected' : '' }}>Admin</option>
@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="flex gap-3 mt-8 pt-6 border-t border-slate-100">
-                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-2xl transition-all shadow-lg shadow-indigo-100">
+                    <button type="submit" class="bg-brand-dark hover:bg-brand-accent text-white font-bold py-3 px-8 rounded-2xl transition-all shadow-lg shadow-brand-dark/10">
                         {{ isset($user) ? 'Perbarui Pengguna' : 'Simpan Pengguna' }}
                     </button>
                     <a href="{{ route('admin.users.index') }}" class="px-8 py-3 rounded-2xl border border-slate-200 text-slate-500 font-bold hover:bg-slate-50 transition-all">
@@ -107,3 +107,4 @@
         </form>
     </div>
 @endsection
+

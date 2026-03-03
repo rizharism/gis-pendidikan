@@ -4,7 +4,7 @@
 <div class="max-w-4xl mx-auto space-y-8">
     <!-- Header -->
     <div class="flex items-center gap-4">
-        <div class="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-100 shrink-0">
+        <div class="w-16 h-16 bg-brand-dark rounded-2xl flex items-center justify-center text-white shadow-lg shadow-brand-dark/10 shrink-0">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
             </svg>
@@ -49,7 +49,7 @@
                     <div>
                         <label for="name" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Nama Lengkap</label>
                         <input type="text" name="name" id="name" value="{{ old('name', Auth::user()->name) }}"
-                            class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50" 
+                            class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50" 
                             required placeholder="Masukkan nama Anda...">
                         @error('name')
                             <p class="mt-2 text-xs text-rose-600 font-medium italic">@ {{ $message }}</p>
@@ -59,7 +59,7 @@
                     <div>
                         <label for="email" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Alamat Email</label>
                         <input type="email" name="email" id="email" value="{{ old('email', Auth::user()->email) }}"
-                            class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50" 
+                            class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50" 
                             required placeholder="email@contoh.com">
                         @error('email')
                             <p class="mt-2 text-xs text-rose-600 font-medium italic">@ {{ $message }}</p>
@@ -69,7 +69,7 @@
 
                 <div class="pt-6 border-t border-slate-50 flex items-center justify-between">
                     <p class="text-xs text-slate-400 italic">Perubahan akan langsung disimpan ke sistem.</p>
-                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-8 rounded-xl transition-all shadow-lg shadow-indigo-100 active:scale-95">
+                    <button type="submit" class="bg-brand-dark hover:bg-indigo-700 text-white font-bold py-2.5 px-8 rounded-xl transition-all shadow-lg shadow-brand-dark/10 active:scale-95">
                         Simpan Perubahan
                     </button>
                 </div>
@@ -96,3 +96,4 @@
     </div>
 </div>
 @endsection
+

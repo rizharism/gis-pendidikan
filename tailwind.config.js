@@ -14,8 +14,16 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                brand: {
+                    dark:    '#254669', // Navy   – primary buttons, sidebar active, card headers
+                    accent:  '#005c83', // Ocean  – hover states, gradients, secondary highlights
+                    success: '#27a154', // Emerald – success toasts, Universitas badge
+                },
+            },
         },
     },
 
     plugins: [forms],
 };
+

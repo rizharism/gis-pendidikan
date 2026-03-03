@@ -20,7 +20,7 @@
         <!-- Dashboard Statistics -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             <!-- Total Card -->
-            <div class="relative bg-gradient-to-br from-indigo-600 to-indigo-700 p-6 rounded-3xl shadow-xl shadow-indigo-200 overflow-hidden group">
+            <div class="relative bg-gradient-to-br from-brand-dark to-brand-accent p-6 rounded-3xl shadow-xl shadow-brand-dark/20 overflow-hidden group">
                 <div class="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
                 <div class="relative flex flex-col h-full">
                     <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-white mb-4">
@@ -47,7 +47,7 @@
             <!-- SMP Card -->
             <div class="relative bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                 <div class="flex flex-col h-full">
-                    <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300 border border-indigo-100 uppercase font-black text-xs">
+                    <div class="w-12 h-12 bg-blue-50 text-brand-accent rounded-2xl flex items-center justify-center mb-4 group-hover:bg-brand-accent group-hover:text-white transition-colors duration-300 border border-blue-100 uppercase font-black text-xs">
                         SMP
                     </div>
                     <p class="text-slate-500 text-[10px] font-black uppercase tracking-widest">Menengah Pertama</p>
@@ -97,7 +97,7 @@
                 <div class="space-y-5 flex-1">
                     @forelse($recent as $item)
                         <div class="flex items-center gap-4 group cursor-default">
-                            <div class="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 group-hover:bg-indigo-50 group-hover:border-indigo-100 transition-colors">
+                            <div class="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 group-hover:bg-blue-50 group-hover:border-blue-100 transition-colors">
                                 @if($item->image)
                                     <img src="{{ Storage::disk('public')->url($item->image) }}" class="w-full h-full object-cover rounded-2xl">
                                 @else
@@ -107,7 +107,7 @@
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-bold text-slate-800 truncate">Menambahkan {{ $item->name }}</p>
                                 <div class="flex items-center gap-2 mt-0.5">
-                                    <span class="inline-block w-1.5 h-1.5 rounded-full {{ $item->klas == 'sd' ? 'bg-rose-400' : ($item->klas == 'smp' ? 'bg-indigo-400' : ($item->klas == 'sma' ? 'bg-amber-400' : 'bg-emerald-400')) }}"></span>
+                                    <span class="inline-block w-1.5 h-1.5 rounded-full {{ $item->klas == 'sd' ? 'bg-rose-400' : ($item->klas == 'smp' ? 'bg-sky-400' : ($item->klas == 'sma' ? 'bg-amber-400' : 'bg-emerald-400')) }}"></span>
                                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{{ $item->klas }} • {{ $item->created_at->diffForHumans() }}</p>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
                         </div>
                     @endforelse
                 </div>
-                <a href="{{ route('admin.education-facility') }}" class="mt-6 block text-center py-3 rounded-2xl bg-slate-50 text-xs font-bold text-slate-500 hover:bg-indigo-50 hover:text-indigo-600 transition-all uppercase tracking-widest">Lihat Semua Data</a>
+                <a href="{{ route('admin.education-facility') }}" class="mt-6 block text-center py-3 rounded-2xl bg-slate-50 text-xs font-bold text-slate-500 hover:bg-blue-50 hover:text-brand-accent transition-all uppercase tracking-widest">Lihat Semua Data</a>
             </div>
         </div>
     </div>
@@ -140,7 +140,7 @@
                     fontFamily: 'Inter, sans-serif'
                 },
                 labels: ['SD', 'SMP', 'SMA', 'UNIV'],
-                colors: ['#f43f5e', '#6366f1', '#f59e0b', '#10b981'],
+                colors: ['#f43f5e', '#005c83', '#f59e0b', '#27a154'],
                 legend: {
                     position: 'bottom',
                     fontSize: '12px',

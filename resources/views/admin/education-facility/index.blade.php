@@ -66,7 +66,7 @@
                 <p class="text-slate-500 text-sm font-medium mt-1">Kelola informasi sekolah dan institusi pendidikan.</p>
             </div>
             <a href="{{ route('admin.education-facility.create') }}"
-                class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-6 rounded-xl transition-all shadow-lg shadow-indigo-200">
+                class="inline-flex items-center gap-2 bg-brand-dark hover:bg-brand-accent text-white font-bold py-2.5 px-6 rounded-xl transition-all shadow-lg shadow-brand-dark/20">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
                     </path>
@@ -147,7 +147,7 @@
 
                     {{-- Search Button with Loading Spinner --}}
                     <button type="submit"
-                        class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-6 rounded-xl transition-all shadow-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                        class="bg-brand-dark hover:bg-brand-accent text-white font-bold py-2.5 px-6 rounded-xl transition-all shadow-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                         :disabled="searchLoading">
 
                         {{-- Default Icon --}}
@@ -242,3 +242,4 @@
         </div>
     </div>
 @endsection
+

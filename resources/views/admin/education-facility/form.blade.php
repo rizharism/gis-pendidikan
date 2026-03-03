@@ -41,7 +41,7 @@
                             <div>
                                 <label for="name" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Nama Fasilitas</label>
                                 <input type="text" id="name" name="name" value="{{ old('name', $facility->name ?? '') }}"
-                                    class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
+                                    class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
                                     placeholder="Masukkan nama sekolah..." required>
                                 @error('name') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                             </div>
@@ -49,7 +49,7 @@
                             <div>
                                 <label for="klas" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Jenjang Pendidikan</label>
                                 <select id="klas" name="klas"
-                                    class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
+                                    class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
                                     required>
                                     <option value="">Pilih Jenjang</option>
                                     <option value="sd" {{ old('klas', $facility->klas ?? '') == 'sd' ? 'selected' : '' }}>SD</option>
@@ -63,7 +63,7 @@
                             <div>
                                 <label for="address" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Alamat Lengkap</label>
                                 <textarea id="address" name="address" rows="2"
-                                    class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
+                                    class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
                                     placeholder="Jl. Contoh No. 123..." required>{{ old('address', $facility->address ?? '') }}</textarea>
                                 @error('address') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                             </div>
@@ -95,7 +95,7 @@
                                             <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
                                         <div class="flex text-sm text-slate-600 justify-center">
-                                            <span class="relative cursor-pointer bg-transparent rounded-md font-bold text-indigo-600 hover:text-indigo-500">
+                                            <span class="relative cursor-pointer bg-transparent rounded-md font-bold text-brand-accent hover:text-brand-dark">
                                                 <span>Pilih file foto</span>
                                             </span>
                                         </div>
@@ -113,7 +113,7 @@
                             <div>
                                 <label for="description" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Deskripsi Singkat</label>
                                 <textarea id="description" name="description" rows="4"
-                                    class="w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-4 bg-slate-50/50"
+                                    class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
                                     required placeholder="Tuliskan deskripsi sekolah...">{{ old('description', $facility->description ?? '') }}</textarea>
                                 @error('description') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                             </div>
@@ -136,7 +136,7 @@
                         </div>
 
                         <div class="mt-auto flex gap-3">
-                            <button type="submit" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-2xl transition-all shadow-lg shadow-indigo-100">
+                            <button type="submit" class="flex-1 bg-brand-dark hover:bg-brand-accent text-white font-bold py-3 px-6 rounded-2xl transition-all shadow-lg shadow-brand-dark/10">
                                 {{ isset($facility) ? 'Perbarui Data' : 'Simpan Data' }}
                             </button>
                             <button type="reset" class="px-6 py-3 rounded-2xl border border-slate-200 text-slate-500 font-bold hover:bg-slate-50 transition-all">
@@ -152,3 +152,4 @@
 
 @vite('resources/js/gis/initial-map.js')
 @vite('resources/js/admin/form-education')
+

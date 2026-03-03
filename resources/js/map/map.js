@@ -164,15 +164,15 @@ function createMarker(facility) {
 const jenjangConfig = {
     sd: {
         label: "SD",
-        gradient: "linear-gradient(135deg, #3b82f6, #1d4ed8)",
-        badge: "#dbeafe",
-        badgeText: "#1e40af",
+        gradient: "linear-gradient(135deg, #f43f5e, #e11d48)",
+        badge: "#ffe4e6",
+        badgeText: "#9f1239",
     },
     smp: {
         label: "SMP",
-        gradient: "linear-gradient(135deg, #10b981, #059669)",
-        badge: "#d1fae5",
-        badgeText: "#065f46",
+        gradient: "linear-gradient(135deg, #005c83, #254669)",
+        badge: "#e0f2fe",
+        badgeText: "#0c4a6e",
     },
     sma: {
         label: "SMA",
@@ -182,9 +182,9 @@ const jenjangConfig = {
     },
     universitas: {
         label: "Universitas",
-        gradient: "linear-gradient(135deg, #8b5cf6, #7c3aed)",
-        badge: "#ede9fe",
-        badgeText: "#4c1d95",
+        gradient: "linear-gradient(135deg, #27a154, #1d8a45)",
+        badge: "#dcfce7",
+        badgeText: "#14532d",
     },
 };
 

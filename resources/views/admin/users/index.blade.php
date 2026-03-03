@@ -9,7 +9,7 @@
                 <p class="text-slate-500 text-sm font-medium mt-1">Kelola akun dan hak akses pengguna sistem.</p>
             </div>
             <a href="{{ route('admin.users.create') }}"
-                class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-6 rounded-xl transition-all shadow-lg shadow-indigo-200">
+                class="inline-flex items-center gap-2 bg-brand-dark hover:bg-brand-accent text-white font-bold py-2.5 px-6 rounded-xl transition-all shadow-lg shadow-brand-dark/20">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                 </svg>
@@ -81,7 +81,7 @@
                         <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Cari nama atau email pengguna..."
                             class="pl-10 w-full rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5">
                     </div>
-                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-6 rounded-xl transition-all shadow-md flex items-center gap-2">
+                    <button type="submit" class="bg-brand-dark hover:bg-brand-accent text-white font-bold py-2.5 px-6 rounded-xl transition-all shadow-md flex items-center gap-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
@@ -113,19 +113,19 @@
                             <tr class="hover:bg-slate-50/50 transition-colors">
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold text-sm shrink-0">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-brand-accent font-bold text-sm shrink-0">
                                             {{ strtoupper(substr($user->name, 0, 1)) }}
                                         </div>
                                         <span class="font-semibold text-slate-700 text-sm">{{ $user->name }}</span>
                                         @if($user->id === auth()->id())
-                                            <span class="text-[10px] bg-indigo-100 text-indigo-600 font-bold px-2 py-0.5 rounded-full">Anda</span>
+                                            <span class="text-[10px] bg-blue-100 text-brand-accent font-bold px-2 py-0.5 rounded-full">Anda</span>
                                         @endif
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-sm text-slate-500">{{ $user->email }}</td>
                                 <td class="px-6 py-4">
                                     @if($user->role === 'super-admin')
-                                        <span class="inline-flex items-center gap-1 text-xs font-bold bg-violet-100 text-violet-700 px-3 py-1 rounded-full">
+                                        <span class="inline-flex items-center gap-1 text-xs font-bold bg-brand-dark/10 text-brand-dark px-3 py-1 rounded-full">
                                             <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1l2.545 5.157L18 7.118l-4 3.897.944 5.505L10 13.875l-4.944 2.645L6 10.015 2 7.118l5.455-.961L10 1z" clip-rule="evenodd"/></svg>
                                             Super Admin
                                         </span>
@@ -139,7 +139,7 @@
                                 <td class="px-6 py-4">
                                     <div class="flex items-center justify-center gap-2">
                                         <a href="{{ route('admin.users.edit', $user->id) }}"
-                                            class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg transition-colors">
+                                            class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-accent bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg transition-colors">
                                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                             </svg>
@@ -185,7 +185,7 @@
                         Menampilkan {{ $users->firstItem() ?? 0 }} - {{ $users->lastItem() ?? 0 }}
                         dari {{ $users->total() }} pengguna
                         @if($search)
-                            <span class="text-indigo-600 font-bold">(Hasil pencarian: "{{ $search }}")</span>
+                            <span class="text-brand-accent font-bold">(Hasil pencarian: "{{ $search }}")</span>
                         @endif
                     </p>
                     <div class="flex items-center gap-2">
@@ -196,3 +196,4 @@
         </div>
     </div>
 @endsection
+

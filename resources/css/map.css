@@ -18,11 +18,11 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-    background: rgba(15, 23, 42, 0.9);
-    backdrop-filter: blur(8px);
-    border-radius: 16px;
+    background: rgba(37, 70, 105, 0.92);
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
     padding: 12px 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 24px rgba(37, 70, 105, 0.35);
     display: flex;
     align-items: center;
     gap: 12px;
@@ -46,7 +46,7 @@
 
 #dock input[type="text"]:focus {
     background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 0 0 2px rgba(0, 92, 131, 0.6);
 }
 
 #dock a {
@@ -108,12 +108,12 @@ datalist option:hover {
     align-items: center;
     gap: 8px;
     padding: 10px 16px;
-    background: rgba(15, 23, 42, 0.9);
-    backdrop-filter: blur(8px);
+    background: rgba(37, 70, 105, 0.92);
+    backdrop-filter: blur(12px);
     color: rgba(255, 255, 255, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(37, 70, 105, 0.35);
     cursor: pointer;
     font-size: 13px;
     font-weight: 600;
@@ -128,23 +128,23 @@ datalist option:hover {
 }
 
 #layer-toggle-btn:hover {
-    background: rgba(30, 41, 59, 0.95);
+    background: rgba(0, 92, 131, 0.85);
 }
 
 #layer-toggle-btn.active {
-    background: rgba(99, 102, 241, 0.85);
+    background: rgba(0, 92, 131, 0.9);
     color: white;
-    border-color: rgba(99, 102, 241, 0.5);
+    border-color: rgba(0, 92, 131, 0.5);
 }
 
 /* ─── Layer Panel ───────────────────────────────────────────────────── */
 #layer-panel {
-    background: rgba(15, 23, 42, 0.9);
-    backdrop-filter: blur(8px);
+    background: rgba(37, 70, 105, 0.92);
+    backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
+    border-radius: 24px;
     padding: 16px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 4px 24px rgba(37, 70, 105, 0.35);
     min-width: 200px;
 
     /* Collapse animation */
@@ -206,7 +206,7 @@ datalist option:hover {
 
 .layer-option input[type="radio"],
 .layer-option input[type="checkbox"] {
-    accent-color: #818cf8;
+    accent-color: #005c83;
     width: 14px;
     height: 14px;
     cursor: pointer;
@@ -224,8 +224,8 @@ datalist option:hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(99, 102, 241, 0.3);
-    color: #a5b4fc;
+    background: rgba(0, 92, 131, 0.35);
+    color: #7dd3fc;
     font-size: 10px;
     font-weight: 700;
     padding: 2px 7px;
@@ -236,9 +236,9 @@ datalist option:hover {
 /* ─── Custom Popup ──────────────────────────────────────────────────── */
 .leaflet-popup-content-wrapper {
     padding: 0 !important;
-    border-radius: 16px !important;
+    border-radius: 20px !important;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18) !important;
+    box-shadow: 0 8px 32px rgba(37, 70, 105, 0.2) !important;
 }
 
 .leaflet-popup-content-wrapper .leaflet-popup-content {
@@ -320,7 +320,7 @@ datalist option:hover {
     display: block;
     width: 100%;
     padding: 8px 14px;
-    background: #4f46e5;
+    background: #254669;
     color: white;
     border: none;
     border-radius: 10px;
@@ -332,7 +332,7 @@ datalist option:hover {
 }
 
 .popup-btn:hover {
-    background: #4338ca;
+    background: #005c83;
 }
 
 .popup-btn:active {
@@ -365,12 +365,12 @@ datalist option:hover {
 .modal-card {
     position: relative;
     background: white;
-    border-radius: 20px;
+    border-radius: 24px;
     width: 420px;
     max-width: 90vw;
     max-height: 85vh;
     overflow: hidden;
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 24px 64px rgba(37, 70, 105, 0.25);
     transform: translateY(24px) scale(0.96);
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     overflow-y: auto;
@@ -503,7 +503,7 @@ datalist option:hover {
     width: 32px;
     height: 32px;
     border: 3px solid #e2e8f0;
-    border-top-color: #6366f1;
+    border-top-color: #005c83;
     border-radius: 50%;
     animation: modal-spin 0.7s linear infinite;
 }
