@@ -1,31 +1,31 @@
 {{-- <tbody class="divide-y divide-slate-50"> --}}
 @forelse ($facilities as $facility)
-    <tr class="hover:bg-slate-50/50 transition-colors group">
+    <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors group">
         <td class="px-6 py-4 whitespace-nowrap">
             <div class="flex items-center gap-3">
                 <div
-                    class="w-10 h-10 rounded-xl overflow-hidden border border-slate-100 shrink-0 bg-slate-50 flex items-center justify-center">
+                    class="w-10 h-10 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-600 shrink-0 bg-slate-50 dark:bg-slate-700 flex items-center justify-center">
                     @if ($facility->image)
                         <img src="{{ Storage::disk('public')->url($facility->image) }}"
                             class="w-full h-full object-cover">
                     @else
                         <span
-                            class="text-[10px] font-black text-indigo-600 uppercase">{{ $facility->klas == 'universitas' ? 'Uni' : $facility->klas }}</span>
+                            class="text-[10px] font-black text-indigo-600 dark:text-white uppercase">{{ $facility->klas == 'universitas' ? 'Uni' : $facility->klas }}</span>
                     @endif
                 </div>
-                <div class="text-sm font-bold text-slate-800">{{ $facility->name }}</div>
+                <div class="text-sm font-bold text-slate-800 dark:text-white">{{ $facility->name }}</div>
             </div>
         </td>
         <td class="px-6 py-4">
-            <div class="text-sm text-slate-500 max-w-xs truncate">{{ $facility->address }}</div>
+            <div class="text-sm text-slate-500 dark:text-slate-400 max-w-xs truncate">{{ $facility->address }}</div>
         </td>
-        <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 font-medium uppercase">
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300 font-medium uppercase">
             {{ $facility->klas }}
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-center">
             <div class="flex items-center justify-center gap-2">
                 <a href="{{ route('admin.education-facility.edit', $facility->id) }}"
-                    class="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all"
+                    class="p-2 text-slate-400 hover:text-brand-accent hover:bg-blue-50 dark:hover:bg-white-accent/20 rounded-lg transition-all"
                     title="Edit">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -52,7 +52,7 @@
     </tr>
 @empty
     <tr>
-        <td colspan="4" class="px-6 py-10 text-center text-slate-400 italic text-sm">
+        <td colspan="4" class="px-6 py-10 text-center text-slate-400 dark:text-slate-500 italic text-sm">
             @if ($search)
                 Tidak ada hasil untuk pencarian "{{ $search }}"
             @else

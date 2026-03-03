@@ -25,8 +25,8 @@ const basemaps = {
     ),
 };
 
-// Track currently active basemap key
-let activeBasemap = "osm";
+// Track currently active basemap key – read from meta tag or fall back to 'osm'
+let activeBasemap = document.querySelector('meta[name="default-basemap"]')?.content || "osm";
 
 // ─── Jenjang layer groups (one cluster group per jenjang) ────────────────────
 const jenjangLayers = {
@@ -44,14 +44,25 @@ document.addEventListener("DOMContentLoaded", () => {
     map = initMap();
     if (!map) return;
 
-    // Add default basemap
-    basemaps.osm.addTo(map);
+    // Read saved settings from meta tags
+    const defaultBasemap = document.querySelector('meta[name="default-basemap"]')?.content || "osm";
+    const layerCollapsed  = document.querySelector('meta[name="layer-control-collapsed"]')?.content === "1";
+
+    // Add default basemap from settings
+    const bm = basemaps[defaultBasemap] || basemaps.osm;
+    bm.addTo(map);
+    activeBasemap = defaultBasemap;
+
+    // Sync basemap radio buttons to the saved default
+    const savedRadio = document.querySelector(`input[name="basemap"][value="${defaultBasemap}"]`);
+    if (savedRadio) savedRadio.checked = true;
 
     setupBasemapRadios();
     setupJenjangCheckboxes();
-    setupLayerPanelToggle();
+    setupLayerPanelToggle(layerCollapsed);
     setupDetailModal();
 });
+
 
 // ─── Basemap radio switcher ───────────────────────────────────────────────────
 function setupBasemapRadios() {
@@ -132,17 +143,24 @@ function unloadJenjang(jenjang) {
 }
 
 // ─── Hamburger toggle ─────────────────────────────────────────────────────────
-function setupLayerPanelToggle() {
+function setupLayerPanelToggle(initialCollapsed = false) {
     const toggleBtn = document.getElementById("layer-toggle-btn");
     const panel = document.getElementById("layer-panel");
 
     if (!toggleBtn || !panel) return;
+
+    // Apply saved default state
+    if (initialCollapsed) {
+        panel.classList.add("collapsed");
+        toggleBtn.classList.add("active");
+    }
 
     toggleBtn.addEventListener("click", () => {
         panel.classList.toggle("collapsed");
         toggleBtn.classList.toggle("active");
     });
 }
+
 
 // ─── Marker & Popup creation ──────────────────────────────────────────────────
 function createMarker(facility) {

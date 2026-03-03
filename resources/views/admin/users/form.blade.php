@@ -5,10 +5,10 @@
         <!-- Header -->
         <div class="flex items-center justify-between">
             <div>
-                <h2 class="text-2xl font-bold text-slate-900 tracking-tight">
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
                     {{ isset($user) ? 'Edit Pengguna' : 'Tambah Pengguna' }}
                 </h2>
-                <p class="text-slate-500 text-sm font-medium mt-1">
+                <p class="text-slate-500 dark:text-slate-400 text-sm font-medium mt-1">
                     {{ isset($user) ? 'Perbarui informasi dan hak akses pengguna.' : 'Lengkapi formulir untuk menambahkan pengguna baru.' }}
                 </p>
             </div>
@@ -33,60 +33,60 @@
                 @method('PUT')
             @endif
 
-            <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                     {{-- Name --}}
                     <div class="md:col-span-2">
-                        <label for="name" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Nama Lengkap</label>
+                        <label for="name" class="block text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2">Nama Lengkap</label>
                         <input type="text" id="name" name="name" value="{{ old('name', $user->name ?? '') }}"
-                            class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
+                            class="w-full rounded-xl border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder-slate-400 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
                             placeholder="Masukkan nama lengkap..." required>
                         @error('name') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
 
                     {{-- Email --}}
                     <div class="md:col-span-2">
-                        <label for="email" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Alamat Email</label>
+                        <label for="email" class="block text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2">Alamat Email</label>
                         <input type="email" id="email" name="email" value="{{ old('email', $user->email ?? '') }}"
-                            class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
+                            class="w-full rounded-xl border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder-slate-400 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
                             placeholder="contoh@email.com" required>
                         @error('email') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
 
                     {{-- Password --}}
                     <div>
-                        <label for="password" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">
+                        <label for="password" class="block text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2">
                             Password
                             @if(isset($user))
-                                <span class="text-slate-400 font-medium normal-case">(kosongkan jika tidak ingin mengubah)</span>
+                                <span class="text-slate-400 dark:text-slate-500 font-medium normal-case">(kosongkan jika tidak ingin mengubah)</span>
                             @endif
                         </label>
                         <input type="password" id="password" name="password"
-                            class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
+                            class="w-full rounded-xl border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder-slate-400 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
                             placeholder="Min. 8 karakter" {{ isset($user) ? '' : 'required' }}>
                         @error('password') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
 
                     {{-- Confirm Password --}}
                     <div>
-                        <label for="password_confirmation" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Konfirmasi Password</label>
+                        <label for="password_confirmation" class="block text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2">Konfirmasi Password</label>
                         <input type="password" id="password_confirmation" name="password_confirmation"
-                            class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
+                            class="w-full rounded-xl border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder-slate-400 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
                             placeholder="Ulangi password" {{ isset($user) ? '' : 'required' }}>
                     </div>
 
                     {{-- Role --}}
                     <div class="md:col-span-2">
-                        <label for="role" class="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Hak Akses (Role)</label>
+                        <label for="role" class="block text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2">Hak Akses (Role)</label>
                         <select id="role" name="role"
-                            class="w-full rounded-xl border-slate-200 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
+                            class="w-full rounded-xl border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
                             required>
                             <option value="">Pilih Role</option>
                             <option value="admin" {{ old('role', $user->role ?? '') === 'admin' ? 'selected' : '' }}>Admin</option>
                             <option value="super-admin" {{ old('role', $user->role ?? '') === 'super-admin' ? 'selected' : '' }}>Super Admin</option>
                         </select>
-                        <p class="text-slate-400 text-xs mt-1.5 italic">
+                        <p class="text-slate-400 dark:text-slate-500 text-xs mt-1.5 italic">
                             <strong>Admin:</strong> Dapat mengelola data fasilitas. &nbsp;|&nbsp;
                             <strong>Super Admin:</strong> Dapat mengakses semua fitur termasuk manajemen pengguna.
                         </p>
@@ -95,11 +95,11 @@
 
                 </div>
 
-                <div class="flex gap-3 mt-8 pt-6 border-t border-slate-100">
+                <div class="flex gap-3 mt-8 pt-6 border-t border-slate-100 dark:border-slate-700">
                     <button type="submit" class="bg-brand-dark hover:bg-brand-accent text-white font-bold py-3 px-8 rounded-2xl transition-all shadow-lg shadow-brand-dark/10">
                         {{ isset($user) ? 'Perbarui Pengguna' : 'Simpan Pengguna' }}
                     </button>
-                    <a href="{{ route('admin.users.index') }}" class="px-8 py-3 rounded-2xl border border-slate-200 text-slate-500 font-bold hover:bg-slate-50 transition-all">
+                    <a href="{{ route('admin.users.index') }}" class="px-8 py-3 rounded-2xl border border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
                         Batal
                     </a>
                 </div>

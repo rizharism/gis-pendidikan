@@ -5,8 +5,8 @@
         <!-- Header Section -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-                <h2 class="text-3xl font-black text-slate-900 tracking-tight">Dashboard Overview</h2>
-                <p class="text-slate-500 mt-2 font-medium italic">Selamat datang kembali, {{ Auth::user()->name }}! Ringkasan data fasilitas pendidikan.</p>
+                <h2 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Dashboard Overview</h2>
+                <p class="text-slate-500 dark:text-slate-400 mt-2 font-medium italic">Selamat datang kembali, {{ Auth::user()->name }}! Ringkasan data fasilitas pendidikan.</p>
             </div>
             <div class="hidden md:flex items-center gap-3">
                 <span class="flex h-3 w-3 relative">
@@ -34,46 +34,46 @@
             </div>
 
             <!-- SD Card -->
-            <div class="relative bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+            <div class="relative bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                 <div class="flex flex-col h-full">
                     <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-rose-600 group-hover:text-white transition-colors duration-300 border border-rose-100 uppercase font-black text-xs">
                         SD
                     </div>
-                    <p class="text-slate-500 text-[10px] font-black uppercase tracking-widest">Sekolah Dasar</p>
-                    <h3 class="text-3xl font-black text-slate-800 mt-1 tracking-tight">{{ $stats['sd'] }}</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-[10px] font-black uppercase tracking-widest">Sekolah Dasar</p>
+                    <h3 class="text-3xl font-black text-slate-800 dark:text-white mt-1 tracking-tight">{{ $stats['sd'] }}</h3>
                 </div>
             </div>
 
             <!-- SMP Card -->
-            <div class="relative bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+            <div class="relative bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                 <div class="flex flex-col h-full">
                     <div class="w-12 h-12 bg-blue-50 text-brand-accent rounded-2xl flex items-center justify-center mb-4 group-hover:bg-brand-accent group-hover:text-white transition-colors duration-300 border border-blue-100 uppercase font-black text-xs">
                         SMP
                     </div>
-                    <p class="text-slate-500 text-[10px] font-black uppercase tracking-widest">Menengah Pertama</p>
-                    <h3 class="text-3xl font-black text-slate-800 mt-1 tracking-tight">{{ $stats['smp'] }}</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-[10px] font-black uppercase tracking-widest">Menengah Pertama</p>
+                    <h3 class="text-3xl font-black text-slate-800 dark:text-white mt-1 tracking-tight">{{ $stats['smp'] }}</h3>
                 </div>
             </div>
 
             <!-- SMA Card -->
-            <div class="relative bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+            <div class="relative bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                 <div class="flex flex-col h-full">
                     <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-300 border border-amber-100 uppercase font-black text-xs">
                         SMA
                     </div>
-                    <p class="text-slate-500 text-[10px] font-black uppercase tracking-widest">Menengah Atas</p>
-                    <h3 class="text-3xl font-black text-slate-800 mt-1 tracking-tight">{{ $stats['sma'] }}</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-[10px] font-black uppercase tracking-widest">Menengah Atas</p>
+                    <h3 class="text-3xl font-black text-slate-800 dark:text-white mt-1 tracking-tight">{{ $stats['sma'] }}</h3>
                 </div>
             </div>
 
             <!-- Universitas Card -->
-            <div class="relative bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+            <div class="relative bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                 <div class="flex flex-col h-full">
                     <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 border border-emerald-100 uppercase font-black text-xs">
                         UNIV
                     </div>
-                    <p class="text-slate-500 text-[10px] font-black uppercase tracking-widest">Perguruan Tinggi</p>
-                    <h3 class="text-3xl font-black text-slate-800 mt-1 tracking-tight">{{ $stats['univ'] }}</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-[10px] font-black uppercase tracking-widest">Perguruan Tinggi</p>
+                    <h3 class="text-3xl font-black text-slate-800 dark:text-white mt-1 tracking-tight">{{ $stats['univ'] }}</h3>
                 </div>
             </div>
         </div>
@@ -81,23 +81,23 @@
         <!-- Distribution Chart & Recent Activity -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
             <!-- Chart Card -->
-            <div class="lg:col-span-7 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+            <div class="lg:col-span-7 bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm">
                 <div class="flex items-center justify-between mb-6">
                     <div>
-                        <h4 class="text-lg font-bold text-slate-800 tracking-tight">Sebaran Jenjang</h4>
-                        <p class="text-xs text-slate-500 font-medium">Distribusi fasilitas berdasarkan tingkat pendidikan.</p>
+                        <h4 class="text-lg font-bold text-slate-800 dark:text-white tracking-tight">Sebaran Jenjang</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Distribusi fasilitas berdasarkan tingkat pendidikan.</p>
                     </div>
                 </div>
                 <div id="jenjangChart" class="min-h-[300px]"></div>
             </div>
 
             <!-- Activity Card -->
-            <div class="lg:col-span-5 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col">
-                <h4 class="text-lg font-bold text-slate-800 tracking-tight mb-6">Aktivitas Terakhir</h4>
+            <div class="lg:col-span-5 bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm flex flex-col">
+                <h4 class="text-lg font-bold text-slate-800 dark:text-white tracking-tight mb-6">Aktivitas Terakhir</h4>
                 <div class="space-y-5 flex-1">
                     @forelse($recent as $item)
                         <div class="flex items-center gap-4 group cursor-default">
-                            <div class="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 group-hover:bg-blue-50 group-hover:border-blue-100 transition-colors">
+                            <div class="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-slate-700 border border-slate-100 dark:border-slate-600 flex items-center justify-center shrink-0 group-hover:bg-blue-50 group-hover:border-blue-100 transition-colors">
                                 @if($item->image)
                                     <img src="{{ Storage::disk('public')->url($item->image) }}" class="w-full h-full object-cover rounded-2xl">
                                 @else
@@ -105,7 +105,7 @@
                                 @endif
                             </div>
                             <div class="flex-1 min-w-0">
-                                <p class="text-sm font-bold text-slate-800 truncate">Menambahkan {{ $item->name }}</p>
+                                <p class="text-sm font-bold text-slate-800 dark:text-white truncate">Menambahkan {{ $item->name }}</p>
                                 <div class="flex items-center gap-2 mt-0.5">
                                     <span class="inline-block w-1.5 h-1.5 rounded-full {{ $item->klas == 'sd' ? 'bg-rose-400' : ($item->klas == 'smp' ? 'bg-sky-400' : ($item->klas == 'sma' ? 'bg-amber-400' : 'bg-emerald-400')) }}"></span>
                                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{{ $item->klas }} • {{ $item->created_at->diffForHumans() }}</p>
@@ -123,7 +123,7 @@
                         </div>
                     @endforelse
                 </div>
-                <a href="{{ route('admin.education-facility') }}" class="mt-6 block text-center py-3 rounded-2xl bg-slate-50 text-xs font-bold text-slate-500 hover:bg-blue-50 hover:text-brand-accent transition-all uppercase tracking-widest">Lihat Semua Data</a>
+                <a href="{{ route('admin.education-facility') }}" class="mt-6 block text-center py-3 rounded-2xl bg-slate-50 dark:bg-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-blue-50 hover:text-brand-accent transition-all uppercase tracking-widest">Lihat Semua Data</a>
             </div>
         </div>
     </div>

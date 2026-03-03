@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GIS Pendidikan - Peta Sekolah</title>
+    <meta name="default-basemap" content="{{ \App\Models\Setting::get('default_basemap', 'osm') }}">
+    <meta name="layer-control-collapsed" content="{{ \App\Models\Setting::get('layer_control_collapsed', '0') }}">
+    <title>{{ \App\Models\Setting::get('app_name', 'GIS Pendidikan') }} - Peta Sekolah</title>
     @vite(['resources/css/app.css'])
 </head>
+
 
 <body class="bg-slate-50">
     <div id="map-container">

@@ -51,7 +51,8 @@
             </a>
             @endcan
 
-            <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800 hover:text-slate-100">
+            <a href="{{ route('admin.settings') }}"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group {{ request()->routeIs('admin.settings') ? 'bg-brand-dark text-white shadow-lg shadow-brand-dark/30' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-100' }}">
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
                 </svg>
@@ -68,10 +69,12 @@
 
     <!-- Bottom Section -->
     <div class="px-4 mt-auto">
+        @if(\App\Models\Setting::get('dev_mode') === '1')
         <div x-show="sidebarOpen" x-transition class="p-4 bg-indigo-600/10 border border-indigo-500/20 rounded-2xl relative overflow-hidden group">
             <div class="absolute -right-4 -bottom-4 w-16 h-16 bg-indigo-500/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
             <p class="text-[10px] font-bold text-brand-success uppercase tracking-widest mb-1 italic">Development Mode</p>
             <p class="text-xs text-white/80 leading-relaxed font-medium tex">Aplikasi dalam tahap pengembangan. Fitur-fitur yang tersedia mungkin tidak berfungsi dengan baik.</p>
         </div>
+        @endif
     </div>
 </div>
