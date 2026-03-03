@@ -30,6 +30,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/education-facility/create', [EducationFacilityController::class, 'create'])->name('admin.education-facility.create');
     Route::post('/education-facility', [EducationFacilityController::class, 'store'])->name('admin.education-facility.store');
     Route::get('/education-facility/{educationFacility}/edit', [EducationFacilityController::class, 'edit'])->name('admin.education-facility.edit');
+    Route::get('/education-facility/{educationFacility}', [EducationFacilityController::class, 'show'])->name('admin.education-facility.show');
     Route::put('/education-facility/{educationFacility}', [EducationFacilityController::class, 'update'])->name('admin.education-facility.update');
     Route::delete('/education-facility/{educationFacility}', [EducationFacilityController::class, 'destroy'])->name('admin.education-facility.destroy');
 

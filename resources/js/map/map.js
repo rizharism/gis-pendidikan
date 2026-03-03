@@ -207,8 +207,8 @@ const jenjangConfig = {
 };
 
 function createPopupContent(facility) {
-    const imageUrl = facility.image
-        ? `/storage/${facility.image}`
+    const imageUrl = facility.gallery && Array.isArray(facility.gallery) && facility.gallery.length > 0
+        ? `/storage/${facility.gallery[0]}`
         : "/assets/images/default.png";
 
     const config = jenjangConfig[facility.klas] ?? {
@@ -302,8 +302,8 @@ window.showDetailModal = async function (facilityId) {
             };
 
             // Populate header
-            const imageUrl = facility.image
-                ? `/storage/${facility.image}`
+            const imageUrl = facility.gallery && Array.isArray(facility.gallery) && facility.gallery.length > 0
+                ? `/storage/${facility.gallery[0]}`
                 : "/assets/images/default.png";
 
             const modalImage = document.getElementById("modal-image");
