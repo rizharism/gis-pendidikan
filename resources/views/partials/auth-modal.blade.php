@@ -16,14 +16,14 @@
 
     {{-- ─── BACKDROP + MODAL ───────────────────────────────────────── --}}
     <div x-show="open"
+         x-cloak
          x-transition:enter="transition ease-out duration-200"
          x-transition:enter-start="opacity-0"
          x-transition:enter-end="opacity-100"
          x-transition:leave="transition ease-in duration-150"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
-         class="fixed inset-0 z-[9999] flex items-center justify-center p-4"
-         style="display:none;">
+         class="fixed inset-0 z-[9999] flex items-center justify-center p-4">
 
         {{-- Backdrop --}}
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" @click="closeModal()"></div>
@@ -37,11 +37,11 @@
 
             {{-- ── Toast notification ─────────────────────────────────── --}}
             <div x-show="toast"
+                 x-cloak
                  x-transition
                  class="mx-6 mt-4 px-4 py-2.5 rounded-xl text-sm font-medium text-center"
                  :class="toastIsError ? 'bg-rose-50 text-rose-700 border border-rose-100' : 'bg-emerald-50 text-emerald-700 border border-emerald-100'"
-                 x-text="toast"
-                 style="display:none;"></div>
+                 x-text="toast"></div>
 
             {{-- ════════════════════════════════════════════════════════ --}}
             {{-- VIEW 1: LOGIN                                            --}}
@@ -63,8 +63,8 @@
 
                     {{-- Error --}}
                     <div x-show="error" x-text="error"
-                         class="mb-4 px-4 py-2.5 bg-rose-50 border border-rose-100 text-rose-700 text-sm rounded-xl"
-                         style="display:none;"></div>
+                         x-cloak
+                         class="mb-4 px-4 py-2.5 bg-rose-50 border border-rose-100 text-rose-700 text-sm rounded-xl"></div>
 
                     {{-- Form --}}
                     <form @submit.prevent="login()" class="space-y-4">
@@ -84,7 +84,7 @@
                                 <button type="button" @click="showPassword = !showPassword"
                                         class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
                                     <svg x-show="!showPassword" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                                    <svg x-show="showPassword" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display:none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/></svg>
+                                    <svg x-show="showPassword" x-cloak class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/></svg>
                                 </button>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                                 :disabled="loading"
                                 class="w-full py-3 bg-brand-dark hover:bg-brand-accent text-white text-sm font-bold rounded-xl shadow-md shadow-brand-dark/20 transition-all duration-200 flex items-center justify-center gap-2"
                                 :class="loading ? 'opacity-70 cursor-not-allowed' : ''">
-                            <svg x-show="loading" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" style="display:none;">
+                            <svg x-show="loading" x-cloak class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
                             </svg>
@@ -130,8 +130,8 @@
                     </div>
 
                     <div x-show="error" x-text="error"
-                         class="mb-4 px-4 py-2.5 bg-rose-50 border border-rose-100 text-rose-700 text-sm rounded-xl"
-                         style="display:none;"></div>
+                         x-cloak
+                         class="mb-4 px-4 py-2.5 bg-rose-50 border border-rose-100 text-rose-700 text-sm rounded-xl"></div>
 
                     <form @submit.prevent="sendCode()" class="space-y-4">
                         <div>
@@ -145,7 +145,7 @@
                                 :disabled="loading"
                                 class="w-full py-3 bg-brand-dark hover:bg-brand-accent text-white text-sm font-bold rounded-xl shadow-md shadow-brand-dark/20 transition-all duration-200 flex items-center justify-center gap-2"
                                 :class="loading ? 'opacity-70 cursor-not-allowed' : ''">
-                            <svg x-show="loading" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" style="display:none;">
+                            <svg x-show="loading" x-cloak class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
                             </svg>
@@ -176,8 +176,8 @@
                     </div>
 
                     <div x-show="error" x-text="error"
-                         class="mb-4 px-4 py-2.5 bg-rose-50 border border-rose-100 text-rose-700 text-sm rounded-xl"
-                         style="display:none;"></div>
+                         x-cloak
+                         class="mb-4 px-4 py-2.5 bg-rose-50 border border-rose-100 text-rose-700 text-sm rounded-xl"></div>
 
                     <form @submit.prevent="resetPassword()" class="space-y-4">
                         <div>
@@ -196,7 +196,7 @@
                                 <button type="button" @click="showNewPassword = !showNewPassword"
                                         class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
                                     <svg x-show="!showNewPassword" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                                    <svg x-show="showNewPassword" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display:none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/></svg>
+                                    <svg x-show="showNewPassword" x-cloak class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/></svg>
                                 </button>
                             </div>
                         </div>
@@ -212,7 +212,7 @@
                                 :disabled="loading"
                                 class="w-full py-3 bg-brand-dark hover:bg-brand-accent text-white text-sm font-bold rounded-xl shadow-md shadow-brand-dark/20 transition-all duration-200 flex items-center justify-center gap-2"
                                 :class="loading ? 'opacity-70 cursor-not-allowed' : ''">
-                            <svg x-show="loading" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" style="display:none;">
+                            <svg x-show="loading" x-cloak class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
                             </svg>

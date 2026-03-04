@@ -418,10 +418,12 @@
     justify-content: center;
     opacity: 0;
     transition: opacity 0.25s ease;
+    pointer-events: none; /* Block clicks only when shown */
 }
 
 .modal-overlay.show {
     opacity: 1;
+    pointer-events: auto;
 }
 
 .modal-backdrop {

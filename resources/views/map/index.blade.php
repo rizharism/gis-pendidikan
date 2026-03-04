@@ -21,10 +21,10 @@
 <body class="bg-slate-50">
     <div id="map-container">
         <div id="dock">
-            <div id="search-wrapper">
+            <div id="search-wrapper" class="relative">
                 <input type="text" id="search-input" placeholder="Cari nama sekolah..."
                     autocomplete="off" />
-                <div id="search-dropdown" style="display:none;"></div>
+                <div id="search-dropdown" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl overflow-hidden z-[5000] hidden"></div>
             </div>
 
             <div class="h-6 w-px bg-slate-600/30 mx-1"></div>
@@ -39,89 +39,79 @@
         </div>
 
         {{-- Info Modal --}}
-        <div id="info-modal" class="modal-overlay" style="display:none;">
+        <div id="info-modal" class="modal-overlay hidden">
             <div class="modal-backdrop"></div>
-            <div class="modal-card !w-[90vw] !max-w-[680px]" style="width: auto;">
-                <div style="background:linear-gradient(135deg,#254669,#005c83); padding:28px 24px; text-align:center;">
-                    <div style="display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,.15);margin-bottom:12px;">
-                        <svg style="width:24px;height:24px;color:white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="modal-card !w-[90vw] !max-w-[680px]">
+                {{-- Header --}}
+                <div class="bg-gradient-to-br from-[#254669] to-[#005c83] p-7 text-center">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white/15 mb-3">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
                     </div>
-                    <h2 style="font-size:18px;font-weight:800;color:white;margin:0;">{{ \App\Models\Setting::get('app_name', 'GIS Pendidikan') }}</h2>
-                    <p style="font-size:13px;color:rgba(255,255,255,.6);margin:4px 0 0;">Kota Blitar</p>
+                    <h2 class="text-lg font-extrabold text-white m-0 tracking-tight leading-7">{{ \App\Models\Setting::get('app_name', 'GIS Pendidikan') }}</h2>
+                    <p class="text-[13px] text-white/60 m-0 mt-1">Kota Blitar</p>
                 </div>
-                <div class="modal-body" style="padding:20px 24px; max-height:50vh; overflow-y:auto;">
+
+                {{-- Body --}}
+                <div class="modal-body p-6 max-h-[50vh] overflow-y-auto">
                     {{-- Description --}}
-                    <p style="font-size:13px;color:#475569;line-height:1.7;margin:0 0 14px;">
+                    <p class="text-[13px] text-slate-600 leading-relaxed mb-3.5 italic">
                         Sistem Informasi Geografis (GIS) Pendidikan Kota Blitar adalah platform berbasis web yang menyajikan peta sebaran fasilitas pendidikan secara interaktif. Mencakup data Sekolah Dasar (SD), Sekolah Menengah Pertama (SMP), Sekolah Menengah Atas (SMA), dan Universitas di wilayah Kota Blitar.
                     </p>
-                    <p style="font-size:13px;color:#475569;line-height:1.7;margin:0 0 16px;">
+                    <p class="text-[13px] text-slate-600 leading-relaxed mb-4">
                         Berikut adalah beberapa fitur dan interface Aplikasi:
                     </p>
 
                     {{-- Features --}}
-                    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
-                        <div class="ms-3" style="display:flex;align-items:center;gap:8px;font-size:12px;color:#64748b;">
-                            <span>📍</span> <span>Peta interaktif fasilitas pendidikan</span>
+                    <div class="flex flex-col gap-2 mb-4">
+                        <div class="flex items-center gap-2 text-xs text-slate-500 ml-3">
+                            <span class="grayscale brightness-150">📍</span> <span>Peta interaktif fasilitas pendidikan</span>
                         </div>
-                        <div class="ms-3" style="display:flex;align-items:center;gap:8px;font-size:12px;color:#64748b;">
-                            <span>🔍</span> <span>Pencarian & detail fasilitas</span>
+                        <div class="flex items-center gap-2 text-xs text-slate-500 ml-3">
+                            <span class="grayscale brightness-150">🔍</span> <span>Pencarian & detail fasilitas</span>
                         </div>
-                        <div class="ms-3" style="display:flex;align-items:center;gap:8px;font-size:12px;color:#64748b;">
-                            <span>📊</span> <span>Dashboard statistik interaktif</span>
+                        <div class="flex items-center gap-2 text-xs text-slate-500 ml-3">
+                            <span class="grayscale brightness-150">📊</span> <span>Dashboard statistik interaktif</span>
                         </div>
                     </div>
 
                     {{-- Version & GitHub --}}
-                    <div style="border-top:1px solid #f1f5f9;padding-top:14px;margin-bottom:14px;" class="grid grid-cols-2 gap-4 text-center">
+                    <div class="border-t border-slate-100 pt-3.5 mb-3.5 grid grid-cols-2 gap-4 text-center">
                         <div>
-                            <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;display:block;margin-bottom:4px;">Versi</span>
-                            <span style="font-size:12px;font-weight:600;color:#475569;">v1.0.0</span>
+                            <span class="text-[11px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Versi</span>
+                            <span class="text-xs font-semibold text-slate-600">v1.0.0</span>
                         </div>
                         <div>
-                            <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;display:block;margin-bottom:4px;">Source Code</span>
+                            <span class="text-[11px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Source Code</span>
                             <a href="https://github.com/rizHarism/gis-pendidikan" target="_blank" rel="noopener"
-                               style="font-size:12px;font-weight:600;color:#005c83;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
-                                <svg style="width:14px;height:14px;" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                               class="text-xs font-semibold text-[#005c83] hover:text-[#254669] transition flex items-center justify-center gap-1">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                                 GitHub
                             </a>
                         </div>
                     </div>
 
                     {{-- Developer Team --}}
-                    <div style="border-top:1px solid #f1f5f9;padding-top:14px;">
-                        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;margin-bottom:10px;">Tim Pengembang</div>
+                    <div class="border-t border-slate-100 pt-3.5">
+                        <div class="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-2.5">Tim Pengembang</div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {{-- TODO: Ganti nama & NIM sesuai anggota kelompok --}}
-                            <div style="display:flex;align-items:center;gap:10px;background:#f8fafc;padding:10px;border-radius:12px;border:1px solid #f1f5f9;">
-                                <div style="width:32px;height:32px;border-radius:10px;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#475569;flex-shrink:0;">1</div>
-                                <div style="min-width:0;">
-                                    <div style="font-size:13px;font-weight:600;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Nama Anggota 1</div>
-                                    <div style="font-size:11px;color:#94a3b8;">NIM: 000000</div>
+                            @foreach([['1', 'Anggota 1', '000000'], ['2', 'Anggota 2', '000000'], ['3', 'Anggota 3', '000000']] as [$id, $name, $nim])
+                                <div class="flex items-center gap-2.5 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-200 flex items-center justify-center text-[13px] font-bold text-slate-600 flex-shrink-0">{{ $id }}</div>
+                                    <div class="min-w-0">
+                                        <div class="text-[13px] font-semibold text-slate-700 truncate capitalize">{{ $name }}</div>
+                                        <div class="text-[11px] text-slate-400">NIM: {{ $nim }}</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div style="display:flex;align-items:center;gap:10px;background:#f8fafc;padding:10px;border-radius:12px;border:1px solid #f1f5f9;">
-                                <div style="width:32px;height:32px;border-radius:10px;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#475569;flex-shrink:0;">2</div>
-                                <div style="min-width:0;">
-                                    <div style="font-size:13px;font-weight:600;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Nama Anggota 2</div>
-                                    <div style="font-size:11px;color:#94a3b8;">NIM: 000000</div>
-                                </div>
-                            </div>
-                            <div style="display:flex;align-items:center;gap:10px;background:#f8fafc;padding:10px;border-radius:12px;border:1px solid #f1f5f9;">
-                                <div style="width:32px;height:32px;border-radius:10px;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#475569;flex-shrink:0;">3</div>
-                                <div style="min-width:0;">
-                                    <div style="font-size:13px;font-weight:600;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Nama Anggota 3</div>
-                                    <div style="font-size:11px;color:#94a3b8;">NIM: 000000</div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
 
                     {{-- Footer --}}
-                    <div style="margin-top:16px;padding-top:12px;border-top:1px solid #f1f5f9;font-size:11px;color:#94a3b8;text-align:center;">
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-400 text-center tracking-tight">
                         Kelompok 2 &mdash; Praktek Kerja Lapangan &mdash; Semester 5
                     </div>
                 </div>
@@ -169,25 +159,25 @@
                         <input type="checkbox" name="jenjang" value="sd">
                         <span class="layer-option-icon">🏫</span>
                         <span>SD</span>
-                        <span id="badge-sd" class="layer-badge" style="display:none;"></span>
+                        <span id="badge-sd" class="layer-badge hidden"></span>
                     </label>
                     <label class="layer-option">
                         <input type="checkbox" name="jenjang" value="smp">
                         <span class="layer-option-icon">🏫</span>
                         <span>SMP</span>
-                        <span id="badge-smp" class="layer-badge" style="display:none;"></span>
+                        <span id="badge-smp" class="layer-badge hidden"></span>
                     </label>
                     <label class="layer-option">
                         <input type="checkbox" name="jenjang" value="sma">
                         <span class="layer-option-icon">🏫</span>
                         <span>SMA</span>
-                        <span id="badge-sma" class="layer-badge" style="display:none;"></span>
+                        <span id="badge-sma" class="layer-badge hidden"></span>
                     </label>
                     <label class="layer-option">
                         <input type="checkbox" name="jenjang" value="universitas">
                         <span class="layer-option-icon">🎓</span>
                         <span>Universitas</span>
-                        <span id="badge-universitas" class="layer-badge" style="display:none;"></span>
+                        <span id="badge-universitas" class="layer-badge hidden"></span>
                     </label>
                 </div>
             </div>
@@ -196,7 +186,7 @@
         <div id="map"></div>
     </div>
     {{-- Detail Modal Overlay --}}
-    <div id="detail-modal" class="modal-overlay" style="display:none;">
+    <div id="detail-modal" class="modal-overlay hidden">
         <div class="modal-backdrop"></div>
         <div class="modal-card">
             {{-- Header with image --}}
@@ -243,7 +233,7 @@
             </div>
 
             {{-- Loading spinner --}}
-            <div id="modal-loading" class="modal-loading" style="display:none;">
+            <div id="modal-loading" class="modal-loading hidden">
                 <div class="modal-spinner"></div>
                 <span>Memuat data...</span>
             </div>
@@ -274,19 +264,23 @@
 
             function openInfo() {
                 if (!infoModal) return;
-                infoModal.style.display = 'flex';
+                infoModal.classList.remove('hidden');
+                infoModal.classList.add('flex');
                 requestAnimationFrame(() => infoModal.classList.add('show'));
             }
             function closeInfo() {
                 if (!infoModal) return;
                 infoModal.classList.remove('show');
-                setTimeout(() => { infoModal.style.display = 'none'; }, 250);
+                setTimeout(() => {
+                    infoModal.classList.add('hidden');
+                    infoModal.classList.remove('flex');
+                }, 250);
             }
 
             infoBtn?.addEventListener('click', openInfo);
             backdrop?.addEventListener('click', closeInfo);
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && infoModal?.style.display !== 'none') closeInfo();
+                if (e.key === 'Escape' && !infoModal?.classList.contains('hidden')) closeInfo();
             });
         })();
     </script>

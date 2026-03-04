@@ -72,9 +72,16 @@ function setupBasemapRadios() {
             const selected = e.target.value;
             if (selected === activeBasemap) return;
 
-            map.removeLayer(basemaps[activeBasemap]);
-            basemaps[selected].addTo(map);
-            activeBasemap = selected;
+            // Guard: only remove if tile layer exists & is on the map
+            const currentLayer = basemaps[activeBasemap];
+            if (currentLayer && map.hasLayer(currentLayer)) {
+                map.removeLayer(currentLayer);
+            }
+
+            if (basemaps[selected]) {
+                basemaps[selected].addTo(map);
+                activeBasemap = selected;
+            }
         });
     });
 }
@@ -117,7 +124,8 @@ async function loadJenjang(jenjang) {
             const badge = document.getElementById(`badge-${jenjang}`);
             if (badge) {
                 badge.textContent = result.count;
-                badge.style.display = "inline-flex";
+                badge.classList.remove("hidden");
+                badge.classList.add("inline-flex");
             }
 
             console.log(`Loaded ${result.count} ${jenjang} facilities`);
@@ -128,6 +136,13 @@ async function loadJenjang(jenjang) {
 }
 
 function unloadJenjang(jenjang) {
+    // Remove markers from allMarkers tracking before clearing
+    jenjangLayers[jenjang].eachLayer((layer) => {
+        if (layer.facilityId) {
+            delete allMarkers[layer.facilityId];
+        }
+    });
+
     jenjangLayers[jenjang].clearLayers();
 
     if (layerOnMap[jenjang]) {
@@ -138,7 +153,8 @@ function unloadJenjang(jenjang) {
     // Hide count badge
     const badge = document.getElementById(`badge-${jenjang}`);
     if (badge) {
-        badge.style.display = "none";
+        badge.classList.add("hidden");
+        badge.classList.remove("inline-flex");
         badge.textContent = "";
     }
 }
@@ -202,33 +218,29 @@ function createMarker(facility) {
 const jenjangConfig = {
     sd: {
         label: "SD",
-        gradient: "linear-gradient(135deg, #f43f5e, #e11d48)",
-        badge: "#ffe4e6",
-        badgeText: "#9f1239",
+        gradient: "bg-gradient-to-br from-rose-400 to-rose-600",
+        badgeClass: "bg-rose-100 text-rose-800",
         markerColor: "red",
         markerIcon: "fa-school",
     },
     smp: {
         label: "SMP",
-        gradient: "linear-gradient(135deg, #005c83, #254669)",
-        badge: "#e0f2fe",
-        badgeText: "#0c4a6e",
+        gradient: "bg-gradient-to-br from-sky-700 to-slate-800",
+        badgeClass: "bg-sky-100 text-sky-800",
         markerColor: "orange",
         markerIcon: "fa-book",
     },
     sma: {
         label: "SMA",
-        gradient: "linear-gradient(135deg, #f59e0b, #d97706)",
-        badge: "#fef3c7",
-        badgeText: "#92400e",
+        gradient: "bg-gradient-to-br from-amber-400 to-amber-600",
+        badgeClass: "bg-amber-100 text-amber-800",
         markerColor: "blue",
         markerIcon: "fa-book-open-reader",
     },
     universitas: {
         label: "Universitas",
-        gradient: "linear-gradient(135deg, #27a154, #1d8a45)",
-        badge: "#dcfce7",
-        badgeText: "#14532d",
+        gradient: "bg-gradient-to-br from-emerald-500 to-emerald-700",
+        badgeClass: "bg-emerald-100 text-emerald-800",
         markerColor: "darkgreen",
         markerIcon: "fa-graduation-cap",
     },
@@ -241,17 +253,16 @@ function createPopupContent(facility) {
 
     const config = jenjangConfig[facility.klas] ?? {
         label: facility.klas?.toUpperCase() ?? "Sekolah",
-        gradient: "linear-gradient(135deg, #64748b, #475569)",
-        badge: "#f1f5f9",
-        badgeText: "#334155",
+        gradient: "bg-gradient-to-br from-slate-400 to-slate-600",
+        badgeClass: "bg-slate-100 text-slate-800",
     };
 
     return `
         <div class="map-popup">
-            <div class="popup-header" style="background: ${config.gradient};">
+            <div class="popup-header ${config.gradient}">
                 <img src="${imageUrl}" class="popup-image" alt="${facility.name}">
                 <div class="popup-header-overlay">
-                    <span class="popup-jenjang-badge" style="background:${config.badge}; color:${config.badgeText};">
+                    <span class="popup-jenjang-badge ${config.badgeClass}">
                         ${config.label}
                     </span>
                 </div>
@@ -285,7 +296,7 @@ function setupDetailModal() {
 
     // Close on Escape key
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && modal.style.display !== "none") {
+        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
             closeDetailModal();
         }
     });
@@ -296,7 +307,8 @@ function closeDetailModal() {
     if (modal) {
         modal.classList.remove("show");
         setTimeout(() => {
-            modal.style.display = "none";
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
         }, 250);
     }
 }
@@ -310,11 +322,12 @@ window.showDetailModal = async function (facilityId) {
     if (!modal) return;
 
     // Show modal with loading state
-    modal.style.display = "flex";
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
     requestAnimationFrame(() => modal.classList.add("show"));
 
-    if (loading) loading.style.display = "flex";
-    if (modalBody) modalBody.style.display = "none";
+    if (loading) loading.classList.remove("hidden");
+    if (modalBody) modalBody.classList.add("hidden");
 
     try {
         const response = await fetch(`/api/map/detail/${facilityId}`);
@@ -341,14 +354,14 @@ window.showDetailModal = async function (facilityId) {
             }
 
             if (modalHeader) {
-                modalHeader.style.background = config.gradient;
+                // Clear old classes then apply from config
+                modalHeader.className = "modal-header " + config.gradient;
             }
 
             const jenjangBadge = document.getElementById("modal-jenjang-badge");
             if (jenjangBadge) {
                 jenjangBadge.textContent = config.label;
-                jenjangBadge.style.background = config.badge;
-                jenjangBadge.style.color = config.badgeText;
+                jenjangBadge.className = "modal-jenjang-badge " + config.badgeClass;
             }
 
             // Populate body
@@ -365,14 +378,14 @@ window.showDetailModal = async function (facilityId) {
             if (coordsEl) coordsEl.textContent = `${facility.latitude}, ${facility.longitude}`;
 
             // Switch from loading to content
-            if (loading) loading.style.display = "none";
-            if (modalBody) modalBody.style.display = "block";
+            if (loading) loading.classList.add("hidden");
+            if (modalBody) modalBody.classList.remove("hidden");
         }
     } catch (error) {
         console.error("Error fetching detail:", error);
-        if (loading) loading.style.display = "none";
+        if (loading) loading.classList.add("hidden");
         if (modalBody) {
-            modalBody.style.display = "block";
+            modalBody.classList.remove("hidden");
             const nameEl = document.getElementById("modal-name");
             if (nameEl) nameEl.textContent = "Gagal memuat data";
         }
@@ -447,8 +460,8 @@ async function fetchSearch(query) {
             renderDropdown();
         } else {
             searchResults = [];
-            dropdown.innerHTML = `<div class="search-empty">Tidak ada hasil untuk "${query}"</div>`;
-            dropdown.style.display = "block";
+            dropdown.innerHTML = `<div class="search-empty px-4 py-3 text-sm text-slate-500 italic">Tidak ada hasil untuk "${query}"</div>`;
+            dropdown.classList.remove("hidden");
         }
     } catch (err) {
         console.error("Search error:", err);
@@ -461,12 +474,12 @@ function renderDropdown() {
     if (!dropdown) return;
 
     const html = searchResults.map((item, i) => {
-        const cfg = jenjangConfig[item.klas] ?? { label: item.klas, badge: "#f1f5f9", badgeText: "#334155" };
+        const cfg = jenjangConfig[item.klas] ?? { label: item.klas.toUpperCase(), badgeClass: "bg-slate-100 text-slate-600" };
         return `
             <div class="search-item${i === activeIndex ? ' active' : ''}" data-index="${i}">
                 <div class="search-item-name">${item.name}</div>
                 <div class="search-item-meta">
-                    <span class="search-item-badge" style="background:${cfg.badge};color:${cfg.badgeText};">${cfg.label}</span>
+                    <span class="search-item-badge ${cfg.badgeClass}">${cfg.label}</span>
                     <span class="search-item-address">${item.address ? item.address.substring(0, 40) : '-'}</span>
                 </div>
             </div>
@@ -474,7 +487,7 @@ function renderDropdown() {
     }).join('');
 
     dropdown.innerHTML = html;
-    dropdown.style.display = "block";
+    dropdown.classList.remove("hidden");
 
     // Click handlers for each item
     dropdown.querySelectorAll(".search-item").forEach((el) => {
@@ -499,7 +512,7 @@ function highlightItem() {
 function hideDropdown() {
     const dropdown = document.getElementById("search-dropdown");
     if (dropdown) {
-        dropdown.style.display = "none";
+        dropdown.classList.add("hidden");
         dropdown.innerHTML = "";
     }
     searchResults = [];
@@ -523,13 +536,24 @@ async function selectSchool(facility) {
     if (jenjang && jenjangLayers[jenjang]) {
         await loadJenjang(jenjang);
 
-        // Auto‑check the checkbox in the layer panel
+        // Auto-check the checkbox in the layer panel
         const checkbox = document.querySelector(`input[name="jenjang"][value="${jenjang}"]`);
         if (checkbox && !checkbox.checked) checkbox.checked = true;
+
+        // Ensure the cluster group is on the map
+        if (!layerOnMap[jenjang]) {
+            jenjangLayers[jenjang].addTo(map);
+            layerOnMap[jenjang] = true;
+        }
 
         // Now the marker should exist
         if (allMarkers[facility.id]) {
             flyToMarker(allMarkers[facility.id]);
+        } else {
+            // Fallback: fly to coordinates from search result
+            if (facility.latitude && facility.longitude) {
+                map.flyTo([facility.latitude, facility.longitude], map.getMaxZoom(), { duration: 1.2 });
+            }
         }
     }
 }
