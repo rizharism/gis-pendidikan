@@ -37,6 +37,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     // --- Route Profile admin ---
     Route::get('/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
     Route::patch('/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+    Route::patch('/profile/password', [AdminProfileController::class, 'updatePassword'])->name('admin.profile.password');
     Route::delete('/profile', [AdminProfileController::class, 'destroy'])->name('admin.profile.destroy');
 
     // --- Route Users (super-admin only) ---

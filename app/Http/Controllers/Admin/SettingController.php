@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Throwable;
 
 class SettingController extends Controller
 {
@@ -34,24 +36,34 @@ class SettingController extends Controller
             'theme_mode'             => 'required|in:light,dark',
         ]);
 
-        Setting::set('app_name', $request->app_name);
-        Setting::set('dev_mode', $request->boolean('dev_mode') ? '1' : '0');
-        Setting::set('default_basemap', $request->default_basemap);
-        Setting::set('layer_control_collapsed', $request->boolean('layer_control_collapsed') ? '1' : '0');
-        Setting::set('theme_mode', $request->theme_mode);
-
-        // Handle logo upload
+        // Handle logo upload BEFORE transaction (filesystem is not transactional)
+        $newLogoPath = null;
         if ($request->hasFile('app_logo')) {
-            // Delete old logo if exists
             $oldLogo = Setting::get('app_logo_path');
             if ($oldLogo && Storage::disk('public')->exists($oldLogo)) {
                 Storage::disk('public')->delete($oldLogo);
             }
-
-            $path = $request->file('app_logo')->store('logo', 'public');
-            Setting::set('app_logo_path', $path);
+            $newLogoPath = $request->file('app_logo')->store('logo', 'public');
         }
 
-        return back()->with('status', 'Pengaturan berhasil disimpan.');
+        try {
+            DB::transaction(function () use ($request, $newLogoPath) {
+                Setting::set('app_name', $request->app_name);
+                Setting::set('dev_mode', $request->boolean('dev_mode') ? '1' : '0');
+                Setting::set('default_basemap', $request->default_basemap);
+                Setting::set('layer_control_collapsed', $request->boolean('layer_control_collapsed') ? '1' : '0');
+                Setting::set('theme_mode', $request->theme_mode);
+
+                if ($newLogoPath) {
+                    Setting::set('app_logo_path', $newLogoPath);
+                }
+            });
+
+            return back()->with('status', 'Pengaturan berhasil disimpan.');
+        } catch (Throwable $e) {
+            report($e);
+
+            return back()->with('error', 'Gagal menyimpan pengaturan. Silakan coba lagi.');
+        }
     }
 }
