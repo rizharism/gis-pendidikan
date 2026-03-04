@@ -326,7 +326,10 @@ window.showDetailModal = async function (facilityId) {
     modal.classList.add("flex");
     requestAnimationFrame(() => modal.classList.add("show"));
 
-    if (loading) loading.classList.remove("hidden");
+    if (loading) {
+        loading.classList.remove("hidden");
+        loading.classList.add("flex");
+    }
     if (modalBody) modalBody.classList.add("hidden");
 
     try {
@@ -378,12 +381,18 @@ window.showDetailModal = async function (facilityId) {
             if (coordsEl) coordsEl.textContent = `${facility.latitude}, ${facility.longitude}`;
 
             // Switch from loading to content
-            if (loading) loading.classList.add("hidden");
+            if (loading) {
+                loading.classList.add("hidden");
+                loading.classList.remove("flex");
+            }
             if (modalBody) modalBody.classList.remove("hidden");
         }
     } catch (error) {
         console.error("Error fetching detail:", error);
-        if (loading) loading.classList.add("hidden");
+        if (loading) {
+            loading.classList.add("hidden");
+            loading.classList.remove("flex");
+        }
         if (modalBody) {
             modalBody.classList.remove("hidden");
             const nameEl = document.getElementById("modal-name");
