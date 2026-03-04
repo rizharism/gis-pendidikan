@@ -1,4 +1,5 @@
 import L from "leaflet";
+window.L = L;
 import "leaflet/dist/leaflet.css";
 
 let mapInstance = null;

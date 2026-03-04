@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupJenjangCheckboxes();
     setupLayerPanelToggle(layerCollapsed);
     setupDetailModal();
+    setupSearch();
 });
 
 
@@ -164,7 +165,26 @@ function setupLayerPanelToggle(initialCollapsed = false) {
 
 // ─── Marker & Popup creation ──────────────────────────────────────────────────
 function createMarker(facility) {
-    const marker = L.marker([facility.latitude, facility.longitude]);
+    const config = jenjangConfig[facility.klas] || {
+        markerColor: "blue",
+        markerIcon: "fa-school",
+    };
+
+    // Safety check for AwesomeMarkers (CDN plugin might be on window.L)
+    const AwesomeMarkers = L.AwesomeMarkers || (window.L ? window.L.AwesomeMarkers : null);
+
+    let marker;
+    if (AwesomeMarkers) {
+        const markerIcon = AwesomeMarkers.icon({
+            icon: config.markerIcon,
+            prefix: "fa",
+            markerColor: config.markerColor,
+        });
+        marker = L.marker([facility.latitude, facility.longitude], { icon: markerIcon });
+    } else {
+        console.warn("AwesomeMarkers not found, falling back to default marker");
+        marker = L.marker([facility.latitude, facility.longitude]);
+    }
 
     marker.facilityId = facility.id;
     marker.facilityData = facility;
@@ -185,24 +205,32 @@ const jenjangConfig = {
         gradient: "linear-gradient(135deg, #f43f5e, #e11d48)",
         badge: "#ffe4e6",
         badgeText: "#9f1239",
+        markerColor: "red",
+        markerIcon: "fa-school",
     },
     smp: {
         label: "SMP",
         gradient: "linear-gradient(135deg, #005c83, #254669)",
         badge: "#e0f2fe",
         badgeText: "#0c4a6e",
+        markerColor: "orange",
+        markerIcon: "fa-book",
     },
     sma: {
         label: "SMA",
         gradient: "linear-gradient(135deg, #f59e0b, #d97706)",
         badge: "#fef3c7",
         badgeText: "#92400e",
+        markerColor: "blue",
+        markerIcon: "fa-book-open-reader",
     },
     universitas: {
         label: "Universitas",
         gradient: "linear-gradient(135deg, #27a154, #1d8a45)",
         badge: "#dcfce7",
         badgeText: "#14532d",
+        markerColor: "darkgreen",
+        markerIcon: "fa-graduation-cap",
     },
 };
 
@@ -350,3 +378,165 @@ window.showDetailModal = async function (facilityId) {
         }
     }
 };
+
+
+// ─── Live Search + Fly‑to‑Marker ──────────────────────────────────────────────
+let searchTimeout = null;
+let activeIndex = -1;
+let searchResults = [];
+
+function setupSearch() {
+    const input    = document.getElementById("search-input");
+    const dropdown = document.getElementById("search-dropdown");
+    if (!input || !dropdown) return;
+
+    // Debounced input handler
+    input.addEventListener("input", () => {
+        clearTimeout(searchTimeout);
+        const q = input.value.trim();
+
+        if (q.length < 2) {
+            hideDropdown();
+            return;
+        }
+
+        searchTimeout = setTimeout(() => fetchSearch(q), 300);
+    });
+
+    // Keyboard navigation
+    input.addEventListener("keydown", (e) => {
+        if (!searchResults.length) return;
+
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            activeIndex = Math.min(activeIndex + 1, searchResults.length - 1);
+            highlightItem();
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            activeIndex = Math.max(activeIndex - 1, 0);
+            highlightItem();
+        } else if (e.key === "Enter") {
+            e.preventDefault();
+            if (activeIndex >= 0 && searchResults[activeIndex]) {
+                selectSchool(searchResults[activeIndex]);
+            }
+        } else if (e.key === "Escape") {
+            hideDropdown();
+        }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (e) => {
+        if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+            hideDropdown();
+        }
+    });
+}
+
+async function fetchSearch(query) {
+    const dropdown = document.getElementById("search-dropdown");
+    if (!dropdown) return;
+
+    try {
+        const res = await fetch(`/api/map/search?search=${encodeURIComponent(query)}`);
+        const result = await res.json();
+
+        if (result.success && result.data.length > 0) {
+            searchResults = result.data;
+            activeIndex = -1;
+            renderDropdown();
+        } else {
+            searchResults = [];
+            dropdown.innerHTML = `<div class="search-empty">Tidak ada hasil untuk "${query}"</div>`;
+            dropdown.style.display = "block";
+        }
+    } catch (err) {
+        console.error("Search error:", err);
+        hideDropdown();
+    }
+}
+
+function renderDropdown() {
+    const dropdown = document.getElementById("search-dropdown");
+    if (!dropdown) return;
+
+    const html = searchResults.map((item, i) => {
+        const cfg = jenjangConfig[item.klas] ?? { label: item.klas, badge: "#f1f5f9", badgeText: "#334155" };
+        return `
+            <div class="search-item${i === activeIndex ? ' active' : ''}" data-index="${i}">
+                <div class="search-item-name">${item.name}</div>
+                <div class="search-item-meta">
+                    <span class="search-item-badge" style="background:${cfg.badge};color:${cfg.badgeText};">${cfg.label}</span>
+                    <span class="search-item-address">${item.address ? item.address.substring(0, 40) : '-'}</span>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    dropdown.innerHTML = html;
+    dropdown.style.display = "block";
+
+    // Click handlers for each item
+    dropdown.querySelectorAll(".search-item").forEach((el) => {
+        el.addEventListener("click", () => {
+            const idx = parseInt(el.dataset.index);
+            selectSchool(searchResults[idx]);
+        });
+    });
+}
+
+function highlightItem() {
+    const dropdown = document.getElementById("search-dropdown");
+    if (!dropdown) return;
+    dropdown.querySelectorAll(".search-item").forEach((el, i) => {
+        el.classList.toggle("active", i === activeIndex);
+    });
+    // Scroll active item into view
+    const active = dropdown.querySelector(".search-item.active");
+    if (active) active.scrollIntoView({ block: "nearest" });
+}
+
+function hideDropdown() {
+    const dropdown = document.getElementById("search-dropdown");
+    if (dropdown) {
+        dropdown.style.display = "none";
+        dropdown.innerHTML = "";
+    }
+    searchResults = [];
+    activeIndex = -1;
+}
+
+// ─── Select school from search ────────────────────────────────────────────────
+async function selectSchool(facility) {
+    const input = document.getElementById("search-input");
+    if (input) input.value = facility.name;
+    hideDropdown();
+
+    // 1. Marker already exists → fly to it
+    if (allMarkers[facility.id]) {
+        flyToMarker(allMarkers[facility.id]);
+        return;
+    }
+
+    // 2. Not loaded → load the entire jenjang layer, then fly
+    const jenjang = facility.klas;
+    if (jenjang && jenjangLayers[jenjang]) {
+        await loadJenjang(jenjang);
+
+        // Auto‑check the checkbox in the layer panel
+        const checkbox = document.querySelector(`input[name="jenjang"][value="${jenjang}"]`);
+        if (checkbox && !checkbox.checked) checkbox.checked = true;
+
+        // Now the marker should exist
+        if (allMarkers[facility.id]) {
+            flyToMarker(allMarkers[facility.id]);
+        }
+    }
+}
+
+function flyToMarker(marker) {
+    map.flyTo(marker.getLatLng(), map.getMaxZoom(), { duration: 1.2 });
+    // Open popup after fly animation finishes
+    setTimeout(() => marker.openPopup(), 1400);
+}
+
