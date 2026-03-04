@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="default-basemap" content="{{ \App\Models\Setting::get('default_basemap', 'osm') }}">
     <meta name="layer-control-collapsed" content="{{ \App\Models\Setting::get('layer_control_collapsed', '0') }}">
     <title>{{ \App\Models\Setting::get('app_name', 'GIS Pendidikan') }} - Peta Sekolah</title>
@@ -30,7 +31,7 @@
             @auth
                 <a href="{{ route('admin.dashboard') }}" class="font-bold text-indigo-300">Dashboard</a>
             @else
-                <a href="{{ route('login') }}" class="font-medium text-slate-200">Login</a>
+                <button id="btn-open-login" class="font-medium text-slate-200 hover:text-white transition">Login</button>
             @endauth
         </div>
 
@@ -158,6 +159,16 @@
 
     @vite('resources/js/gis/initial-map.js')
     @vite('resources/js/map/map.js')
+    @vite('resources/js/app.js')
+
+    {{-- Auth modal --}}
+    @include('partials.auth-modal')
+
+    <script>
+        document.getElementById('btn-open-login')?.addEventListener('click', () => {
+            window.dispatchEvent(new CustomEvent('open-auth-modal'));
+        });
+    </script>
 </body>
 
 </html>

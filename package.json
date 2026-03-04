@@ -19,6 +19,7 @@
         "vite": "^7.0.7"
     },
     "dependencies": {
+        "@alpinejs/focus": "^3.15.8",
         "leaflet": "^1.9.4",
         "leaflet.markercluster": "^1.5.3"
     }

@@ -5,11 +5,20 @@ use App\Http\Controllers\Admin\EducationFacilityController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Map\PetaController;
 use Illuminate\Support\Facades\Route;
 
 // route map (peta sebaran)
 Route::get('/', [PetaController::class, 'index'])->name('map.index');
+
+// ── Auth AJAX endpoints (public) ────────────────────────────────
+Route::post('/auth/login', [LoginController::class, 'ajaxLogin'])->name('auth.ajax-login')->middleware('throttle:10,1');
+Route::post('/auth/password/email', [ForgotPasswordController::class, 'sendCode'])->name('auth.password.email')->middleware('throttle:5,1');
+Route::post('/auth/password/reset', [ResetPasswordController::class, 'resetWithCode'])->name('auth.password.reset');
+// ────────────────────────────────────────────────────────────────
 
 // Map API Routes (public)
 Route::prefix('api/map')->group(function () {
