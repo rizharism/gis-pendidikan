@@ -1,103 +1,79 @@
-<p align="center">
-    <a href="https://laravel.com" target="_blank">
-        <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
-    </a>
-</p>
-
 # GIS Pendidikan Kota Blitar 📍🎓
 
-GIS Pendidikan Blitar adalah sebuah aplikasi Sistem Informasi Geografis (SIG) berbasis web yang dirancang untuk memetakan, mengelola, dan menampilkan sebaran fasilitas pendidikan di wilayah Kota Blitar. Aplikasi ini dibangun untuk memberikan visualisasi data spasial yang informatif bagi masyarakat dan manajemen data yang efisien bagi administrator.
+GIS Pendidikan Blitar adalah aplikasi Sistem Informasi Geografis (SIG) modern untuk memetakan dan mengelola sebaran fasilitas pendidikan di Kota Blitar. Dirancang dengan antarmuka premium, performa responsif, dan sistem manajemen data yang tangguh.
 
 ---
 
 ## 🚀 Fitur Utama
 
--   **Dashboard Statistik Interaktif**: Ringkasan data (Total Fasilitas, SD, SMP, SMA, Universitas) dilengkapi dengan visualisasi Donut Chart dari **ApexCharts**.
--   **Manajemen Fasilitas (CRUD)**: Kelola data sekolah lengkap dengan foto, deskripsi, dan lokasi geografis.
--   **Integrasi Peta Spasial**: Menggunakan **Leaflet.js** untuk pemilihan titik koordinat (latitude & longitude) dengan antarmuka peta yang responsif.
--   **Auto-Jenjang Seeder**: Sistem impor data pintar yang otomatis mendeteksi jenjang pendidikan dari nama fasilitas.
--   **Sistem Autentikasi**: Area admin yang aman menggunakan **Laravel Breeze**.
--   **Penanganan Media**: Upload foto fasilitas dengan optimasi penamaan dan placeholder gambar default jika foto tidak tersedia.
+### 📡 Peta & GIS (Leaflet UI Custom)
+- **Custom Layer Control**: Panel kendali layer peta dengan ikon hamburger dan toggle interaktif.
+- **Detail Modal via AJAX**: Informasi rinci fasilitas pendidikan (tipe sekolah, akreditasi, video, dan galeri) yang dimuat secara dinamis tanpa refresh halaman.
+- **Visualisasi Map Premium**: Layout peta yang dioptimalkan dengan palet warna brand yang terkurasi.
+
+### 👥 Admin & Manajemen Pengguna
+- **Simple RBAC**: Manajemen akun pengguna dengan peran **Super Admin** dan **Admin**.
+- **Pembaruan Profil & Keamanan**: Fitur update informasi akun dan ubah kata sandi dengan verifikasi kata sandi saat ini (`DB::transaction` aman).
+- **Manajemen Fasilitas (CRUD)**: Kelola data sekolah lengkap dengan foto, deskripsi, video, jam buka, dan galeri multimedia.
+
+### ⚙️ Pengaturan Global (Branding)
+- **Konfigurasi Branding**: Ubah Nama Aplikasi dan Logo secara dinamis dari dashboard.
+- **Kontrol Tampilan**: Dukungan penuh **Dark Mode** dan toggle **Dev Mode**.
+- **Default Basemap**: Pilihan basemap default (OSM, Satellite, Topographic) untuk tampilan peta utama.
+
+### 📊 Dashboard & Integritas Data
+- **Statistik Interaktif**: Ringkasan data pendidikan menggunakan **ApexCharts** (Donut Chart).
+- **Integritas Database**: Penggunaan `DB::transaction` pada setiap proses penyimpanan data kritis untuk menjamin keandalan data.
 
 ---
 
 ## 🛠️ Stack Teknologi
 
--   **Core Framework**: [Laravel 12](https://laravel.com)
--   **Frontend Interactivity**: [Alpine.js](https://alpinejs.dev)
--   **UI Styling**: [Tailwind CSS](https://tailwindcss.com)
--   **Peta & GIS**: [Leaflet.js](https://leafletjs.com)
--   **Visualisasi Data**: [ApexCharts](https://apexcharts.com)
--   **Database**: MySQL / MariaDB
+- **Core Framework**: [Laravel 12](https://laravel.com)
+- **Frontend Interactivity**: [Alpine.js](https://alpinejs.dev)
+- **UI Styling**: [Tailwind CSS](https://tailwindcss.com)
+- **Peta & GIS**: [Leaflet.js](https://leafletjs.com)
+- **Visualisasi Data**: [ApexCharts](https://apexcharts.com)
 
 ---
 
-## 📦 Panduan Instalasi
+## 📦 Panduan Instalasi Lokal
 
-Ikuti langkah-langkah berikut untuk menjalankan projek di lingkungan lokal Anda:
+1. **Clone & Install**:
+   ```bash
+   git clone https://github.com/rizHarism/gis-pendidikan.git
+   cd gis-pendidikan
+   # Pindah ke branch utama pengembangan jika perlu
+   git checkout develop
+   composer install && npm install
+   ```
 
-### 1. Persiapan Awal
-Pastikan Anda sudah menginstal:
--   PHP >= 8.2
--   Composer
--   Node.js & NPM
--   MySQL
+2. **Environment Setup**:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-### 2. Clone & Install
-```bash
-# Clone repository
-git clone https://github.com/rizHarism/gis-pendidikan.git
-cd gis-pendidikan
-git checkout develop
+3. **Database Migration & Seeding**:
+   ```bash
+   # Inisialisasi tabel, data awal, settings, dan admin user
+   php artisan migrate:fresh --seed
+   php artisan storage:link
+   ```
 
-# Install dependencies PHP
-composer install
+4. **Running**:
+   ```bash
+   # Terminal 1 (PHP)
+   php artisan serve
 
-# Install dependencies JS
-npm install
-```
-
-### 3. Konfigurasi Environment
-Buat file `.env` dan sesuaikan pengaturan database Anda:
-```bash
-cp .env.example .env
-php artisan key:generate
-```
-
-### 4. Database & Storage
-Jalankan migrasi beserta seeder untuk mengisi data awal (termasuk user admin default):
-```bash
-# Migrasi dan Seed Data
-php artisan migrate:fresh --seed
-
-# Hubungkan Storage untuk Foto
-php artisan storage:link
-```
-
-> [!NOTE]
-> User Admin Default: `admin@example.com` | Password: `password`
-
-### 5. Menjalankan Aplikasi
-Buka dua terminal dan jalankan perintah berikut:
-
-**Terminal 1 (Backend):**
-```bash
-php artisan serve
-```
-
-**Terminal 2 (Frontend/Assets):**
-```bash
-npm run dev
-```
-
-Aplikasi dapat diakses di: `http://localhost:8000`
+   # Terminal 2 (Vite)
+   npm run dev
+   ```
 
 ---
 
 ## 🤝 Kontribusi
-
-Projek ini dikembangkan sebagai bagian dari tugas Praktek Kerja Lapangan (PKL) Kelompok 2. Kontribusi sangat dihargai untuk pengembangan fitur analisis spasial tingkat lanjut kedepannya.
+Dikembangkan oleh **Kelompok 2 - PKL Semester 5**. Kami terbuka untuk masukan pengembangan fitur analisis spasial yang lebih lanjut.
 
 ## 📄 Lisensi
-
 Tersedia di bawah lisensi [MIT](https://opensource.org/licenses/MIT).
