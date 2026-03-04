@@ -19,7 +19,7 @@ GIS Pendidikan Blitar adalah aplikasi Sistem Informasi Geografis (SIG) modern un
 ### ⚙️ Pengaturan Global (Branding)
 - **Konfigurasi Branding**: Ubah Nama Aplikasi dan Logo secara dinamis dari dashboard.
 - **Kontrol Tampilan**: Dukungan penuh **Dark Mode** dan toggle **Dev Mode**.
-- **Default Basemap**: Pilihan basemap default (OSM, Satellite, Topographic) untuk tampilan peta utama.
+- **Default Basemap**: Pilihan basemap default untuk tampilan peta utama.
 
 ### 📊 Dashboard & Integritas Data
 - **Statistik Interaktif**: Ringkasan data pendidikan menggunakan **ApexCharts** (Donut Chart).
@@ -69,6 +69,9 @@ GIS Pendidikan Blitar adalah aplikasi Sistem Informasi Geografis (SIG) modern un
    # Terminal 2 (Vite)
    npm run dev
    ```
+
+> [!NOTE]
+> User Admin Default: `admin@example.com` | Password: `password`
 
 ---
 
