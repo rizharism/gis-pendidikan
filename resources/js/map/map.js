@@ -60,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setupBasemapRadios();
     setupJenjangCheckboxes();
     setupLayerPanelToggle(layerCollapsed);
-    setupDetailModal();
     setupSearch();
 });
 
@@ -281,124 +280,9 @@ function createPopupContent(facility) {
 }
 
 // ─── Detail Modal ─────────────────────────────────────────────────────────────
-function setupDetailModal() {
-    const modal = document.getElementById("detail-modal");
-    const backdrop = modal?.querySelector(".modal-backdrop");
-    const closeBtn = document.getElementById("modal-close-btn");
 
-    if (!modal) return;
-
-    // Close on ✕ button
-    closeBtn?.addEventListener("click", closeDetailModal);
-
-    // Close on backdrop click
-    backdrop?.addEventListener("click", closeDetailModal);
-
-    // Close on Escape key
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-            closeDetailModal();
-        }
-    });
-}
-
-function closeDetailModal() {
-    const modal = document.getElementById("detail-modal");
-    if (modal) {
-        modal.classList.remove("show");
-        setTimeout(() => {
-            modal.classList.add("hidden");
-            modal.classList.remove("flex");
-        }, 250);
-    }
-}
-
-window.showDetailModal = async function (facilityId) {
-    const modal = document.getElementById("detail-modal");
-    const loading = document.getElementById("modal-loading");
-    const modalBody = modal?.querySelector(".modal-body");
-    const modalHeader = document.getElementById("modal-header");
-
-    if (!modal) return;
-
-    // Show modal with loading state
-    modal.classList.remove("hidden");
-    modal.classList.add("flex");
-    requestAnimationFrame(() => modal.classList.add("show"));
-
-    if (loading) {
-        loading.classList.remove("hidden");
-        loading.classList.add("flex");
-    }
-    if (modalBody) modalBody.classList.add("hidden");
-
-    try {
-        const response = await fetch(`/api/map/detail/${facilityId}`);
-        const result = await response.json();
-
-        if (result.success) {
-            const facility = result.data;
-            const config = jenjangConfig[facility.klas] ?? {
-                label: facility.klas?.toUpperCase() ?? "Sekolah",
-                gradient: "linear-gradient(135deg, #64748b, #475569)",
-                badge: "#f1f5f9",
-                badgeText: "#334155",
-            };
-
-            // Populate header
-            const imageUrl = facility.gallery && Array.isArray(facility.gallery) && facility.gallery.length > 0
-                ? `/storage/${facility.gallery[0]}`
-                : "/assets/images/default.png";
-
-            const modalImage = document.getElementById("modal-image");
-            if (modalImage) {
-                modalImage.src = imageUrl;
-                modalImage.alt = facility.name;
-            }
-
-            if (modalHeader) {
-                // Clear old classes then apply from config
-                modalHeader.className = "modal-header " + config.gradient;
-            }
-
-            const jenjangBadge = document.getElementById("modal-jenjang-badge");
-            if (jenjangBadge) {
-                jenjangBadge.textContent = config.label;
-                jenjangBadge.className = "modal-jenjang-badge " + config.badgeClass;
-            }
-
-            // Populate body
-            const nameEl = document.getElementById("modal-name");
-            if (nameEl) nameEl.textContent = facility.name;
-
-            const addressEl = document.getElementById("modal-address");
-            if (addressEl) addressEl.textContent = facility.address || "-";
-
-            const descEl = document.getElementById("modal-description");
-            if (descEl) descEl.textContent = facility.description || "Belum ada deskripsi.";
-
-            const coordsEl = document.getElementById("modal-coords");
-            if (coordsEl) coordsEl.textContent = `${facility.latitude}, ${facility.longitude}`;
-
-            // Switch from loading to content
-            if (loading) {
-                loading.classList.add("hidden");
-                loading.classList.remove("flex");
-            }
-            if (modalBody) modalBody.classList.remove("hidden");
-        }
-    } catch (error) {
-        console.error("Error fetching detail:", error);
-        if (loading) {
-            loading.classList.add("hidden");
-            loading.classList.remove("flex");
-        }
-        if (modalBody) {
-            modalBody.classList.remove("hidden");
-            const nameEl = document.getElementById("modal-name");
-            if (nameEl) nameEl.textContent = "Gagal memuat data";
-        }
-    }
+window.showDetailModal = function (facilityId) {
+    window.dispatchEvent(new CustomEvent('open-map-detail', { detail: facilityId }));
 };
 
 

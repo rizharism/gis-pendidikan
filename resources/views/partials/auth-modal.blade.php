@@ -47,7 +47,7 @@
             {{-- VIEW 1: LOGIN                                            --}}
             {{-- ════════════════════════════════════════════════════════ --}}
             <template x-if="mode === 'login'">
-                <div class="p-8">
+                <div class="p-6 sm:p-8">
                     {{-- Logo / Title --}}
                     <div class="text-center mb-6">
                         <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-brand-dark mb-3">
@@ -118,7 +118,7 @@
             {{-- VIEW 2: FORGOT – enter email & request code             --}}
             {{-- ════════════════════════════════════════════════════════ --}}
             <template x-if="mode === 'forgot'">
-                <div class="p-8">
+                <div class="p-6 sm:p-8">
                     <div class="text-center mb-6">
                         <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-amber-100 mb-3">
                             <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,7 +164,7 @@
             {{-- VIEW 3: RESET – enter code + new password               --}}
             {{-- ════════════════════════════════════════════════════════ --}}
             <template x-if="mode === 'reset'">
-                <div class="p-8">
+                <div class="p-6 sm:p-8">
                     <div class="text-center mb-6">
                         <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-emerald-100 mb-3">
                             <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
