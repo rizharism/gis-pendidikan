@@ -454,7 +454,7 @@
 /* Modal Header */
 .modal-header {
     position: relative;
-    height: 180px;
+    height: 260px;
     overflow: hidden;
 }
 
@@ -581,5 +581,139 @@
 @keyframes modal-spin {
     to {
         transform: rotate(360deg);
+    }
+}
+
+/* ─── Base: Ensure full-height map on all devices ────────────────────── */
+html,
+body {
+    height: 100%;
+    /* overflow hidden is handled by JS when welcome overlay is open */
+}
+
+#map-container {
+    height: 100dvh; /* dynamic viewport height — fixes mobile browser chrome */
+}
+
+/* ─── Responsive: Tablet (641px – 1024px) ───────────────────────────── */
+@media (min-width: 641px) and (max-width: 1024px) {
+
+    /* Dock: top-left */
+    #dock {
+        left: 20px;
+        right: auto;
+        transform: none;     /* cancel the desktop translateX(-50%) centering */
+        padding: 10px 16px;
+        gap: 10px;
+    }
+
+    #dock input[type="text"] {
+        width: 200px;
+    }
+
+    /* Layer control: top-right — no change needed, stays at right: 20px; top: 20px */
+}
+
+/* ─── Responsive: Mobile (≤ 640px) ──────────────────────────────────── */
+@media (max-width: 640px) {
+
+    /* Dock: centered horizontally at the top */
+    #dock {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        padding: 8px 12px;
+        gap: 6px;
+        border-radius: 18px;
+        max-width: calc(100% - 32px);  /* 16px margin each side */
+    }
+
+    #dock input[type="text"] {
+        width: 130px;
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .dock-btn {
+        font-size: 12px;
+        padding: 6px 8px;
+        margin-left: 2px;
+    }
+
+    #dock a {
+        font-size: 12px;
+        padding: 6px 8px;
+        margin-left: 2px;
+    }
+
+    /* Search dropdown: full width minus padding */
+    #search-dropdown {
+        width: min(320px, calc(100vw - 32px));
+    }
+
+    /* Layer control: centered, positioned below the dock */
+    #layer-control-wrapper {
+        top: 82px;          /* ~dock height (52px) + 20px gap */
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        align-items: center;
+    }
+
+    #layer-control-wrapper span{
+        font-size: 10px;
+        font-weight: 0;
+    }
+
+    #layer-toggle-btn {
+        padding: 8px 14px;
+        font-size: 12px;
+        border-radius: 14px;
+        
+    }
+
+    #layer-panel {
+        min-width: 220px;
+        max-height: 260px;
+        border-radius: 18px;
+        padding: 12px;
+        overflow-y: auto;   
+    }
+
+    #layer-panel.collapsed {
+        padding: 0 12px;
+    }
+
+    /* Modals: use more of the screen height on mobile */
+    .modal-card {
+        border-radius: 20px;
+        max-height: 92vh;
+        margin: 0 6px;
+    }
+
+    .modal-body {
+        padding: 14px;
+    }
+}
+
+/* ─── Responsive: Very small phones (≤ 400px) ────────────────────────── */
+@media (max-width: 400px) {
+    #dock input[type="text"] {
+        width: 90px;
+        font-size: 11px;
+    }
+
+    .dock-btn {
+        font-size: 11px;
+        padding: 5px 6px;
+    }
+
+    #dock a {
+        font-size: 11px;
+        padding: 5px 6px;
+    }
+
+    #layer-toggle-btn {
+        padding: 8px 10px;
     }
 }

@@ -17,6 +17,16 @@ export function initMap() {
         attribution: "&copy; OpenStreetMap",
     }).addTo(mapInstance);
 
+    // Fix Leaflet not filling the container on mobile when the browser
+    // chrome (address bar) shows/hides or the device is rotated.
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            mapInstance.invalidateSize();
+        }, 150);
+    });
+
     return mapInstance;
 }
 
