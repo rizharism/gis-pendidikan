@@ -74,7 +74,7 @@
                                     </svg>
                                 </span>
                             @endif
-                            <span x-show="sidebarOpen" x-transition class="hidden sm:inline">{{ \App\Models\Setting::get('app_name', 'GIS Pendidikan') }}</span>
+                            <span x-show="sidebarOpen" x-transition class="hidden lg:inline">{{ \App\Models\Setting::get('app_name', 'GIS Pendidikan') }}</span>
                         </h1>
                     </div>
 

@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('content')
-<div class="py-2">
+<div class="space-y-6">
 
     {{-- Header --}}
     <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">

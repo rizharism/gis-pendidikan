@@ -1,7 +1,7 @@
 {{-- <tbody class="divide-y divide-slate-50"> --}}
 @forelse ($facilities as $facility)
     <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors group">
-        <td class="px-6 py-4 whitespace-nowrap">
+        <td class="px-3 sm:px-6 py-2.5 sm:py-4 whitespace-nowrap">
             <div class="flex items-center gap-3">
                 <div
                     class="w-10 h-10 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-600 shrink-0 bg-slate-50 dark:bg-slate-700 flex items-center justify-center">
@@ -21,10 +21,10 @@
                 </div>
             </div>
         </td>
-        <td class="px-6 py-4">
+        <td class="hidden md:table-cell px-3 sm:px-6 py-2.5 sm:py-4">
             <div class="text-sm text-slate-500 dark:text-slate-400 max-w-xs truncate">{{ $facility->address }}</div>
         </td>
-        <td class="px-6 py-4 whitespace-nowrap">
+        <td class="px-3 sm:px-6 py-2.5 sm:py-4 whitespace-nowrap">
             <div class="flex items-center gap-2">
                 <span class="text-sm text-slate-600 dark:text-slate-300 font-medium uppercase">{{ $facility->klas }}</span>
                 @if($facility->accreditation)
@@ -37,7 +37,7 @@
                 @endif
             </div>
         </td>
-        <td class="px-6 py-4 whitespace-nowrap text-center">
+        <td class="px-3 sm:px-6 py-2.5 sm:py-4 whitespace-nowrap text-center">
             <div class="flex items-center justify-center gap-2">
                 {{-- Detail Button --}}
                 <button type="button"

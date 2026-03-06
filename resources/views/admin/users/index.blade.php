@@ -71,7 +71,7 @@
         <div class="bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <!-- Search Bar -->
             <div class="p-6 border-b border-slate-50 dark:border-slate-700">
-                <form method="GET" action="{{ route('admin.users.index') }}" class="flex gap-2">
+                <form method="GET" action="{{ route('admin.users.index') }}" class="flex flex-wrap gap-2">
                     <div class="relative flex-1">
                         <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -102,16 +102,16 @@
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="bg-slate-50/50 dark:bg-slate-700/50">
-                            <th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic">Nama</th>
-                            <th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic">Email</th>
-                            <th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic">Role</th>
-                            <th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic text-center">Aksi</th>
+                            <th class="px-3 sm:px-6 py-2.5 sm:py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic">Nama</th>
+                            <th class="hidden sm:table-cell px-3 sm:px-6 py-2.5 sm:py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic">Email</th>
+                            <th class="px-3 sm:px-6 py-2.5 sm:py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic">Role</th>
+                            <th class="px-3 sm:px-6 py-2.5 sm:py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-50 dark:divide-slate-700">
                         @forelse($users as $user)
                             <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors">
-                                <td class="px-6 py-4">
+                                <td class="px-3 sm:px-6 py-2.5 sm:py-4">
                                     <div class="flex items-center gap-3">
                                         <div class="w-8 h-8 bg-blue-100 dark:bg-brand-dark/40 dark:text-white rounded-full flex items-center justify-center text-brand-accent font-bold text-sm shrink-0">
                                             {{ strtoupper(substr($user->name, 0, 1)) }}
@@ -122,8 +122,8 @@
                                         @endif
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">{{ $user->email }}</td>
-                                <td class="px-6 py-4">
+                                <td class="hidden sm:table-cell px-3 sm:px-6 py-2.5 sm:py-4 text-sm text-slate-500 dark:text-slate-400">{{ $user->email }}</td>
+                                <td class="px-3 sm:px-6 py-2.5 sm:py-4">
                                     @if($user->role === 'super-admin')
                                         <span class="inline-flex items-center gap-1 text-xs font-bold bg-brand-dark/10 dark:bg-brand-dark/40 text-brand-dark dark:text-blue-300 px-3 py-1 rounded-full">
                                             <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1l2.545 5.157L18 7.118l-4 3.897.944 5.505L10 13.875l-4.944 2.645L6 10.015 2 7.118l5.455-.961L10 1z" clip-rule="evenodd"/></svg>
@@ -136,7 +136,7 @@
                                         </span>
                                     @endif
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <td class="px-3 sm:px-6 py-2.5 sm:py-4 whitespace-nowrap text-center">
                                     <div class="flex items-center justify-center gap-2">
                                         <a href="{{ route('admin.users.edit', $user->id) }}"
                                             class="p-2 text-slate-400 hover:text-brand-accent hover:bg-blue-50 dark:hover:bg-white-accent/20 rounded-lg transition-all">

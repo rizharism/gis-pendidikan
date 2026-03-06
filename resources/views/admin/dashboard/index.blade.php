@@ -5,7 +5,7 @@
         <!-- Header Section -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-                <h2 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Dashboard Overview</h2>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Dashboard Overview</h2>
                 <p class="text-slate-500 dark:text-slate-400 mt-2 font-medium italic">Selamat datang kembali, {{ Auth::user()->name }}! Ringkasan data fasilitas pendidikan.</p>
             </div>
             <div class="hidden md:flex items-center gap-3">

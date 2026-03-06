@@ -163,7 +163,7 @@
         <div class="bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <!-- Search & Filter Bar -->
             <div class="p-6 border-b border-slate-50 dark:border-slate-700">
-                <form method="GET" action="{{ route('admin.education-facility') }}" class="flex gap-2"
+                <form method="GET" action="{{ route('admin.education-facility') }}" class="flex flex-wrap gap-2"
                     @submit="performSearch">
 
                     <div class="relative flex-1">
@@ -227,16 +227,16 @@
                     <thead>
                         <tr class="bg-slate-50/50 dark:bg-slate-700/50">
                             <th
-                                class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic">
+                                class="px-3 sm:px-6 py-2.5 sm:py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic">
                                 Nama Fasilitas Pendidikan</th>
                             <th
-                                class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic">
+                                class="hidden md:table-cell px-3 sm:px-6 py-2.5 sm:py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic">
                                 Alamat</th>
                             <th
-                                class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic">
+                                class="px-3 sm:px-6 py-2.5 sm:py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic">
                                 Jenjang</th>
                             <th
-                                class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic text-center">
+                                class="px-3 sm:px-6 py-2.5 sm:py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700 italic text-center">
                                 Aksi</th>
                         </tr>
                     </thead>
