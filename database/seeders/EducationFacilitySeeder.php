@@ -14,7 +14,7 @@ class EducationFacilitySeeder extends Seeder
     public function run(): void
     {
         $jsonPath = public_path('assets/dummy-data/dummy.json');
-        
+
         if (!File::exists($jsonPath)) {
             $this->command->error("File dummy.json tidak ditemukan di: {$jsonPath}");
             return;
@@ -33,7 +33,7 @@ class EducationFacilitySeeder extends Seeder
         foreach ($data['data'] as $item) {
             $name = $item['nama'];
             $klas = $this->detectKlas($name);
-            
+
             // Deskripsi dengan sedikit bumbu
             $description = "{$name} merupakan salah satu lembaga pendidikan tingkat {$this->getKlasLabel($klas)} yang berlokasi di {$item['alamat']}. Sekolah ini berkomitmen untuk memberikan pendidikan berkualitas bagi masyarakat di sekitar Kota Blitar.";
 
@@ -41,7 +41,7 @@ class EducationFacilitySeeder extends Seeder
                 'name' => $name,
                 'klas' => $klas,
                 'address' => $item['alamat'],
-                'image' => null, // Set null agar menggunakan default.png yang baru dibuat
+                'gallery' => null, // Set null agar menggunakan default.png yang baru dibuat
                 'description' => $description,
                 'latitude' => $item['lat'],
                 'longitude' => $item['long'],
