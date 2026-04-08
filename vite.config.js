@@ -9,7 +9,7 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/js/gis/initial-map.js",
                 "resources/js/map/map.js",
-                "resources/js/admin/form-education.",
+                "resources/js/admin/form-education.js",
             ],
             refresh: true,
         }),
