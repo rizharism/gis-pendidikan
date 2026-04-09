@@ -241,11 +241,11 @@
                             <div>
                                 <label for="principal_name"
                                     class="block text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2">Kepala
-                                    Sekolah</label>
+                                    Sekolah / Rektor</label>
                                 <input type="text" id="principal_name" name="principal_name"
                                     value="{{ old('principal_name', $facility->principal_name ?? '') }}"
                                     class="w-full rounded-xl border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder-slate-400 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
-                                    placeholder="Nama kepala sekolah...">
+                                    placeholder="Nama kepala sekolah / Rektor...">
                                 @error('principal_name')
                                     <p class="text-rose-600 text-xs mt-1">{{ $message }}</p>
                                 @enderror
