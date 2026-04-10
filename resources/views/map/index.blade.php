@@ -416,7 +416,9 @@
                                 <div class="modal-info-row">
                                     <span class="modal-info-icon">👨‍🏫</span>
                                     <div>
-                                        <div class="modal-info-label">Kepala Sekolah</div>
+                                        <div class="modal-info-label"
+                                            x-text="detail.klas === 'universitas' ? 'Rektor' : 'Kepala Sekolah'">
+                                        </div>
                                         <div class="modal-info-value font-medium" x-text="detail.principal_name">
                                         </div>
                                     </div>
@@ -431,11 +433,11 @@
                                         <div class="modal-info-label">Kapasitas</div>
                                         <div class="modal-info-value">
                                             <template x-if="detail.student_capacity"><span
-                                                    x-text="detail.student_capacity + ' Siswa'"></span></template>
+                                                    x-text="detail.student_capacity + (detail.klas === 'universitas' ? ' Mahasiswa' : ' Siswa')"></span></template>
                                             <template x-if="detail.student_capacity && detail.teacher_count"><span
                                                     class="text-slate-300 mx-1">·</span></template>
                                             <template x-if="detail.teacher_count"><span
-                                                    x-text="detail.teacher_count + ' Guru'"></span></template>
+                                                    x-text="detail.teacher_count + (detail.klas === 'universitas' ? ' Dosen' : ' Guru')"></span></template>
                                         </div>
                                     </div>
                                 </div>

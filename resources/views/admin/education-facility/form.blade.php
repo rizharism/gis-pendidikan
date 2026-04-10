@@ -319,7 +319,7 @@
                             <div>
                                 <label for="student_capacity"
                                     class="block text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2">Jumlah
-                                    Siswa</label>
+                                    Siswa / Mahasiswa</label>
                                 <input type="number" id="student_capacity" name="student_capacity"
                                     value="{{ old('student_capacity', $facility->student_capacity ?? '') }}"
                                     class="w-full rounded-xl border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder-slate-400 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
@@ -332,7 +332,7 @@
                             <div>
                                 <label for="teacher_count"
                                     class="block text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2">Jumlah
-                                    Guru</label>
+                                    Guru / Dosen</label>
                                 <input type="number" id="teacher_count" name="teacher_count"
                                     value="{{ old('teacher_count', $facility->teacher_count ?? '') }}"
                                     class="w-full rounded-xl border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder-slate-400 focus:border-brand-accent focus:ring-brand-accent text-sm py-2.5 px-4 bg-slate-50/50"
