@@ -290,7 +290,7 @@
                     <line x1="3" y1="12" x2="21" y2="12" />
                     <line x1="3" y1="18" x2="21" y2="18" />
                 </svg>
-                <span>Layer Control</span>
+                <span class="layer-control-label">Layer Control</span>
             </button>
 
             <div id="layer-panel">

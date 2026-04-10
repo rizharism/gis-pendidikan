@@ -161,7 +161,7 @@
 /* ─── Layer Control Wrapper ─────────────────────────────────────────── */
 #layer-control-wrapper {
     position: absolute;
-    top: 20px;
+    top: 30px;
     right: 20px;
     z-index: 1000;
     display: flex;
@@ -187,7 +187,9 @@
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.02em;
-    transition: background 0.2s, transform 0.15s;
+    transition:
+        background 0.2s,
+        transform 0.15s;
     outline: none;
 }
 
@@ -221,7 +223,10 @@
     overflow: hidden;
     opacity: 1;
     transform: translateY(0);
-    transition: max-height 0.3s ease, opacity 0.25s ease, transform 0.25s ease;
+    transition:
+        max-height 0.3s ease,
+        opacity 0.25s ease,
+        transform 0.25s ease;
 }
 
 #layer-panel.collapsed {
@@ -396,7 +401,9 @@
     font-size: 12px;
     font-weight: 700;
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
+    transition:
+        background 0.2s,
+        transform 0.1s;
     text-align: center;
 }
 
@@ -597,12 +604,11 @@ body {
 
 /* ─── Responsive: Tablet (641px – 1024px) ───────────────────────────── */
 @media (min-width: 641px) and (max-width: 1024px) {
-
     /* Dock: top-left */
     #dock {
         left: 20px;
         right: auto;
-        transform: none;     /* cancel the desktop translateX(-50%) centering */
+        transform: none; /* cancel the desktop translateX(-50%) centering */
         padding: 10px 16px;
         gap: 10px;
     }
@@ -616,7 +622,6 @@ body {
 
 /* ─── Responsive: Mobile (≤ 640px) ──────────────────────────────────── */
 @media (max-width: 640px) {
-
     /* Dock: centered horizontally at the top */
     #dock {
         left: 50%;
@@ -625,7 +630,7 @@ body {
         padding: 8px 12px;
         gap: 6px;
         border-radius: 18px;
-        max-width: calc(100% - 32px);  /* 16px margin each side */
+        max-width: calc(100% - 32px); /* 16px margin each side */
     }
 
     #dock input[type="text"] {
@@ -653,31 +658,38 @@ body {
 
     /* Layer control: centered, positioned below the dock */
     #layer-control-wrapper {
-        top: 82px;          /* ~dock height (52px) + 20px gap */
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        align-items: center;
+        top: 30px;
+        width: max-content;
+        max-width: calc(100% - 40px);
+        pointer-events: none;
     }
 
-    #layer-control-wrapper span{
+    #layer-control-wrapper > * {
+        pointer-events: auto;
+    }
+
+    #layer-control-wrapper span {
         font-size: 10px;
         font-weight: 0;
+    }
+
+    #layer-control-wrapper .layer-control-label {
+        display: none;
     }
 
     #layer-toggle-btn {
         padding: 8px 14px;
         font-size: 12px;
         border-radius: 14px;
-        
     }
 
     #layer-panel {
+        margin-top: 10px;
         min-width: 220px;
-        max-height: 260px;
+        max-height: 320px;
         border-radius: 18px;
         padding: 12px;
-        overflow-y: auto;   
+        overflow-y: auto;
     }
 
     #layer-panel.collapsed {
