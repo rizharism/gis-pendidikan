@@ -308,9 +308,9 @@
                         <span>Satellite</span>
                     </label>
                     <label class="layer-option">
-                        <input type="radio" name="basemap" value="terrain">
+                        <input type="radio" name="basemap" value="OpenTopoMap">
                         <span class="layer-option-icon">⛰️</span>
-                        <span>Terrain</span>
+                        <span>Topografi</span>
                     </label>
                 </div>
 

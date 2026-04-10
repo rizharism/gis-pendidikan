@@ -19,34 +19,63 @@ const basemaps = {
         "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
         { maxZoom: 19, attribution: "© Esri" },
     ),
-    terrain: L.tileLayer(
-        "https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png",
-        { maxZoom: 18, attribution: "© Stamen Design" },
+    // terrain: L.tileLayer(
+    //     "https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png",
+    //     { maxZoom: 18, attribution: "© Stamen Design" },
+    // ),
+    OpenTopoMap: L.tileLayer(
+        "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+        {
+            maxZoom: 19,
+            attribution:
+                'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+        },
     ),
 };
 
 // Track currently active basemap key – read from meta tag or fall back to 'osm'
-let activeBasemap = document.querySelector('meta[name="default-basemap"]')?.content || "osm";
+let activeBasemap =
+    document.querySelector('meta[name="default-basemap"]')?.content || "osm";
 
 // ─── Jenjang layer groups (one cluster group per jenjang) ────────────────────
 const jenjangLayers = {
-    sd: L.markerClusterGroup({ showCoverageOnHover: false, zoomToBoundsOnClick: true, spiderfyOnMaxZoom: true }),
-    smp: L.markerClusterGroup({ showCoverageOnHover: false, zoomToBoundsOnClick: true, spiderfyOnMaxZoom: true }),
-    sma: L.markerClusterGroup({ showCoverageOnHover: false, zoomToBoundsOnClick: true, spiderfyOnMaxZoom: true }),
-    universitas: L.markerClusterGroup({ showCoverageOnHover: false, zoomToBoundsOnClick: true, spiderfyOnMaxZoom: true }),
+    sd: L.markerClusterGroup({
+        showCoverageOnHover: false,
+        zoomToBoundsOnClick: true,
+        spiderfyOnMaxZoom: true,
+    }),
+    smp: L.markerClusterGroup({
+        showCoverageOnHover: false,
+        zoomToBoundsOnClick: true,
+        spiderfyOnMaxZoom: true,
+    }),
+    sma: L.markerClusterGroup({
+        showCoverageOnHover: false,
+        zoomToBoundsOnClick: true,
+        spiderfyOnMaxZoom: true,
+    }),
+    universitas: L.markerClusterGroup({
+        showCoverageOnHover: false,
+        zoomToBoundsOnClick: true,
+        spiderfyOnMaxZoom: true,
+    }),
 };
 
 // Track which jenjang layers are currently on the map
 const layerOnMap = { sd: false, smp: false, sma: false, universitas: false };
 
 // ─── Init ────────────────────────────────────────────────────────────────────
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     map = initMap();
     if (!map) return;
 
     // Read saved settings from meta tags
-    const defaultBasemap = document.querySelector('meta[name="default-basemap"]')?.content || "osm";
-    const layerCollapsed  = document.querySelector('meta[name="layer-control-collapsed"]')?.content === "1";
+    const defaultBasemap =
+        document.querySelector('meta[name="default-basemap"]')?.content ||
+        "osm";
+    const layerCollapsed =
+        document.querySelector('meta[name="layer-control-collapsed"]')
+            ?.content === "1";
 
     // Add default basemap from settings
     const bm = basemaps[defaultBasemap] || basemaps.osm;
@@ -54,16 +83,41 @@ document.addEventListener("DOMContentLoaded", () => {
     activeBasemap = defaultBasemap;
 
     // Sync basemap radio buttons to the saved default
-    const savedRadio = document.querySelector(`input[name="basemap"][value="${defaultBasemap}"]`);
+    const savedRadio = document.querySelector(
+        `input[name="basemap"][value="${defaultBasemap}"]`,
+    );
     if (savedRadio) savedRadio.checked = true;
-
+    loadGeoJSON();
     setupBasemapRadios();
     setupJenjangCheckboxes();
     setupLayerPanelToggle(layerCollapsed);
     setupSearch();
 });
 
+// ─── Setup GeoJSON Zone of Blitar ───────────────────────────────────────────────────
+async function loadGeoJSON() {
+    try {
+        const response = await fetch("/geojson/kecamatan.geojson");
+        console.log(response);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
+        const style = {
+            color: "#1aa6d9",
+            weight: 4,
+            opacity: 0.9,
+        };
+
+        const data = await response.json();
+        const geojsonLayer = L.geoJSON(data, { style: style });
+        geojsonLayer.addTo(map);
+        // 3. Zoom to fit
+        // map.fitBounds(geojsonLayer.getBounds());
+    } catch (error) {
+        console.error("Error loading the GeoJSON file:", error);
+    }
+}
 // ─── Basemap radio switcher ───────────────────────────────────────────────────
 function setupBasemapRadios() {
     document.querySelectorAll('input[name="basemap"]').forEach((radio) => {
@@ -98,6 +152,17 @@ function setupJenjangCheckboxes() {
             }
         });
     });
+
+    // const jenjangs = ["sd", "smp", "sma", "universitas"];
+    // jenjangs.forEach(async (jenjang) => {
+    //     const checkbox = document.querySelector(
+    //         `input[name="jenjang"][value="${jenjang}"]`,
+    //     );
+    //     if (checkbox && !checkbox.checked) {
+    //         checkbox.checked = true;
+    //         await loadJenjang(jenjang);
+    //     }
+    // });
 }
 
 async function loadJenjang(jenjang) {
@@ -177,7 +242,6 @@ function setupLayerPanelToggle(initialCollapsed = false) {
     });
 }
 
-
 // ─── Marker & Popup creation ──────────────────────────────────────────────────
 function createMarker(facility) {
     const config = jenjangConfig[facility.klas] || {
@@ -186,7 +250,8 @@ function createMarker(facility) {
     };
 
     // Safety check for AwesomeMarkers (CDN plugin might be on window.L)
-    const AwesomeMarkers = L.AwesomeMarkers || (window.L ? window.L.AwesomeMarkers : null);
+    const AwesomeMarkers =
+        L.AwesomeMarkers || (window.L ? window.L.AwesomeMarkers : null);
 
     let marker;
     if (AwesomeMarkers) {
@@ -195,9 +260,13 @@ function createMarker(facility) {
             prefix: "fa",
             markerColor: config.markerColor,
         });
-        marker = L.marker([facility.latitude, facility.longitude], { icon: markerIcon });
+        marker = L.marker([facility.latitude, facility.longitude], {
+            icon: markerIcon,
+        });
     } else {
-        console.warn("AwesomeMarkers not found, falling back to default marker");
+        console.warn(
+            "AwesomeMarkers not found, falling back to default marker",
+        );
         marker = L.marker([facility.latitude, facility.longitude]);
     }
 
@@ -246,9 +315,12 @@ const jenjangConfig = {
 };
 
 function createPopupContent(facility) {
-    const imageUrl = facility.gallery && Array.isArray(facility.gallery) && facility.gallery.length > 0
-        ? `/storage/${facility.gallery[0]}`
-        : "/assets/images/default.png";
+    const imageUrl =
+        facility.gallery &&
+        Array.isArray(facility.gallery) &&
+        facility.gallery.length > 0
+            ? `/storage/${facility.gallery[0]}`
+            : "/assets/images/default.png";
 
     const config = jenjangConfig[facility.klas] ?? {
         label: facility.klas?.toUpperCase() ?? "Sekolah",
@@ -268,7 +340,7 @@ function createPopupContent(facility) {
             </div>
             <div class="popup-body">
                 <h3 class="popup-title">${facility.name}</h3>
-                <p class="popup-address">📍 ${facility.address ?? '-'}</p>
+                <p class="popup-address">📍 ${facility.address ?? "-"}</p>
             </div>
             <div class="popup-footer">
                 <button onclick="showDetailModal(${facility.id})" class="popup-btn">
@@ -282,9 +354,10 @@ function createPopupContent(facility) {
 // ─── Detail Modal ─────────────────────────────────────────────────────────────
 
 window.showDetailModal = function (facilityId) {
-    window.dispatchEvent(new CustomEvent('open-map-detail', { detail: facilityId }));
+    window.dispatchEvent(
+        new CustomEvent("open-map-detail", { detail: facilityId }),
+    );
 };
-
 
 // ─── Live Search + Fly‑to‑Marker ──────────────────────────────────────────────
 let searchTimeout = null;
@@ -292,7 +365,7 @@ let activeIndex = -1;
 let searchResults = [];
 
 function setupSearch() {
-    const input    = document.getElementById("search-input");
+    const input = document.getElementById("search-input");
     const dropdown = document.getElementById("search-dropdown");
     if (!input || !dropdown) return;
 
@@ -344,7 +417,9 @@ async function fetchSearch(query) {
     if (!dropdown) return;
 
     try {
-        const res = await fetch(`/api/map/search?search=${encodeURIComponent(query)}`);
+        const res = await fetch(
+            `/api/map/search?search=${encodeURIComponent(query)}`,
+        );
         const result = await res.json();
 
         if (result.success && result.data.length > 0) {
@@ -366,18 +441,23 @@ function renderDropdown() {
     const dropdown = document.getElementById("search-dropdown");
     if (!dropdown) return;
 
-    const html = searchResults.map((item, i) => {
-        const cfg = jenjangConfig[item.klas] ?? { label: item.klas.toUpperCase(), badgeClass: "bg-slate-100 text-slate-600" };
-        return `
-            <div class="search-item${i === activeIndex ? ' active' : ''}" data-index="${i}">
+    const html = searchResults
+        .map((item, i) => {
+            const cfg = jenjangConfig[item.klas] ?? {
+                label: item.klas.toUpperCase(),
+                badgeClass: "bg-slate-100 text-slate-600",
+            };
+            return `
+            <div class="search-item${i === activeIndex ? " active" : ""}" data-index="${i}">
                 <div class="search-item-name">${item.name}</div>
                 <div class="search-item-meta">
                     <span class="search-item-badge ${cfg.badgeClass}">${cfg.label}</span>
-                    <span class="search-item-address">${item.address ? item.address.substring(0, 40) : '-'}</span>
+                    <span class="search-item-address">${item.address ? item.address.substring(0, 40) : "-"}</span>
                 </div>
             </div>
         `;
-    }).join('');
+        })
+        .join("");
 
     dropdown.innerHTML = html;
     dropdown.classList.remove("hidden");
@@ -430,7 +510,9 @@ async function selectSchool(facility) {
         await loadJenjang(jenjang);
 
         // Auto-check the checkbox in the layer panel
-        const checkbox = document.querySelector(`input[name="jenjang"][value="${jenjang}"]`);
+        const checkbox = document.querySelector(
+            `input[name="jenjang"][value="${jenjang}"]`,
+        );
         if (checkbox && !checkbox.checked) checkbox.checked = true;
 
         // Ensure the cluster group is on the map
@@ -445,7 +527,11 @@ async function selectSchool(facility) {
         } else {
             // Fallback: fly to coordinates from search result
             if (facility.latitude && facility.longitude) {
-                map.flyTo([facility.latitude, facility.longitude], map.getMaxZoom(), { duration: 1.2 });
+                map.flyTo(
+                    [facility.latitude, facility.longitude],
+                    map.getMaxZoom(),
+                    { duration: 1.2 },
+                );
             }
         }
     }
@@ -456,4 +542,3 @@ function flyToMarker(marker) {
     // Open popup after fly animation finishes
     setTimeout(() => marker.openPopup(), 1400);
 }
-

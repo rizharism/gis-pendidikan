@@ -9,7 +9,7 @@ export function initMap() {
 
     mapInstance = L.map("map").setView(
         [-8.098194632146122, 112.16521834801217],
-        18,
+        13,
     );
 
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
