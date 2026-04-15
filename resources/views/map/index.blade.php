@@ -256,7 +256,7 @@
                         <div class="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-2.5">Tim
                             Pengembang</div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                            @foreach ([['1', 'Anggota 1', '000000'], ['2', 'Anggota 2', '000000'], ['3', 'Anggota 3', '000000']] as [$id, $name, $nim])
+                            @foreach ([['1', 'Rizqi Harisma U.', '000000'], ['2', 'Lovi Aldi', '000000'], ['3', 'M. Choirul Ulum', '000000']] as [$id, $name, $nim])
                                 <div
                                     class="flex items-center gap-2.5 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
                                     <div
@@ -265,7 +265,7 @@
                                     <div class="min-w-0">
                                         <div class="text-[13px] font-semibold text-slate-700 truncate capitalize">
                                             {{ $name }}</div>
-                                        <div class="text-[11px] text-slate-400">NIM: {{ $nim }}</div>
+                                        {{-- <div class="text-[11px] text-slate-400">NIM: {{ $nim }}</div> --}}
                                     </div>
                                 </div>
                             @endforeach
